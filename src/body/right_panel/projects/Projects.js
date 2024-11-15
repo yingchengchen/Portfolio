@@ -1,6 +1,6 @@
 import React from 'react';
 // Internal imports
-import data from 'main/data/data';
+import data from 'data/data';
 import PanelSection from './item/PanelSection';
 import ProjectItem from './item/projects/ProjectItem';
 function Projects(props) {

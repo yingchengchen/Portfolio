@@ -5,7 +5,7 @@ import './right_panel.scss';
 import PanelSection from './item/PanelSection';
 import GithubRepo from './item/github/GithubRepo';
 import ProjectItem from './item/projects/ProjectItem';
-import data from 'main/data/data';
+import data from 'data/data';
 
 function RightPanel(props) {
   const [pinnedRepos, setPinnedRepos] = useState(null);

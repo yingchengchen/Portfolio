@@ -9,7 +9,7 @@ import LinkedInIcon from '@material-ui/icons/LinkedIn';
 import GitHubIcon from '@material-ui/icons/GitHub';
 // Internal imports
 import styles from './bannerStyles';
-import data from 'main/data/data';
+import data from 'data/data';
 import AvatarImage from 'images/myAvatar.png';
 function Banner(props) {
   const classes = styles(props);

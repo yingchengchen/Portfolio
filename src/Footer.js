@@ -30,13 +30,8 @@ function Footer() {
   return (
     <footer className={classes.footer}>
       <Typography variant="caption">
-        References:
-        <Link
-          href="https://github.com/VaidasTheDev/personal-website"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Portfolio Example
+        <Link href="https://github.com/facebook/create-react-app" target="_blank" rel="noopener noreferrer">
+          Create React App
         </Link>
         <span className={classes.divider}>|</span>
         <Link
@@ -47,8 +42,20 @@ function Footer() {
           Portfolio icons created by Freepik - Flaticon
         </Link>
         <span className={classes.divider}>|</span>
-        <Link href="your_third_link" target="_blank" rel="noopener noreferrer">
-          Third Reference
+        <Link
+          href="https://www.cartoonize.net/avatar-maker/"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Avatar created by Cartoonize
+        </Link>
+        <span className={classes.divider}>|</span>
+        <Link
+          href="https://github.com/VaidasTheDev/personal-website"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Portfolio Example
         </Link>
       </Typography>
     </footer>
