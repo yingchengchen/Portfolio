@@ -1,5 +1,15 @@
+/* App.css */
 .App {
   text-align: center;
+}
+
+.App-root {
+  min-height: 100vh;
+  background: linear-gradient(0deg, #F0EFFC 0%, #ffffff 100%);
+}
+
+ul {
+  margin: 0.5rem 0;
 }
 
 .App-logo {
