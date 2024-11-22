@@ -10,6 +10,7 @@
     "@testing-library/user-event": "13.5.0",
     "axios": "0.19.2",
     "react": "16.14.0",
+    "react-device-detect": "^2.2.3",
     "react-dom": "16.14.0",
     "react-markdown": "^9.0.1",
     "react-scripts": "4.0.3",

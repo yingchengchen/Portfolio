@@ -1,22 +1,22 @@
 import React, { useState, useEffect } from 'react';
+import { isMobile } from 'react-device-detect';
 import axios from 'axios';
-import './right_panel.scss';
-// import Projects from './item/projects/Projec ts';
+import './right_panel.css';
 import PanelSection from './item/PanelSection';
 import GithubRepo from './item/github/GithubRepo';
 import ProjectItem from './item/projects/ProjectItem';
 import data from 'data/data';
 
-function RightPanel(props) {
+const RightPanel = () => {
   const [pinnedRepos, setPinnedRepos] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    async function getPinnedRepositories() {
+    const getPinnedRepositories = async () => {
       const query = `
         {
           user(login: "${data.details.github.username}") {
-            pinnedItems(first: 6, types: REPOSITORY) {
+            pinnedItems(first: 3, types: REPOSITORY) {
               nodes {
                 ... on Repository {
                   name
@@ -50,38 +50,41 @@ function RightPanel(props) {
       } finally {
         setIsLoading(false);
       }
-    }
+    };
 
     getPinnedRepositories();
-  }, []); // Empty dependency array means this effect runs once on mount
+  }, []);
+
+  const renderGithubSection = () => {
+    if (isLoading) return <div>Loading...</div>;
+    if (!pinnedRepos || pinnedRepos.length === 0) return <div>No pinned repositories found</div>;
+    
+    return pinnedRepos.map((repo, index) => (
+      <GithubRepo 
+        key={index} 
+        name={repo.name} 
+        link={repo.html_url}
+      />
+    ));
+  };
 
   return (
-    <div className="RightPanel-root">
+    <div className={`RightPanel-root ${isMobile ? 'RightPanel-root-mobile' : ''}`}>
       <PanelSection title="GitHub Highlight">
-        {isLoading ? (
-          <div>Loading...</div>
-        ) : pinnedRepos && pinnedRepos.length > 0 ? (
-          <>
-            {pinnedRepos.map((r, i) => (
-              <GithubRepo key={i} name={r.name} link={r.html_url} />
-            ))}
-          </>
-        ) : (
-          <div>No pinned repositories found</div>
-        )}
+        {renderGithubSection()}
       </PanelSection>
       <PanelSection title="Dev Resources I Love">
-        {data.rightPanel.projects.map((p, i) => (
+        {data.rightPanel.projects.map((project, index) => (
           <ProjectItem
-            key={i}
-            header={p.header}
-            link={p.link}
-            description={p.description}
+            key={index}
+            header={project.header}
+            link={project.link}
+            description={project.description}
           />
         ))}
       </PanelSection>
     </div>
   );
-}
+};
 
 export default RightPanel;

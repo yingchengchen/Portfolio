@@ -1,25 +1,26 @@
 // Personal account details i.e. GitHub username for now
-import github from './details/github';
+import githubDetails from './details/github';
 // Banner
-import info from './banner/info';
-import buttons from './banner/buttons';
+import infoData from './banner/info';
+import buttonData from './banner/buttons';
 // Body
 import sections from './sections';
 // Panel on the right
-import projects from './projects';
+import projectsData from './projects';
+
 const data = {
   banner: {
-    info,
-    buttons
+    info:infoData,
+    buttons:buttonData
   },
   body: {
     sections
   },
   rightPanel: {
-    projects
+    projects:projectsData
   },
   details: {
-    github
+    github:githubDetails
   }
 };
 export default data;

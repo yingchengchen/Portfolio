@@ -1,82 +1,95 @@
 import React from 'react';
+import { isMobile } from 'react-device-detect';
 import {
   Avatar,
   Button,
   Typography
 } from '@material-ui/core';
-import { ReactSVG } from 'react-svg';
 import LinkedInIcon from '@material-ui/icons/LinkedIn';
 import GitHubIcon from '@material-ui/icons/GitHub';
 // Internal imports
 import styles from './bannerStyles';
 import data from 'data/data';
 import AvatarImage from 'images/myAvatar.png';
-function Banner(props) {
-  const classes = styles(props);
-  const infoData = data.banner.info;
-  const buttonData = data.banner.buttons;
-  // Should generalise
-  function getButton(btnData, index) {
-    switch(btnData.type) {
-      case "linkedin": return (
+
+const SocialButton = ({ type, link, className }) => {
+  const buttonProps = {
+    className: `${className} ${isMobile ? 'button-mobile' : ''}`,
+    variant: "contained",
+    component: "a",
+    href: link,
+    target: "_blank",
+    rel: "noopener noreferrer",
+    disableElevation: true,
+    disableRipple: true,
+    disableFocusRipple: true,
+    size: isMobile ? "small" : "medium"
+  };
+
+  switch(type) {
+    case "linkedin":
+      return (
         <Button
-          key={index}
-          className={classes.buttonLinkedIn}
+          {...buttonProps}
+          className={className}
           startIcon={<LinkedInIcon style={{ color: '#0077b5' }}/>}
-          variant="contained"
-          component="a"
-          href={btnData.link}
-          target="_blank"  // Add this to open in new tab
-          rel="noopener noreferrer"  // Add this for security
-          disableElevation
-          disableRipple
-          disableFocusRipple
         >
           LinkedIn
         </Button>
       );
-      case "github": return (
+    case "github":
+      return (
         <Button
-          key={index}
-          className={classes.buttonGitHub}
+          {...buttonProps}
           startIcon={<GitHubIcon />}
-          variant="contained"
-          component="a"
-          href={btnData.link}
-          target="_blank"  // Add this to open in new tab
-          rel="noopener noreferrer"  // Add this for security
-          disableElevation
-          disableRipple
-          disableFocusRipple
         >
           GitHub
         </Button>
       );
-      default: return null;
-    }
+    default:
+      return null;
   }
+};
+
+const Banner = (props) => {
+  const classes = styles(props);
+  const { info: infoData, buttons: buttonData } = data.banner;
+
   return (
-    <div className={classes.root}>
+    <div className={`${classes.root} ${isMobile ? classes.rootMobile : ''}`}>
       <Avatar
-        className={classes.avatar}
+        className={`${classes.avatar} ${isMobile ? classes.avatarMobile : ''}`}
         alt="Avatar"
         src={AvatarImage}
       />
-      <div className={classes.intro}>
-        <Typography variant="h3">
+      <div className={`${classes.intro} ${isMobile ? classes.introMobile : ''}`}>
+        <Typography variant={isMobile ? "h5" : "h3"}>
           {infoData.name}
         </Typography>
-        <Typography variant="h6" className={classes.subheader}>
+        <Typography variant={isMobile ? "subtitle1" : "h6"} className={classes.subheader}>
           {infoData.profession}
         </Typography>
-        <Typography variant="caption" className={classes.headerDesc}>
+        <Typography variant={isMobile ? "caption" : "body2"} 
+          className={`${classes.headerDesc} ${isMobile ? classes.headerDescMobile : ''}`}>
           {infoData.intro}
         </Typography>
-        <div className={classes.buttons}>
-          {buttonData.map((btn, i) => getButton(btn, i))}
+        <div className={`${classes.buttons} ${isMobile ? classes.buttonsMobile : ''}`}>
+          {buttonData.map((btn, i) => (
+            <SocialButton
+              key={i}
+              type={btn.type}
+              link={btn.link}
+              className={
+                btn.type === 'linkedin' 
+                  ? classes.buttonLinkedIn 
+                  : classes.buttonGitHub
+              }
+            />
+          ))}
         </div>
       </div>
     </div>
   );
-}
+};
+
 export default Banner;

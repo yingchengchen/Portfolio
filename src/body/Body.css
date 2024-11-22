@@ -1,4 +1,37 @@
 .Body-root {
-    padding: 2rem;
     display: flex;
+    width: 100%;
+    max-width: 100%;
+    margin-top: 24px;
+    padding-left: 24px;
+    padding-right: 24px;
+    flex-wrap: wrap;  /* Add this to allow wrapping */
+  }
+  
+  /* Style for BodyMain */
+  .Body-root > *:first-child {
+    flex: 1;
+    min-width: 300px;  /* Add minimum width */
+  }
+  
+  /* Style for RightPanel */
+  .RightPanel-root {
+    flex: 0 0 300px;  /* Fixed width, don't grow or shrink */
+    margin-left: 24px;
+  }
+  
+  @media (max-width: 768px) {  /* Adjust breakpoint as needed */
+    .Body-root {
+      flex-direction: column;
+      padding: 8px;
+      margin-top: 16px;
+      padding-left: 16px;
+      padding-right: 16px;
+    }
+  
+    .RightPanel-root {
+      margin-left: 0;
+      margin-top: 16px;
+      width: 100%;
+    }
   }

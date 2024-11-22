@@ -8,7 +8,7 @@
   Valid values for 'type': linkedin, github, stackoverflow
 */
 import githubDetails from 'data/details/github';
-export default [
+const buttonData = [
   {
     type: "linkedin",
     link: "https://www.linkedin.com/in/ying-cheng-chen/"
@@ -18,3 +18,5 @@ export default [
     link: "https://github.com/" + githubDetails.username
   },
 ];
+
+export default buttonData;

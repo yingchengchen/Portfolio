@@ -8,6 +8,9 @@ const styles = makeStyles(theme => ({
     marginBottom: theme.spacing(4),
     paddingBottom: theme.spacing(4),
     borderBottom: `1px solid ${theme.palette.divider}`,
+    width: '100%',
+    maxWidth: '100%',
+    overflowX: 'hidden',
     '&:last-child': {
       marginBottom: 0,
       paddingBottom: 0,
@@ -17,11 +20,18 @@ const styles = makeStyles(theme => ({
   headerWrapper: {
     display: 'flex',
     alignItems: 'flex-start',
-    marginBottom: theme.spacing(1)
+    marginBottom: theme.spacing(1),
+    flexDirection: 'column',
+    [theme.breakpoints.up('sm')]: {
+      flexDirection: 'row',
+      alignItems: 'center'
+    }
   },
   title: {
     fontWeight: 600,
     flex: 1,
+    width: '100%',
+    wordBreak: 'break-word',
     '& strong': {
       fontWeight: 700
     },
@@ -32,8 +42,13 @@ const styles = makeStyles(theme => ({
   },
   meta: {
     color: theme.palette.text.secondary,
-    whiteSpace: 'nowrap',
-    marginLeft: theme.spacing(2)
+    whiteSpace: 'normal',
+    marginLeft: 0,
+    marginTop:theme.spacing(0.5),
+    [theme.breakpoints.up('sm')]: {
+      marginLeft: theme.spacing(2),
+      marginTop: 0
+    }
   },
   subheader: {
     color: theme.palette.text.secondary,
@@ -46,8 +61,12 @@ const styles = makeStyles(theme => ({
   bulletPoints: {
     margin: 0,
     padding: `0 0 0 ${theme.spacing(2)}px`,
+    width: '100%',
+    maxWidth: '100%',
+    boxSizing: 'border-box',
     '& li': {
       marginBottom: theme.spacing(1),
+      wordBreak: 'break-word',
       '&:last-child': {
         marginBottom: 0
       },

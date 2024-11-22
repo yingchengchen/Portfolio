@@ -8,6 +8,7 @@ import {
   IconButton
 } from '@material-ui/core';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
+import clsx from 'clsx'; // Import clsx for conditional class names
 import styles from './styles';
 
 function BodySection(props) {
@@ -20,7 +21,10 @@ function BodySection(props) {
 
   return (
     <Card className={classes.root}>
-      <div className={classes.header}>
+      <div className={clsx(classes.header, {
+        [classes.headerExpanded]: expanded,
+        [classes.headerCollapsed]: !expanded,
+      })}>
         <CardHeader 
           title={props.header}
           action={

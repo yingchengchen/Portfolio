@@ -1,3 +1,5 @@
-export default {
-    username: 'yingchengchen'
-  };
+const githubDetails = {
+  username: 'yingchengchen'
+};
+
+export default githubDetails;
