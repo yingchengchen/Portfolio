@@ -1,37 +1,39 @@
 .Body-root {
-    display: flex;
-    width: 100%;
-    max-width: 100%;
-    margin-top: 24px;
-    padding-left: 24px;
-    padding-right: 24px;
-    flex-wrap: wrap;  /* Add this to allow wrapping */
+  display: flex;
+  width: 100%;
+  max-width: 100%;
+  padding: 24px;
+  flex-wrap: wrap;
+  scroll-padding-top: 0; /* Ensures scroll-to behavior aligns with top */
+}
+
+/* Style for BodyMain */
+.Body-root > *:first-child {
+  flex: 1;
+  min-width: 300px;
+}
+
+/* Style for RightPanel */
+.RightPanel-root {
+  flex: 0 0 300px;
+  margin-left: 24px;
+}
+
+/* Add some spacing between sections for cleaner separation */
+.MuiCard-root {
+  scroll-margin-top: 0; /* Ensures scroll-to behavior aligns with top */
+  margin-bottom: 16px;
+}
+
+@media (max-width: 768px) {
+  .Body-root {
+    flex-direction: column;
+    padding: 16px;
   }
-  
-  /* Style for BodyMain */
-  .Body-root > *:first-child {
-    flex: 1;
-    min-width: 300px;  /* Add minimum width */
-  }
-  
-  /* Style for RightPanel */
+
   .RightPanel-root {
-    flex: 0 0 300px;  /* Fixed width, don't grow or shrink */
-    margin-left: 24px;
+    margin-left: 0;
+    margin-top: 16px;
+    width: 100%;
   }
-  
-  @media (max-width: 768px) {  /* Adjust breakpoint as needed */
-    .Body-root {
-      flex-direction: column;
-      padding: 8px;
-      margin-top: 16px;
-      padding-left: 16px;
-      padding-right: 16px;
-    }
-  
-    .RightPanel-root {
-      margin-left: 0;
-      margin-top: 16px;
-      width: 100%;
-    }
-  }
+}

@@ -2,18 +2,33 @@ import { makeStyles } from "@material-ui/core/styles";
 
 const styles = makeStyles((theme) => ({
   root: {
-    position: "relative",
-    backgroundColor: `${theme.palette.custom.accent1}10`,
+    position: "fixed",
+    top: 0,
+    left: 0,
+    right: 0,
+    height: 'var(--banner-height)',
+    backgroundColor: `#F0EFFC`,
     padding: theme.spacing(4),
-    borderRadius: theme.shape.borderRadius,
+    borderRadius: 0,
+    borderBottom: `1px solid ${theme.palette.divider}`,
     boxShadow: theme.shadows[1],
     display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
+    zIndex: 1000,
+    [theme.breakpoints.down("sm")]: {
+      padding: theme.spacing(2),
+      paddingTop: theme.spacing(6), // Add extra padding for menu button
+    },
+  },
+  contentWrapper: {
+    display: "flex",
+    width: "100%",
     alignItems: "center",
     [theme.breakpoints.down("sm")]: {
       flexDirection: "column",
       textAlign: "center",
-      padding: theme.spacing(2), // Reduced padding for mobile
-      alignItems: "center",
+      marginTop: theme.spacing(2), // Add space below menu button
     },
   },
   avatar: {
@@ -110,13 +125,6 @@ const styles = makeStyles((theme) => ({
       fill: "#fff",
     },
     transition: "all 0.3s ease",
-  },
-  buttonStackOverflow: {
-    backgroundColor: theme.palette.custom.stackOverflow,
-    color: "#fff",
-    "&:hover": {
-      backgroundColor: "#da6f1e",
-    },
   },
 }));
 

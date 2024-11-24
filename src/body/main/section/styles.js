@@ -1,5 +1,5 @@
+// styles.js - Add these to your existing styles
 import { makeStyles } from '@material-ui/core/styles';
-
 const styles = makeStyles(theme => ({
   root: {
     marginBottom: theme.spacing(3),
@@ -8,10 +8,11 @@ const styles = makeStyles(theme => ({
     overflow: 'hidden',
     '&:last-child': {
       marginBottom: 0
+    },
+    transition: 'margin-bottom 0.2s ease-in-out',
+    '&.expanded': {
+      marginBottom: theme.spacing(4),
     }
-  },
-  rootMobile: {
-    marginBottom: theme.spacing(2),
   },
   header: {
     width: '100%',
@@ -37,19 +38,13 @@ const styles = makeStyles(theme => ({
       transition: theme.transitions.create('color', {
         duration: theme.transitions.duration.shorter,
       }),
+      [theme.breakpoints.down('sm')]: {
+        fontSize: '0.9rem',
+      }
     },
     '& .MuiCardHeader-action': {
       margin: 0,
       alignSelf: 'center',
-    }
-  },
-  headerMobile: {
-    '& .MuiCardHeader-root': {
-      padding: theme.spacing(0.5,1),
-      minHeight: '48px',
-    },
-    '& .MuiCardHeader-title': {
-      fontSize: '0.675rem',
     }
   },
   headerExpanded: {
@@ -77,14 +72,16 @@ const styles = makeStyles(theme => ({
   content: {
     padding: theme.spacing(2),
     width: '100%',
-    maxwidth: '100%',
+    maxWidth: '100%',
     overflow: 'hidden',
     '&:last-child': {
       paddingBottom: theme.spacing(2)
     }
   },
-  currentMobile:{
-    padding: theme.spacing(1.5),
+  contentMobile: {
+    [theme.breakpoints.down('sm')]: {
+      padding: theme.spacing(1.5),
+    }
   },
   expand: {
     transform: 'rotate(0deg)',
@@ -100,15 +97,6 @@ const styles = makeStyles(theme => ({
   },
   expandOpen: {
     transform: 'rotate(180deg)',
-    marginLeft: 'auto',
-    transition: theme.transitions.create('transform', {
-      duration: theme.transitions.duration.shortest,
-    }),
-    padding: theme.spacing(1),
-    '& .MuiIconButton-label': {
-      width: '20px',
-      height: '20px'
-    }
   }
 }));
 

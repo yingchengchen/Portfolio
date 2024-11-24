@@ -12,10 +12,12 @@ function App() {
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
-      <div className={"App-root ${isMoblie ? 'App-root-mobile':''}"}>
+      <div className="App-root">
         <Banner />
-        <Body />
-        <Footer />
+        <div className="content-container">
+          <Body />
+          <Footer />
+        </div>
       </div>
     </ThemeProvider>
   );

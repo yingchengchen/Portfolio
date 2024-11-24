@@ -23,7 +23,6 @@ const theme = createTheme({
       custom: {
         linkedIn: '#0077B5', // LinkedIn brand color
         github: '#24292E', // GitHub brand color
-        stackOverflow: '#F48024', // Stack Overflow brand color
         // Additional accent colors for various uses
         accent1: '#6C5CE7', // Purple for highlighting skills
         accent2: '#00CDC1', // Turquoise for project categories
