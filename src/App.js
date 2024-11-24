@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { isMobile } from 'react-device-detect';
 import './App.css';
 import { ThemeProvider } from '@material-ui/core/styles';
@@ -9,13 +9,19 @@ import Footer from './Footer';
 import theme from './theme';
 
 function App() {
+  const [activeSection, setActiveSection] = useState('Education');
+
+  const handleNavClick = (section) => {
+    setActiveSection(section);
+  };
+
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
       <div className="App-root">
-        <Banner />
+        <Banner onNavClick={handleNavClick} activeSection={activeSection} />
         <div className="content-container">
-          <Body />
+          <Body activeSection={activeSection} />
           <Footer />
         </div>
       </div>

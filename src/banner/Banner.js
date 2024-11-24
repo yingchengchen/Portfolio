@@ -7,7 +7,6 @@ import {
 } from '@material-ui/core';
 import LinkedInIcon from '@material-ui/icons/LinkedIn';
 import GitHubIcon from '@material-ui/icons/GitHub';
-// Internal imports
 import styles from './bannerStyles';
 import data from 'data/data';
 import AvatarImage from 'images/myAvatar.png';
@@ -51,60 +50,9 @@ const SocialButton = ({ type, link, className }) => {
   }
 };
 
-const Banner = (props) => {
-  const classes = styles(props);
+const Banner = ({ onNavClick, activeSection }) => {
+  const classes = styles();
   const { info: infoData, buttons: buttonData } = data.banner;
-  const [activeSection, setActiveSection] = useState(null);
-
-  const sections = ['Education', 'Work Experience', 'Project Experience'];
-
-  // Function to update active section - will be called from BodySection
-  const updateActiveSection = (section) => {
-    setActiveSection(section);
-  };
-
-  // Make the update function available globally
-  useEffect(() => {
-    window.updateActiveNavSection = updateActiveSection;
-    
-    return () => {
-      window.updateActiveNavSection = undefined;
-    };
-  }, []);
-
-  const scrollToSection = (sectionName) => {
-    const sectionId = sectionName.toLowerCase().replace(/\s+/g, '-');
-    const targetSection = document.getElementById(sectionId);
-    const contentContainer = document.querySelector('.content-container');
-    
-    if (targetSection && contentContainer) {
-      // Toggle section state first
-      if (window.toggleSection) {
-        if (activeSection === sectionName) {
-          // If clicking the same section, just toggle it
-          window.toggleSection(sectionName);
-          setActiveSection(null); // Clear active state when collapsing
-        } else {
-          // If clicking a new section, collapse all and expand the new one
-          window.collapseAllSections();
-          setTimeout(() => {
-            window.toggleSection(sectionName);
-            setActiveSection(sectionName);
-          }, 100);
-        }
-      }
-
-      // Calculate scroll position to show section header at top
-      const headerOffset = 0;
-      const sectionTop = targetSection.offsetTop - headerOffset;
-      
-      // Scroll the content container
-      contentContainer.scrollTo({
-        top: sectionTop,
-        behavior: 'smooth'
-      });
-    }
-  };
 
   return (
     <div className={classes.root}>
@@ -143,9 +91,9 @@ const Banner = (props) => {
           </div>
         </div>
       </div>
-      <NavigationBar 
-        sections={sections} 
-        onNavClick={scrollToSection}
+      <NavigationBar
+        sections={['Education', 'Work Experience', 'Project Experience']}
+        onNavClick={onNavClick}
         activeSection={activeSection}
       />
     </div>

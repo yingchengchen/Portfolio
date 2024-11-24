@@ -1,32 +1,13 @@
 // BodySection.js
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
-import {
-  Card, 
-  CardHeader, 
-  CardContent,
-  Collapse,
-  IconButton,
-  Grid
-} from '@material-ui/core';
-import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
+import { Grid } from '@material-ui/core';
 import clsx from 'clsx';
 import styles from './styles';
+import SectionItem from './item/SectionItem';
 
-function BodySection({ header, children, expandSection, isInitiallyCollapsed = true, onExpandChange, type }) {
+function BodySection({ header, children, type }) {
   const classes = styles();
-  const [expanded, setExpanded] = useState(!isInitiallyCollapsed);
-
-  useEffect(() => {
-    setExpanded(expandSection);
-  }, [expandSection]);
-
-  const handleExpandClick = () => {
-    const newExpandedState = !expanded;
-    setExpanded(newExpandedState);
-    // Notify parent about expansion state change
-    onExpandChange && onExpandChange(header, newExpandedState);
-  };
 
   const renderContent = () => {
     if (type === 'project') {
@@ -44,55 +25,31 @@ function BodySection({ header, children, expandSection, isInitiallyCollapsed = t
   };
 
   return (
-    <Card 
+    <div
       className={clsx(classes.root, {
-        expanded: expanded
+        [classes.expanded]: true
       })}
       id={header.toLowerCase().replace(/\s+/g, '-')}
     >
-      <div className={clsx(classes.header, {
-        [classes.headerExpanded]: expanded,
-        [classes.headerCollapsed]: !expanded,
-      })}>
-        <CardHeader 
-          title={header}
-          action={
-            <IconButton
-              className={clsx(classes.expand, {
-                [classes.expandOpen]: expanded
-              })}
-              onClick={handleExpandClick}
-              aria-expanded={expanded}
-              aria-label="show more"
-            >
-              <ExpandMoreIcon />
-            </IconButton>
-          }
-        />
+      <div className={classes.header}>
+        <h3 className={classes.headerTitle}>{header}</h3>
       </div>
-      <Collapse in={expanded} timeout="auto" unmountOnExit>
-        <CardContent className={clsx(classes.content, {
-          [classes.contentMobile]: type === 'project'
-        })}>
-          {renderContent()}
-        </CardContent>
-      </Collapse>
-    </Card>
+      <div className={clsx(classes.content, {
+        [classes.contentMobile]: type === 'project'
+      })}>
+        {renderContent()}
+      </div>
+    </div>
   );
 }
 
 BodySection.propTypes = {
   header: PropTypes.string.isRequired,
   children: PropTypes.node,
-  expandSection: PropTypes.bool,
-  isInitiallyCollapsed: PropTypes.bool,
-  onExpandChange: PropTypes.func,
   type: PropTypes.oneOf(['education', 'work', 'project'])
 };
 
 BodySection.defaultProps = {
-  expandSection: false,
-  isInitiallyCollapsed: true,
   type: 'work'
 };
 

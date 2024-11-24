@@ -4,10 +4,12 @@ import './Body.css';
 import BodyMain from './main/BodyMain';
 import RightPanel from './right_panel/RightPanel';
 
-function Body() {
+function Body({ activeSection }) {
   return (
     <div className={`Body-root ${isMobile ? 'Body-root-mobile' : ''}`}>
-      <BodyMain />
+      <div className="BodyMain-root">
+        <BodyMain activeSection={activeSection} />
+      </div>
       {isMobile ? (
         <div className="Body-mobile-panel">
           <RightPanel />
