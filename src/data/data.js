@@ -1,4 +1,5 @@
 // Personal account details i.e. GitHub username for now
+import React from 'react';
 import githubDetails from './details/github';
 // Banner
 import infoData from './banner/info';

@@ -1,3 +1,4 @@
+import React from "react";
 const projectsData = [
   {
     header: "Git Question: working directory vs. repository",
