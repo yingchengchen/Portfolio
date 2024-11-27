@@ -1,42 +1,42 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { isMobile } from 'react-device-detect';
+import { useTheme, useMediaQuery } from '@mui/material';
 import {
-  Paper,
-  Typography,
-  useTheme,
-  useMediaQuery
-} from '@material-ui/core';
-import styles from './panelSectionStyles';
+  StyledPaper,
+  ContentWrapper,
+  SectionTitle,
+  ChildrenContainer
+} from './panelSectionStyles';
 
 function PanelSection(props) {
-  const classes = styles(props);
   const theme = useTheme();
   const isSmallScreen = useMediaQuery(theme.breakpoints.down('sm'));
 
   return (
-    <Paper className={`${classes.root} ${isMobile ? classes.rootMobile : ''}`}>
-      <div className={`${classes.content} ${isMobile ? classes.contentMobile : ''}`}>
-        <Typography
-          className={classes.title}
+    <StyledPaper isMobile={isMobile}>
+      <ContentWrapper isMobile={isMobile}>
+        <SectionTitle
           variant={isSmallScreen || isMobile ? "body2" : "body1"}
+          isMobile={isMobile}
         >
           {props.title}
-        </Typography>
-        <Typography
+        </SectionTitle>
+        <ChildrenContainer
           variant={isMobile ? "body2" : "body1"}
           component="div"
-          className={`${classes.childrenWrapper} ${isMobile ? classes.childrenWrapperMobile : ''}`}
+          isMobile={isMobile}
         >
           {props.children}
-        </Typography>
-      </div>
-    </Paper>
+        </ChildrenContainer>
+      </ContentWrapper>
+    </StyledPaper>
   );
 }
 
 PanelSection.propTypes = {
-  title: PropTypes.string.isRequired
-}
+  title: PropTypes.string.isRequired,
+  children: PropTypes.node
+};
 
 export default PanelSection;

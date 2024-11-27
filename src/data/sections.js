@@ -2,7 +2,6 @@
 import { Tooltip } from '@material-ui/core';
 import OpenInNewIcon from '@material-ui/icons/OpenInNew';
 import React from 'react';
-import { type } from '@testing-library/user-event/dist/type';
 const sections = [
   {
     header: "Education",

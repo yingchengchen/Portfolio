@@ -1,37 +1,36 @@
-// ProjectItem/ProjectItem.js
 import React from 'react';
 import PropTypes from 'prop-types';
+import { Tooltip } from '@mui/material';
 import {
-  Link,
-  Tooltip
-} from '@material-ui/core';
-import OpenInNewIcon from '@material-ui/icons/OpenInNew';
-import styles from './projectItemStyles';
+  ItemContainer,
+  HeaderLink,
+  HeaderText,
+  Description,
+  StyledIcon
+} from './projectItemStyles';
 
-function ProjectItem(props) {
-  const classes = styles(props);
-  
+function ProjectItem({ header, link, description }) {
   return (
-    <div className={classes.root}>
-      {props.link ? (
+    <ItemContainer>
+      {link ? (
         <Tooltip title="Open article" arrow placement="top">
-          <Link 
-            className={classes.header}
-            href={props.link}
+          <HeaderLink
+            href={link}
             target="_blank"
             rel="noopener noreferrer"
+            className="project-header"
           >
-            {props.header}
-            <OpenInNewIcon style={{ fontSize: 16, marginLeft: 8, opacity: 0.7 }} />
-          </Link>
+            {header}
+            <StyledIcon />
+          </HeaderLink>
         </Tooltip>
       ) : (
-        <span className={classes.header}>{props.header}</span>
+        <HeaderText className="project-header">{header}</HeaderText>
       )}
-      <div className={classes.description}>
-        {props.description}
-      </div>
-    </div>
+      <Description>
+        {description}
+      </Description>
+    </ItemContainer>
   );
 }
 

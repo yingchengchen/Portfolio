@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { isMobile } from 'react-device-detect';
 import './App.css';
-import { ThemeProvider } from '@material-ui/core/styles';
-import CssBaseline from '@material-ui/core/CssBaseline';
+import { ThemeProvider } from '@mui/material/styles';  // Updated import
+import CssBaseline from '@mui/material/CssBaseline';  // Updated import
 import Banner from './banner/Banner';
 import Body from './body/Body';
 import Footer from './Footer';

@@ -2,18 +2,13 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import {
-  Card,
   CardContent,
-  CardMedia,
   Typography,
   Chip,
-  IconButton,
   Collapse,
   Box,
-  Link,
-  Button,
-  Divider
-} from '@material-ui/core';
+  Divider,
+} from '@mui/material';
 import {
   Language as WebIcon,
   GitHub as GitHubIcon,
@@ -22,287 +17,271 @@ import {
   LocationOn as LocationIcon,
   NavigateBefore,
   NavigateNext
-} from '@material-ui/icons';
+} from '@mui/icons-material';
 import Carousel from 'react-material-ui-carousel';
-import clsx from 'clsx';
-import styles from './styles';
+
+import {
+  // Work Experience Components
+  WorkCard,
+  WorkCardHeader,
+  CompanyLogo,
+  HeaderContent,
+  CompanyName,
+  JobTitle,
+  MetaInfo,
+  ExpandButton,
+  StyledCollapse,
+  
+  // Project Components
+  ProjectCard,
+  ProjectContent,
+  ProjectHeader,
+  ProjectLink,
+  CarouselContainer,
+  CarouselSlide,
+  CarouselImage,
+  CarouselNavButton,
+  ShowMoreButton,
+
+  // Education Components
+  EducationContainer,
+
+  // Common Components
+  ChipContainer,
+  StyledChip,
+  BulletList
+} from './sectionItemStyle';
 
 function SectionItem(props) {
-  const classes = styles();
-  const [expanded, setExpanded] = useState(false);
+  const [expanded, setExpanded] = React.useState(false);
   const [showDetails, setShowDetails] = useState(false);
 
-  const handleExpandClick = () => {
-    setExpanded(!expanded);
-  };
+  // const handleExpandClick = () => {
+  //   setExpanded(!expanded);
+  // };
 
   const renderWorkExperience = () => (
-    <Card className={classes.workCard}>
-      <div className={classes.workCardHeader}>
-        <CardMedia
-          className={classes.companyLogo}
-          image={props.logo || '/default-company-logo.png'}
+    <WorkCard>
+      <WorkCardHeader>
+        <CompanyLogo
+          style={{ backgroundImage: `url(${props.logo || '/default-company-logo.png'})` }}
           title={props.header}
         />
-        <div className={classes.headerContent}>
-          <Typography variant="h6" className={classes.companyName}>
-            {props.header}
-          </Typography>
-          <Typography variant="subtitle1" className={classes.jobTitle}>
-            {props.subheader}
-          </Typography>
-          <Box className={classes.metaInfo}>
+        <HeaderContent>
+          <CompanyName variant="h6">{props.header}</CompanyName>
+          <JobTitle variant="subtitle1">{props.subheader}</JobTitle>
+          <MetaInfo>
             <Box display="flex" alignItems="center" marginRight={2}>
-              <DateIcon fontSize="small" className={classes.metaIcon} />
+              <DateIcon fontSize="small" sx={{ marginRight: 0.5 }} />
               <Typography variant="body2">{props.meta}</Typography>
             </Box>
             {props.location && (
               <Box display="flex" alignItems="center">
-                <LocationIcon fontSize="small" className={classes.metaIcon} />
+                <LocationIcon fontSize="small" sx={{ marginRight: 0.5 }} />
                 <Typography variant="body2">{props.location}</Typography>
               </Box>
             )}
-          </Box>
-        </div>
-        <IconButton
-          className={clsx(classes.expand, {
-            [classes.expandOpen]: expanded,
-          })}
-          onClick={handleExpandClick}
-          aria-expanded={expanded}
-          aria-label="show more"
+          </MetaInfo>
+        </HeaderContent>
+        <ExpandButton
+          onClick={() => setExpanded(!expanded)}
+          className={expanded ? 'expanded' : ''}
+          size="small"
         >
           <ExpandMoreIcon />
-        </IconButton>
-      </div>
-
-      <Collapse in={expanded} timeout="auto" unmountOnExit>
-        <CardContent className={classes.workCardContent}>
+        </ExpandButton>
+      </WorkCardHeader>
+  
+      <StyledCollapse in={expanded} timeout="auto" unmountOnExit>
+        <CardContent>
           {props.description && (
-            <Typography paragraph className={classes.description}>
+            <Typography variant="body2" sx={{ marginBottom: 2 }}>
               {props.description}
             </Typography>
           )}
-          <ul className={classes.bulletPoints}>
-            {props.listItems.map((item, index) => (
-              <li key={index} className={classes.bulletItem}>
-                <Typography component="div" className={classes.mainBullet}>
-                  {item.main}
-                </Typography>
+          <BulletList>
+            {props.listItems?.map((item, index) => (
+              <li key={index}>
+                <Typography component="div">{item.main}</Typography>
                 {item.subItems && (
-                  <ul className={classes.subBullets}>
+                  <BulletList isSubList>
                     {item.subItems.map((subItem, subIndex) => (
                       <li key={subIndex}>
-                        <Typography variant="body2">
-                          {subItem}
-                        </Typography>
+                        <Typography variant="body2">{subItem}</Typography>
                       </li>
                     ))}
-                  </ul>
+                  </BulletList>
                 )}
               </li>
             ))}
-          </ul>
+          </BulletList>
           {props.chips && (
-            <div className={classes.chipContainer}>
+            <ChipContainer>
               {props.chips.map((chip, index) => (
-                <Chip
+                <StyledChip
                   key={index}
                   label={chip.label}
-                  className={clsx(classes.chip, {
-                    [classes.primaryChip]: chip.type === 'primary',
-                    [classes.secondaryChip]: chip.type === 'secondary'
-                  })}
+                  chipType={chip.type}
                   size="small"
                 />
               ))}
-            </div>
+            </ChipContainer>
           )}
         </CardContent>
-      </Collapse>
-    </Card>
+      </StyledCollapse>
+    </WorkCard>
   );
 
   const renderProject = () => (
-    <Card className={classes.projectCard}>
-      <Carousel
-        className={classes.carousel}
-        animation="fade"
-        autoPlay={false}
-        NavButton={({ onClick, className, style, next, prev }) => (
-          <IconButton
-            onClick={onClick}
-            className={clsx(classes.carouselNavButton, {
-              [classes.carouselNavButtonNext]: next,
-              [classes.carouselNavButtonPrev]: prev,
-            })}
-            size="small"
-          >
-            {next ? <NavigateNext /> : <NavigateBefore />}
-          </IconButton>
-        )}
-        indicatorContainerProps={{
-          className: classes.carouselIndicators
-        }}
-        indicatorIconButtonProps={{
-          className: classes.carouselIndicator
-        }}
-        activeIndicatorIconButtonProps={{
-          className: classes.carouselIndicatorActive
-        }}
-        timeout={300}
-        interval={null}
-        swipe={true}
-      >
-        {props.images?.map((image, i) => (
-          <div key={i} className={classes.carouselSlide}>
-            <img
-              src={image}
-              alt={`${props.header} - ${i + 1}`}
-              className={classes.carouselImage}
-            />
-          </div>
-        ))}
-      </Carousel>
+    <ProjectCard>
+      <CarouselContainer>
+        <Carousel
+          animation="fade"
+          autoPlay={false}
+          NavButton={({ onClick, next }) => (
+            <CarouselNavButton
+              onClick={onClick}
+              direction={next ? 'next' : 'prev'}
+              size="small"
+            >
+              {next ? <NavigateNext /> : <NavigateBefore />}
+            </CarouselNavButton>
+          )}
+          timeout={300}
+          interval={null}
+          swipe={true}
+        >
+          {props.images?.map((image, i) => (
+            <CarouselSlide key={i}>
+              <CarouselImage
+                src={image}
+                alt={`${props.header} - ${i + 1}`}
+              />
+            </CarouselSlide>
+          ))}
+        </Carousel>
+      </CarouselContainer>
 
-      <CardContent className={classes.projectContent}>
-        <div className={classes.projectHeader}>
-          <div className={classes.projectTitleSection}>
-            <Typography variant="h6" className={classes.projectTitle}>
+      <ProjectContent>
+        <ProjectHeader>
+          <Box>
+            <Typography variant="h6" sx={{
+              fontWeight: 600,
+              fontSize: '1.0rem',
+              marginBottom: 0.5,
+              lineHeight: 1.3
+            }}>
               {props.header}
             </Typography>
-            <Box className={classes.projectMeta}>
-              <DateIcon />
-              <Typography>{props.meta}</Typography>
+            <Box sx={{ 
+              display: 'flex',
+              alignItems: 'center',
+              gap: 0.5,
+              color: 'text.secondary'
+            }}>
+              <DateIcon sx={{ fontSize: '1.0rem' }} />
+              <Typography sx={{ fontSize: '0.8rem' }}>{props.meta}</Typography>
             </Box>
-          </div>
+          </Box>
 
-          <div className={classes.projectLinks}>
+          <Box sx={{ display: 'flex', gap: 1.5, flexWrap: 'wrap' }}>
             {props.githubLink && (
-              <Link
+              <ProjectLink
                 href={props.githubLink}
                 target="_blank"
                 rel="noopener noreferrer"
-                className={classes.projectLink}
               >
                 <GitHubIcon />
                 <Typography variant="body2">View Source Code</Typography>
-              </Link>
+              </ProjectLink>
             )}
             {props.publicationLink && (
-              <Link
+              <ProjectLink
                 href={props.publicationLink}
                 target="_blank"
                 rel="noopener noreferrer"
-                className={classes.projectLink}
               >
                 <WebIcon />
                 <Typography variant="body2">View Publication</Typography>
-              </Link>
+              </ProjectLink>
             )}
-            {
-              props.demoLink && (
-                <Link
-                  href={props.demoLink}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className={classes.projectLink}
-                >
-                  <WebIcon />
-                  <Typography variant="body2">View Demo</Typography>
-                </Link>
-              )
-            }
-          </div>
-        </div>
+            {props.demoLink && (
+              <ProjectLink
+                href={props.demoLink}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <WebIcon />
+                <Typography variant="body2">View Demo</Typography>
+              </ProjectLink>
+            )}
+          </Box>
+        </ProjectHeader>
 
-        <Divider className={classes.projectDivider} />
+        <Divider />
 
-        <Typography variant="body2" className={classes.description}>
+        <Typography variant="body2" sx={{ color: 'text.secondary' }}>
           {props.description}
         </Typography>
 
         {props.chips && (
-          <div className={classes.chipContainer}>
+          <ChipContainer>
             {props.chips.map((chip, index) => (
-              <Chip
+              <StyledChip
                 key={index}
                 label={chip.label}
-                className={clsx(classes.chip, {
-                  [classes.primaryChip]: chip.type === 'primary',
-                  [classes.secondaryChip]: chip.type === 'secondary'
-                })}
+                chipType={chip.type}
                 size="small"
               />
             ))}
-          </div>
+          </ChipContainer>
         )}
 
-        <Button
-          className={classes.showMoreButton}
-          onClick={() => setShowDetails(!showDetails)}
-          disableRipple
-        >
+        <ShowMoreButton onClick={() => setShowDetails(!showDetails)} disableRipple>
           {showDetails ? 'Show less' : 'Show more'}
-        </Button>
+        </ShowMoreButton>
 
         <Collapse in={showDetails} timeout="auto">
-          <div className={classes.projectDetails}>
-            <ul className={classes.bulletPoints}>
+          <Box sx={{ paddingTop: 2 }}>
+            <BulletList>
               {props.listItems?.map((item, index) => (
-                <li key={index} className={classes.bulletItem}>
-                  <Typography component="div" className={classes.mainBullet}>
-                    {item.main}
-                  </Typography>
+                <li key={index}>
+                  <Typography component="div">{item.main}</Typography>
                   {item.subItems && (
-                    <ul className={classes.subBullets}>
+                    <BulletList isSubList>
                       {item.subItems.map((subItem, subIndex) => (
                         <li key={subIndex}>
-                          <Typography variant="body2">
-                            {subItem}
-                          </Typography>
+                          <Typography variant="body2">{subItem}</Typography>
                         </li>
                       ))}
-                    </ul>
+                    </BulletList>
                   )}
                 </li>
               ))}
-            </ul>
-          </div>
+            </BulletList>
+          </Box>
         </Collapse>
-      </CardContent>
-    </Card>
+      </ProjectContent>
+    </ProjectCard>
   );
 
   const renderEducation = () => (
-    <div className={classes.educationItem}>
-      <Typography variant="h6" className={classes.schoolName}>
+    <EducationContainer>
+      <Typography variant="h6" sx={{ fontWeight: 600, marginBottom: 1 }}>
         {props.header}
       </Typography>
-      <Typography variant="subtitle1" className={classes.degree}>
+      <Typography variant="subtitle1" sx={{ color: 'text.secondary', marginBottom: 0.5 }}>
         {props.subheader}
       </Typography>
-      <Typography variant="body2" color="textSecondary" className={classes.duration}>
+      <Typography variant="body2" sx={{ color: 'text.secondary', marginBottom: 2 }}>
         {props.meta}
       </Typography>
       {props.description && (
-        <Typography variant="body2" paragraph className={classes.eduDescription}>
+        <Typography variant="body2" paragraph>
           {props.description}
         </Typography>
       )}
-      {props.chips && (
-        <div className={classes.chipContainer}>
-          {props.chips.map((chip, index) => (
-            <Chip
-              key={index}
-              label={chip.label}
-              className={classes.chip}
-              size="small"
-            />
-          ))}
-        </div>
-      )}
-    </div>
+    </EducationContainer>
   );
 
   switch (props.sectionType) {

@@ -8,7 +8,12 @@ const projectExperience = {
         header: "Lyudao: A Visual Analytics Platform for Environmental Policy Analysis",
         subheader: "VIDI Lab team project",
         meta: "Jan 2024 - Sep 2024",
-        images:["/lyudao/01.png","/lyudao/02.png","/lyudao/03.png","/lyudao/04.png"],
+        images: [
+          `${process.env.PUBLIC_URL}/lyudao/01.png`,
+          `${process.env.PUBLIC_URL}/lyudao/02.png`,
+          `${process.env.PUBLIC_URL}/lyudao/03.png`,
+          `${process.env.PUBLIC_URL}/lyudao/04.png`
+        ],
         description:"An Interactive Visualization System for Analyzing Public Opinions in Environmental Policy ",
         githubLink:"https://github.com/yingchengchen/Lyudao",
         listItems: [
@@ -55,7 +60,14 @@ const projectExperience = {
         header: "NOVA: A visual interface for assessing polarizing media coverage",
         subheader: "VIDI Lab team project",
         meta: "July 2023 - March 2024",
-        images:["/nova/01.png","/nova/02.png","/nova/03.png", "/nova/04.jpg", "/nova/05.png", "/nova/06.png"],
+        images:[
+          `${process.env.PUBLIC_URL}/nova/01.png`,
+          `${process.env.PUBLIC_URL}/nova/02.png`,
+          `${process.env.PUBLIC_URL}/nova/03.png`,
+          `${process.env.PUBLIC_URL}/nova/04.jpg`,
+          `${process.env.PUBLIC_URL}/nova/05.png`,
+          `${process.env.PUBLIC_URL}/nova/06.png`
+        ],
         description:"A visual interface for assessing polarizing media coverage using AI-driven sentiment analysis.",
         githubLink:"https://github.com/yingchengchen/Lyudao",
         publicationLink: "https://arxiv.org/abs/2403.00334",
@@ -104,7 +116,12 @@ const projectExperience = {
         header: "Res-A-Me: Blockchain-Based Decentralized Resume Platform",
         subheader:"Full-Stack Development Project",
         meta: "September 2023 - December 2023",
-        images:["/resame/01.png","/resame/02.png","/resame/03.png","/resame/04.png"],
+        images: [
+          `${process.env.PUBLIC_URL}/resame/01.png`,
+          `${process.env.PUBLIC_URL}/resame/02.png`,
+          `${process.env.PUBLIC_URL}/resame/03.png`,
+          `${process.env.PUBLIC_URL}/resame/04.png`
+        ],
         description:"A blockchain-based platform revolutionizing resume verification and sharing through decentralized technology.",
         githubLink:"https://github.com/ResilientApp/Res-a-Me",
         listItems: [
@@ -142,7 +159,10 @@ const projectExperience = {
         header: "Salary Analyst Platform",
         subheader: "Self Projects",
         meta: "September 2023 - Dec 2023",
-        images:["/dssalary/01.png","/dssalary/02.png"],
+        images: [
+          `${process.env.PUBLIC_URL}/dssalary/01.png`,
+          `${process.env.PUBLIC_URL}/dssalary/02.png`
+        ],
         description:"An interactive Drill-Down platform for analyze salary of data analyst from 2020 - 2023.",
         githubLink:"https://github.com/yingchengchen/Data-Analyst-Salary",
         listItems: [

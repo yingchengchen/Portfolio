@@ -1,14 +1,14 @@
-// BodySection.js
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
-import { Grid } from '@material-ui/core';
-import clsx from 'clsx';
-import styles from './styles';
-import SectionItem from './item/SectionItem';
+import { Grid } from '@mui/material';
+import {
+  SectionRoot,
+  HeaderContainer,
+  HeaderTitle,
+  ContentContainer
+} from './bodySectionStyle';
 
 function BodySection({ header, children, type }) {
-  const classes = styles();
-
   const renderContent = () => {
     if (type === 'project') {
       return (
@@ -25,21 +25,17 @@ function BodySection({ header, children, type }) {
   };
 
   return (
-    <div
-      className={clsx(classes.root, {
-        [classes.expanded]: true
-      })}
+    <SectionRoot
+      expanded={true}
       id={header.toLowerCase().replace(/\s+/g, '-')}
     >
-      <div className={classes.header}>
-        <h3 className={classes.headerTitle}>{header}</h3>
-      </div>
-      <div className={clsx(classes.content, {
-        [classes.contentMobile]: type === 'project'
-      })}>
+      <HeaderContainer>
+        <HeaderTitle>{header}</HeaderTitle>
+      </HeaderContainer>
+      <ContentContainer isMobile={type === 'project'}>
         {renderContent()}
-      </div>
-    </div>
+      </ContentContainer>
+    </SectionRoot>
   );
 }
 

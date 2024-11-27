@@ -1,20 +1,16 @@
-// Navbar.js
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-import { 
-  Button,
-  IconButton,
-  Menu,
-  MenuItem,
-  useTheme,
-  useMediaQuery 
-} from '@material-ui/core';
-import MenuIcon from '@material-ui/icons/Menu';
-import styles from './NavbarStyles';
-import clsx from 'clsx';
+import { useTheme, useMediaQuery, MenuItem } from '@mui/material';
+import MenuIcon from '@mui/icons-material/Menu';
+import {
+  NavContainer,
+  StyledNavButton,
+  StyledMenuButton,
+  StyledMenu,
+  StyledMenuItem
+} from './NavbarStyles';
 
-const NavigationBar = ({ sections, onNavClick, activeSection }) => {
-  const classes = styles();
+const NavigationBar = ({ sections, onNavClick, activeSection, isMobileMenu }) => {
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
   const [anchorEl, setAnchorEl] = useState(null);
@@ -32,27 +28,23 @@ const NavigationBar = ({ sections, onNavClick, activeSection }) => {
     handleMenuClose();
   };
 
-  if (isMobile) {
+  if (isMobileMenu) {
     return (
       <>
-        <IconButton
-          className={classes.menuButton}
+        <StyledMenuButton
           onClick={handleMenuClick}
           aria-label="menu"
           aria-controls="mobile-menu"
           aria-haspopup="true"
         >
           <MenuIcon />
-        </IconButton>
-        <Menu
+        </StyledMenuButton>
+        <StyledMenu
           id="mobile-menu"
           anchorEl={anchorEl}
           keepMounted
           open={Boolean(anchorEl)}
           onClose={handleMenuClose}
-          classes={{
-            paper: classes.menuPaper
-          }}
           anchorOrigin={{
             vertical: 'bottom',
             horizontal: 'right',
@@ -66,37 +58,30 @@ const NavigationBar = ({ sections, onNavClick, activeSection }) => {
             <MenuItem
               key={index}
               onClick={() => handleSectionClick(section)}
-              className={clsx(classes.menuItem, {
-                [classes.activeMenuItem]: activeSection === section
-              })}
+              component={StyledMenuItem}
+              active={activeSection === section}
             >
               {section}
             </MenuItem>
           ))}
-        </Menu>
+        </StyledMenu>
       </>
     );
   }
 
-  // Desktop navigation
   return (
-    <nav className={classes.navContainer}>
+    <NavContainer>
       {sections.map((section, index) => (
-        <Button
+        <StyledNavButton
           key={index}
-          className={clsx(
-            classes.navButton,
-            {
-              'active': activeSection === section
-            }
-          )}
           onClick={() => onNavClick(section)}
           disableElevation
+          active={activeSection === section}
         >
           {section}
-        </Button>
+        </StyledNavButton>
       ))}
-    </nav>
+    </NavContainer>
   );
 };
 
@@ -104,10 +89,12 @@ NavigationBar.propTypes = {
   sections: PropTypes.arrayOf(PropTypes.string).isRequired,
   onNavClick: PropTypes.func.isRequired,
   activeSection: PropTypes.string,
+  isMobileMenu: PropTypes.bool,
 };
 
 NavigationBar.defaultProps = {
   activeSection: null,
+  isMobileMenu: false,
 };
 
 export default NavigationBar;

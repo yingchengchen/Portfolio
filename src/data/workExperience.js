@@ -1,4 +1,4 @@
-import OpenInNewIcon from '@material-ui/icons/OpenInNew';
+import OpenInNewIcon from '@mui/icons-material/OpenInNew';
 import React from 'react';
 const wotkExperience = {
   header: "Work Experience",
@@ -11,7 +11,7 @@ const wotkExperience = {
       subheader: "UCDavis, VIDI lab",
       meta: "July 2023 - September 2024",
       location: "Davis, CA",
-      logo: "/uc_davis_logo.jpg",
+      logo: `${process.env.PUBLIC_URL}/uc_davis_logo.jpg`,
       description:
         "Developed interactive visual interfaces for media bias assessment and environmental policy analysis",
       listItems: [
@@ -109,7 +109,7 @@ const wotkExperience = {
       subheader: "UCDavis, Information Visualization",
       meta: "January 2024 - March 2024",
       location: "Davis, CA",
-      logo: "/uc_davis_logo.jpg",
+      logo: `${process.env.PUBLIC_URL}/uc_davis_logo.jpg`,
       description:
         "Prepared course materials and coding assignments focusing on JavaScript and modern data visualization libraries like D3.js, with materials maintained in GitHub repository",
       listItems: [
@@ -146,7 +146,7 @@ const wotkExperience = {
       subheader: "NTNU, Data Visualization Lab",
       meta: "September 2021 - June 2022",
       location: "Taipei, Taiwan",
-      logo: "/ntnu_logo.jpg",
+      logo: `${process.env.PUBLIC_URL}/ntnu_logo.jpg`,
       description:
         "Analyzed Isabel Typhoon Data using Unity platform and C# with 3D visualization",
       listItems: [

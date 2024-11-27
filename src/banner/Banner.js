@@ -1,20 +1,25 @@
-import React, { useState, useEffect } from 'react';
-import { isMobile } from 'react-device-detect';
+import React from 'react';
+import { isMobile, isTablet } from 'react-device-detect';
+import { Button, Typography } from '@mui/material';
+import LinkedInIcon from '@mui/icons-material/LinkedIn';
+import GitHubIcon from '@mui/icons-material/GitHub';
 import {
-  Avatar,
-  Button,
-  Typography
-} from '@material-ui/core';
-import LinkedInIcon from '@material-ui/icons/LinkedIn';
-import GitHubIcon from '@material-ui/icons/GitHub';
-import styles from './bannerStyles';
+  BannerRoot,
+  ContentWrapper,
+  StyledAvatar,
+  IntroSection,
+  SubheaderText,
+  HeaderDescription,
+  ButtonContainer,
+  LinkedInButton,
+  GitHubButton
+} from './bannerStyles';
 import data from 'data/data';
 import AvatarImage from 'images/myAvatar.png';
 import NavigationBar from 'navbar/Navbar';
 
-const SocialButton = ({ type, link, className }) => {
+const SocialButton = ({ type, link }) => {
   const buttonProps = {
-    className: `${className} ${isMobile ? 'button-mobile' : ''}`,
     variant: "contained",
     component: "a",
     href: link,
@@ -26,24 +31,24 @@ const SocialButton = ({ type, link, className }) => {
     size: isMobile ? "small" : "medium"
   };
 
-  switch(type) {
+  switch (type) {
     case "linkedin":
       return (
-        <Button
+        <LinkedInButton
           {...buttonProps}
           startIcon={<LinkedInIcon />}
         >
           LinkedIn
-        </Button>
+        </LinkedInButton>
       );
     case "github":
       return (
-        <Button
+        <GitHubButton
           {...buttonProps}
           startIcon={<GitHubIcon />}
         >
           GitHub
-        </Button>
+        </GitHubButton>
       );
     default:
       return null;
@@ -51,52 +56,54 @@ const SocialButton = ({ type, link, className }) => {
 };
 
 const Banner = ({ onNavClick, activeSection }) => {
-  const classes = styles();
   const { info: infoData, buttons: buttonData } = data.banner;
 
   return (
-    <div className={classes.root}>
-      <div className={classes.contentWrapper}>
-        <Avatar
-          className={`${classes.avatar} ${isMobile ? classes.avatarMobile : ''}`}
+    <BannerRoot>
+      <ContentWrapper>
+        <StyledAvatar
           alt="Avatar"
           src={AvatarImage}
         />
-        <div className={`${classes.intro} ${isMobile ? classes.introMobile : ''}`}>
+        <IntroSection>
           <Typography variant={isMobile ? "h5" : "h3"}>
             {infoData.name}
           </Typography>
-          <Typography variant={isMobile ? "subtitle1" : "h6"} className={classes.subheader}>
+          <SubheaderText variant={isMobile ? "subtitle1" : "h6"}>
             {infoData.profession}
-          </Typography>
-          <Typography 
-            variant={isMobile ? "caption" : "body2"} 
-            className={`${classes.headerDesc} ${isMobile ? classes.headerDescMobile : ''}`}
+          </SubheaderText>
+          <HeaderDescription
+            variant={isMobile ? "caption" : "body2"}
           >
             {infoData.intro}
-          </Typography>
-          <div className={`${classes.buttons} ${isMobile ? classes.buttonsMobile : ''}`}>
+          </HeaderDescription>
+          <ButtonContainer>
             {buttonData.map((btn, i) => (
               <SocialButton
                 key={i}
                 type={btn.type}
                 link={btn.link}
-                className={
-                  btn.type === 'linkedin' 
-                    ? classes.buttonLinkedIn 
-                    : classes.buttonGitHub
-                }
               />
             ))}
-          </div>
-        </div>
-      </div>
-      <NavigationBar
-        sections={['Education', 'Work Experience', 'Project Experience']}
-        onNavClick={onNavClick}
-        activeSection={activeSection}
-      />
-    </div>
+          </ButtonContainer>
+        </IntroSection>
+      </ContentWrapper>
+      {!isMobile && !isTablet && (
+        <NavigationBar
+          sections={['Education', 'Work Experience', 'Project Experience']}
+          onNavClick={onNavClick}
+          activeSection={activeSection}
+        />
+      )}
+      {(isMobile || isTablet) && (
+        <NavigationBar
+          sections={['Education', 'Work Experience', 'Project Experience']}
+          onNavClick={onNavClick}
+          activeSection={activeSection}
+          isMobileMenu
+        />
+      )}
+    </BannerRoot>
   );
 };
 

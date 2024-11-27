@@ -1,15 +1,12 @@
-import { makeStyles } from '@material-ui/core/styles';
+// bodyStyles.js
+import { styled } from '@mui/material/styles';
 
-const styles = makeStyles(theme => ({
-  root: {
-    flex: 1,
-    width: '100%', 
-    maxWidth: '100%', 
-    overflowX: 'hidden', 
-    [theme.breakpoints.down('sm')]: { // Add responsive styles
-      padding: theme.spacing(1)
-    }
+export const BodyRoot = styled('div')(({ theme }) => ({
+  flex: 1,
+  width: '100%',
+  maxWidth: '100%',
+  overflowX: 'hidden',
+  [theme.breakpoints.down('sm')]: {
+    padding: theme.spacing(1)
   }
 }));
-
-export default styles;
