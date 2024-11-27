@@ -10,13 +10,13 @@ function Body({ activeSection }) {
       <div className="BodyMain-root">
         <BodyMain activeSection={activeSection} />
       </div>
-      {isMobile ? (
+      {/* {isMobile ? (
         <div className="Body-mobile-panel">
           <RightPanel />
         </div>
       ) : (
         <RightPanel />
-      )}
+      )} */}
     </div>
   );
 }
