@@ -101,15 +101,15 @@ export const ButtonContainer = styled('div')(({ theme }) => ({
 
 export const LinkedInButton = styled(Button)(({ theme }) => ({
   backgroundColor: "transparent",
-  color: 'var(--linkedin-color)',
-  border: `1px solid var(--linkedin-color)`,
+  color: theme.palette.custom.linkedIn,
+  border: `1px solid ${theme.palette.custom.linkedIn}`,
   "&:hover": {
-    backgroundColor: 'var(--linkedin-color)',
+    backgroundColor: theme.palette.custom.linkedIn,
     color: "#fff",
-    border: `1px solid var(--linkedin-color)`,
+    border: `1px solid ${theme.palette.custom.linkedIn}`,
   },
   "& .MuiButton-startIcon svg": {
-    fill: 'var(--linkedin-color)',
+    fill: theme.palette.custom.linkedIn,
   },
   "&:hover .MuiButton-startIcon svg": {
     fill: "#fff",
@@ -119,15 +119,15 @@ export const LinkedInButton = styled(Button)(({ theme }) => ({
 
 export const GitHubButton = styled(Button)(({ theme }) => ({
   backgroundColor: "transparent",
-  color: 'var(--github-color)',
-  border: `1px solid var(--github-color)`,
+  color: theme.palette.custom.github,
+  border: `1px solid ${theme.palette.custom.github}`,
   "&:hover": {
-    backgroundColor: 'var(--github-color)',
+    backgroundColor: theme.palette.custom.github,
     color: "#fff",
-    border: `1px solid var(--github-color)`,
+    border: `1px solid ${theme.palette.custom.github}`,
   },
   "& .MuiButton-startIcon svg": {
-    fill: 'var(--github-color)',
+    fill: theme.palette.custom.github,
   },
   "&:hover .MuiButton-startIcon svg": {
     fill: "#fff",
