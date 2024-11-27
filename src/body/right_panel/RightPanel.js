@@ -70,9 +70,9 @@ const RightPanel = () => {
 
   return (
     <div className={`RightPanel-root ${isMobile ? 'RightPanel-root-mobile' : ''}`}>
-      <PanelSection title="GitHub Highlight">
+      {/* <PanelSection title="GitHub Highlight">
         {renderGithubSection()}
-      </PanelSection>
+      </PanelSection> */}
       <PanelSection title="Dev Resources I Love">
         {data.rightPanel.projects.map((project, index) => (
           <ProjectItem
