@@ -1,8 +1,10 @@
 import React from 'react';
-import { isMobile, isTablet } from 'react-device-detect';
-import { Button, Typography } from '@mui/material';
+import { isMobile } from 'react-device-detect';
+import { Typography } from '@mui/material';
 import LinkedInIcon from '@mui/icons-material/LinkedIn';
 import GitHubIcon from '@mui/icons-material/GitHub';
+import Slide from '@mui/material/Slide';
+import Fade from '@mui/material/Fade';
 import {
   BannerRoot,
   ContentWrapper,
@@ -16,7 +18,6 @@ import {
 } from './bannerStyles';
 import data from 'data/data';
 import AvatarImage from 'images/myAvatar.png';
-import NavigationBar from 'navbar/Navbar';
 
 const SocialButton = ({ type, link }) => {
   const buttonProps = {
@@ -55,55 +56,44 @@ const SocialButton = ({ type, link }) => {
   }
 };
 
-const Banner = ({ onNavClick, activeSection }) => {
+const Banner = ({ show = false }) => {
   const { info: infoData, buttons: buttonData } = data.banner;
 
   return (
-    <BannerRoot>
-      <ContentWrapper>
-        <StyledAvatar
-          alt="Avatar"
-          src={AvatarImage}
-        />
-        <IntroSection>
-          <Typography variant={isMobile ? "h5" : "h3"}>
-            {infoData.name}
-          </Typography>
-          <SubheaderText variant={isMobile ? "subtitle1" : "h6"}>
-            {infoData.profession}
-          </SubheaderText>
-          <HeaderDescription
-            variant={isMobile ? "caption" : "body2"}
-          >
-            {infoData.intro}
-          </HeaderDescription>
-          <ButtonContainer>
-            {buttonData.map((btn, i) => (
-              <SocialButton
-                key={i}
-                type={btn.type}
-                link={btn.link}
-              />
-            ))}
-          </ButtonContainer>
-        </IntroSection>
-      </ContentWrapper>
-      {!isMobile && !isTablet && (
-        <NavigationBar
-          sections={['Education', 'Work Experience', 'Project Experience']}
-          onNavClick={onNavClick}
-          activeSection={activeSection}
-        />
-      )}
-      {(isMobile || isTablet) && (
-        <NavigationBar
-          sections={['Education', 'Work Experience', 'Project Experience']}
-          onNavClick={onNavClick}
-          activeSection={activeSection}
-          isMobileMenu
-        />
-      )}
-    </BannerRoot>
+    <Slide direction="down" in={show} mountOnEnter unmountOnExit>
+      <BannerRoot>
+        <Fade in={show} timeout={800}>
+          <ContentWrapper>
+            <StyledAvatar
+              alt="Avatar"
+              src={AvatarImage}
+            />
+            <IntroSection>
+              <Typography variant={isMobile ? "h5" : "h3"}>
+                {infoData.name}
+              </Typography>
+              <SubheaderText variant={isMobile ? "subtitle1" : "h6"}>
+                {infoData.profession}
+              </SubheaderText>
+              <HeaderDescription
+                variant={isMobile ? "caption" : "body2"}
+              >
+                {infoData.intro}
+              </HeaderDescription>
+              <ButtonContainer>
+                {buttonData.map((btn, i) => (
+                  <SocialButton
+                    key={i}
+                    type={btn.type}
+                    link={btn.link}
+                  />
+                ))}
+              </ButtonContainer>
+            </IntroSection>
+          </ContentWrapper>
+        </Fade>
+      </BannerRoot>
+    </Slide>
   );
 };
 

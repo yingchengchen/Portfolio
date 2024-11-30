@@ -1,9 +1,18 @@
 /* App.css */
+:root {
+  --banner-height: 350px;
+  --navbar-height: 64px;
+  --mobile-navbar-height: 56px;
+}
+
 .App-root {
   min-height: 100vh;
   background: linear-gradient(0deg, #F0EFFC 0%, #ffffff 100%);
-  display: flex;
-  flex-direction: column;
+}
+
+.main-content {
+  padding-top: var(--navbar-height);
+  transition: padding-top 0.3s ease-in-out;
 }
 
 .content-container {
@@ -11,13 +20,15 @@
   flex-direction: column;
   flex: 1;
   overflow-y: auto;
-  height: calc(100vh - var(--banner-height));
-  margin-top: var(--banner-height);
   scroll-behavior: smooth;
-  scroll-padding-top: 0; /* Ensures sections scroll to the top */
+  transition: all 0.3s ease-in-out;
 }
 
-/* Custom scrollbar for better visual appearance */
+.content-container.no-banner {
+  margin-top: 0;
+}
+
+/* Custom scrollbar */
 .content-container::-webkit-scrollbar {
   width: 8px;
 }
@@ -31,12 +42,16 @@
   border-radius: 4px;
 }
 
-:root {
-  --banner-height: 300px; /* Adjust based on your banner height */
-}
-
 @media (max-width: 768px) {
   :root {
     --banner-height: 470px;
+  }
+  
+  .main-content {
+    padding-top: var(--mobile-navbar-height);
+  }
+  
+  .content-container {
+    padding: 0 16px;
   }
 }
