@@ -5,7 +5,7 @@ export const BodyRoot = styled('div')(({ theme }) => ({
   flex: 1,
   width: '100%',
   maxWidth: '100%',
-  overflowX: 'hidden',
+  // overflowX: 'hidden',
   [theme.breakpoints.down('sm')]: {
     padding: theme.spacing(1)
   }

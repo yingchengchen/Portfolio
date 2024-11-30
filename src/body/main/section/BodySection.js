@@ -14,7 +14,7 @@ function BodySection({ header, children, type }) {
       return (
         <Grid container spacing={3}>
           {React.Children.map(children, (child) => (
-            <Grid item xs={12} sm={6} md={4} lg={3}>
+            <Grid item xs={12} sm={12} md={6} lg={6}>
               {child}
             </Grid>
           ))}

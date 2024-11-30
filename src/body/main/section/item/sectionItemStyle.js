@@ -1,5 +1,5 @@
 import { styled } from '@mui/material/styles';
-import { Card, IconButton, Typography, Button, Chip, Collapse } from '@mui/material';
+import { Card, IconButton, Typography, Button, Chip, Collapse, Dialog } from '@mui/material';
 
 export const WorkCard = styled(Card)(({ theme }) => ({
   marginBottom: theme.spacing(3),
@@ -18,6 +18,8 @@ export const WorkCardHeader = styled('div')(({ theme }) => ({
   alignItems: 'flex-start',
   [theme.breakpoints.down('xs')]: {
     flexDirection: 'column',
+    alignItems: 'center',
+    textAlign: 'center',
   },
 }));
 
@@ -132,25 +134,7 @@ export const CarouselNavButton = styled(IconButton)(({ theme, direction }) => ({
   },
 }));
 
-// Project Card Styles
-export const ProjectCard = styled(Card)(({ theme }) => ({
-  height: 'auto',
-  display: 'flex',
-  flexDirection: 'column',
-  borderRadius: theme.shape.borderRadius,
-  overflow: 'hidden',
-  boxShadow: '0 4px 12px rgba(0, 0, 0, 0.05)',
-  transition: 'transform 0.2s ease, box-shadow 0.2s ease',
-  backgroundColor: theme.palette.background.paper,
-  '&:hover': {
-    transform: 'translateY(-4px)',
-    boxShadow: '0 8px 24px rgba(0, 0, 0, 0.1)',
-  },
-  [theme.breakpoints.down('sm')]: {
-    height: 'auto',
-    marginBottom: theme.spacing(2),
-  },
-}));
+
 
 export const ProjectContent = styled('div')(({ theme }) => ({
   padding: theme.spacing(2),
@@ -215,6 +199,42 @@ export const ShowMoreButton = styled(Button)(({ theme }) => ({
     padding: theme.spacing(0),
     marginTop: theme.spacing(1),
   },
+}));
+
+export const ThumbnailCard = styled(Card)(({ theme }) => ({
+  position: 'relative',
+  height: '100%',
+  display: 'flex',
+  flexDirection: 'column',
+  borderRadius: theme.shape.borderRadius,
+  overflow: 'hidden',
+  boxShadow: '0 4px 12px rgba(0, 0, 0, 0.05)',
+  transition: 'transform 0.2s ease, box-shadow 0.2s ease',
+  '&:hover': {
+    transform: 'translateY(-4px)',
+    boxShadow: '0 8px 24px rgba(0, 0, 0, 0.1)',
+  },
+}));
+
+export const ThumbnailImage = styled('img')({
+  width: '100%',
+  height: '200px',
+  objectFit: 'cover',
+});
+
+export const DetailDialog = styled(Dialog)(({ theme }) => ({
+  '& .MuiDialog-paper': {
+    maxWidth: '1000px',
+    width: '90vw',
+    maxHeight: '90vh',
+    margin: theme.spacing(2),
+  },
+}));
+
+export const DialogHeader = styled('div')(({ theme }) => ({
+  display: 'flex',
+  justifyContent: 'flex-end',
+  padding: theme.spacing(1),
 }));
 
 // Now let's do Education styles
