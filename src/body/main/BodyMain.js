@@ -1,3 +1,4 @@
+// BodyMain.js
 import React from 'react';
 import { BodyRoot } from './bodyStyles';
 import data from 'data/data';
@@ -5,33 +6,32 @@ import BodySection from './section/BodySection';
 import SectionItem from './section/item/SectionItem';
 
 function BodyMain({ activeSection }) {
-  const renderSection = (sectionData) => (
+  const sections = [
+    { type: 'project', data: data.body.projectExperience },
+    { type: 'work', data: data.body.workExperience },
+    { type: 'education', data: data.body.education }
+  ];
+
+  return (
     <BodyRoot>
-      <BodySection
-        header={sectionData.header}
-        type={sectionData.type}
-      >
-        {sectionData.items.map((item, si) => (
-          <SectionItem
-            key={si}
-            sectionType={sectionData.type}
-            {...item}
-          />
-        ))}
-      </BodySection>
+      {sections.map((section, index) => (
+        <BodySection
+          key={index}
+          header={section.data.header}
+          type={section.type}
+          activeSection={activeSection}
+        >
+          {section.data.items.map((item, si) => (
+            <SectionItem
+              key={si}
+              sectionType={section.type}
+              {...item}
+            />
+          ))}
+        </BodySection>
+      ))}
     </BodyRoot>
   );
-
-  switch (activeSection) {
-    case 'Education':
-      return renderSection(data.body.education);
-    case 'Work Experience':
-      return renderSection(data.body.workExperience);
-    case 'Project Experience':
-      return renderSection(data.body.projectExperience);
-    default:
-      return null;
-  }
 }
 
 export default BodyMain;

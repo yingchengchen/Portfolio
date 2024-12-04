@@ -1,11 +1,12 @@
 import { styled } from '@mui/material/styles';
-import { Card, IconButton, Typography, Button, Chip, Collapse, Dialog } from '@mui/material';
+import { Card, IconButton, Typography, Button, Chip, Collapse } from '@mui/material';
 
+// sectionItemStyle.js
 export const WorkCard = styled(Card)(({ theme }) => ({
-  marginBottom: theme.spacing(3),
   borderRadius: theme.shape.borderRadius,
   boxShadow: '0 4px 12px rgba(0, 0, 0, 0.05)',
   transition: 'transform 0.2s ease, box-shadow 0.2s ease',
+  width: '100%', // Ensure full width
   '&:hover': {
     transform: 'translateY(-2px)',
     boxShadow: '0 6px 16px rgba(0, 0, 0, 0.1)',
@@ -87,11 +88,14 @@ export const StyledCollapse = styled(Collapse)(({ theme }) => ({
 
 export const CarouselContainer = styled('div')(({ theme }) => ({
   width: '100%',
-  height: "auto",
+  height: '420px', // Fixed height for consistency
   position: 'relative',
   backgroundColor: theme.palette.background.default,
+  borderRadius: theme.shape.borderRadius,
+  overflow: 'hidden',
+  marginBottom: theme.spacing(3),
   [theme.breakpoints.down('sm')]: {
-    height:'auto',
+    height: '300px',
   },
   '& .MuiIconButton-root': {
     opacity: 0,
@@ -113,9 +117,10 @@ export const CarouselSlide = styled('div')({
 
 export const CarouselImage = styled('img')({
   width: '100%',
-  height: 'auto',
+  height: '100%',
   objectFit: 'contain',
   objectPosition: 'center',
+  backgroundColor: '#f5f5f5', // Light background for images
 });
 
 export const CarouselNavButton = styled(IconButton)(({ theme, direction }) => ({
@@ -201,52 +206,6 @@ export const ShowMoreButton = styled(Button)(({ theme }) => ({
   },
 }));
 
-export const ThumbnailCard = styled(Card)(({ theme }) => ({
-  position: 'relative',
-  height: '100%',
-  display: 'flex',
-  flexDirection: 'column',
-  borderRadius: theme.shape.borderRadius,
-  overflow: 'hidden',
-  boxShadow: '0 4px 12px rgba(0, 0, 0, 0.05)',
-  transition: 'transform 0.2s ease, box-shadow 0.2s ease',
-  '&:hover': {
-    transform: 'translateY(-4px)',
-    boxShadow: '0 8px 24px rgba(0, 0, 0, 0.1)',
-  },
-}));
-
-export const ThumbnailImage = styled('img')({
-  width: '100%',
-  height: '200px',
-  objectFit: 'cover',
-});
-
-export const DetailDialog = styled(Dialog)(({ theme }) => ({
-  '& .MuiDialog-paper': {
-    maxWidth: '1000px',
-    width: '90vw',
-    maxHeight: '90vh',
-    margin: theme.spacing(2),
-  },
-}));
-
-export const DialogHeader = styled('div')(({ theme }) => ({
-  display: 'flex',
-  justifyContent: 'flex-end',
-  padding: theme.spacing(1),
-}));
-
-// Now let's do Education styles
-export const EducationContainer = styled('div')(({ theme }) => ({
-  padding: theme.spacing(3),
-  borderLeft: `4px solid ${theme.palette.primary.main}`,
-  backgroundColor: theme.palette.background.paper,
-  borderRadius: theme.shape.borderRadius,
-  marginBottom: theme.spacing(3),
-  boxShadow: '0 2px 8px rgba(0, 0, 0, 0.05)',
-}));
-
 // Common styles
 export const ChipContainer = styled('div')(({ theme }) => ({
   display: 'flex',
@@ -274,13 +233,66 @@ export const StyledChip = styled(Chip, {
 }));
 
 export const BulletList = styled('ul')(({ theme, isSubList }) => ({
-  margin: isSubList ? `${theme.spacing(1)}px 0 0 ${theme.spacing(2)}px` : 0,
+  margin: isSubList ? `${theme.spacing(1.5)}px 0 0 ${theme.spacing(2)}px` : 0,
   padding: isSubList ? 0 : `0 0 0 ${theme.spacing(2)}px`,
-  listStyle: isSubList ? 'circle' : 'disc',
+  listStyle: 'none', // Remove default bullets
   '& li': {
-    marginBottom: isSubList ? theme.spacing(0.5) : theme.spacing(1),
+    position: 'relative',
+    paddingLeft: theme.spacing(2.5),
+    marginBottom: isSubList ? theme.spacing(1) : theme.spacing(2),
     '&:last-child': {
       marginBottom: 0,
     },
+    // Custom bullet point styling
+    '&::before': {
+      content: '""',
+      position: 'absolute',
+      left: 0,
+      top: isSubList ? '0.5em' : '0.6em',
+      width: isSubList ? 4 : 6,
+      height: isSubList ? 4 : 6,
+      backgroundColor: isSubList 
+        ? theme.palette.primary.light
+        : theme.palette.primary.main,
+      borderRadius: '50%',
+      transform: 'translateY(-50%)',
+    },
+    // Add connecting line for sub-items
+    ...(isSubList && {
+      '&::after': {
+        content: '""',
+        position: 'absolute',
+        left: -theme.spacing(1.5),
+        top: 0,
+        width: '1px',
+        height: '100%',
+        backgroundColor: `${theme.palette.primary.main}20`,
+      }
+    }),
   },
+  '& .MuiTypography-root': {
+    color: theme.palette.text.primary,
+    lineHeight: 1.6,
+    ...(isSubList && {
+      fontSize: '0.9rem',
+      color: theme.palette.text.secondary,
+    })
+  },
+  // Add fade-in animation for sub-items
+  ...(isSubList && {
+    '& li': {
+      opacity: 0,
+      animation: 'fadeIn 0.3s ease forwards',
+    },
+    '@keyframes fadeIn': {
+      from: {
+        opacity: 0,
+        transform: 'translateX(-10px)',
+      },
+      to: {
+        opacity: 1,
+        transform: 'translateX(0)',
+      },
+    },
+  }),
 }));

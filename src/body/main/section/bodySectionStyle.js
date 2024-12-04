@@ -1,11 +1,51 @@
 import { styled } from '@mui/material/styles';
-import { Card } from '@mui/material';
+export const FullHeightContainer = styled('div')(({ theme }) => ({
+  minHeight: 'calc(100vh - var(--navbar-height))',
+  width: '100%',
+  display: 'flex',
+  flexDirection: 'column',
+  padding: theme.spacing(2, 0),
+  gap: theme.spacing(3), // Space between cards
+  [theme.breakpoints.down('sm')]: {
+    minHeight: 'calc(100vh - var(--mobile-navbar-height))',
+  }
+}));
 
-export const SectionRoot = styled('div')(({ theme, expanded }) => ({
+// Update ContentContainer to handle full height sections
+export const ContentContainer = styled('div')(({ theme, isMobile, isFullHeight }) => ({
+  padding: theme.spacing(2),
+  width: '100%',
+  maxWidth: '100%',
+  overflow: 'hidden',
+  ...(isFullHeight && {
+    flex: 1,
+    display: 'flex',
+    flexDirection: 'column',
+  }),
+  '&:last-child': {
+    paddingBottom: theme.spacing(2)
+  },
+  ...(isMobile && {
+    [theme.breakpoints.down('sm')]: {
+      padding: theme.spacing(1.5),
+    }
+  })
+}));
+
+// Update SectionRoot for full height sections
+export const SectionRoot = styled('div')(({ theme, expanded, isFullHeight }) => ({
   marginBottom: theme.spacing(3),
   width: '100%',
   maxWidth: '100%',
   overflow: 'hidden',
+  ...(isFullHeight && {
+    minHeight: 'calc(100vh - var(--navbar-height))',
+    display: 'flex',
+    flexDirection: 'column',
+    [theme.breakpoints.down('sm')]: {
+      minHeight: 'calc(100vh - var(--mobile-navbar-height))',
+    }
+  }),
   '&:last-child': {
     marginBottom: 0
   },
@@ -64,20 +104,6 @@ export const HeaderTitle = styled('h3')(({ theme }) => ({
   }
 }));
 
-export const ContentContainer = styled('div')(({ theme, isMobile }) => ({
-  padding: theme.spacing(2),
-  width: '100%',
-  maxWidth: '100%',
-  overflow: 'hidden',
-  '&:last-child': {
-    paddingBottom: theme.spacing(2)
-  },
-  ...(isMobile && {
-    [theme.breakpoints.down('sm')]: {
-      padding: theme.spacing(1.5),
-    }
-  })
-}));
 
 export const ExpandIcon = styled('div')(({ theme, open }) => ({
   transform: open ? 'rotate(180deg)' : 'rotate(0deg)',

@@ -5,7 +5,6 @@ import githubDetails from './details/github';
 import infoData from './banner/info';
 import buttonData from './banner/buttons';
 // Body
-import sections from './sections';
 import education from './education';
 import workExperience from './workExperience';
 import projectExperience from './proejctExperience';

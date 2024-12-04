@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import PropTypes from 'prop-types';
+import React, { useState } from "react";
+import PropTypes from "prop-types";
 import {
   Card,
   Dialog,
@@ -12,7 +12,7 @@ import {
   Fab,
   Grid,
   styled,
-} from '@mui/material';
+} from "@mui/material";
 import {
   Language as WebIcon,
   GitHub as GitHubIcon,
@@ -21,8 +21,8 @@ import {
   DateRange as DateIcon,
   NavigateBefore,
   NavigateNext,
-} from '@mui/icons-material';
-import Carousel from 'react-material-ui-carousel';
+} from "@mui/icons-material";
+import Carousel from "react-material-ui-carousel";
 
 // Reuse existing styled components
 import {
@@ -37,46 +37,61 @@ import {
   ChipContainer,
   StyledChip,
   BulletList,
-} from './sectionItemStyle';
+} from "./sectionItemStyle";
 
 const ThumbnailCard = styled(Card)(({ theme }) => ({
-  position: 'relative',
-  height: '100%',
-  minHeight: '350px',  // Add minimum height
-  maxHeight: '400px',  // Add maximum height
-  display: 'flex',
-  flexDirection: 'column',
+  position: "relative",
+  height: "100%",
+  minHeight: "350px", // Add minimum height
+  maxHeight: "400px", // Add maximum height
+  display: "flex",
+  flexDirection: "column",
   borderRadius: theme.shape.borderRadius,
-  overflow: 'hidden',
-  boxShadow: '0 4px 12px rgba(0, 0, 0, 0.05)',
-  transition: 'transform 0.2s ease, box-shadow 0.2s ease',
-  '&:hover': {
-    transform: 'translateY(-4px)',
-    boxShadow: '0 8px 24px rgba(0, 0, 0, 0.1)',
+  overflow: "hidden",
+  boxShadow: "0 4px 12px rgba(0, 0, 0, 0.05)",
+  transition: "transform 0.2s ease, box-shadow 0.2s ease",
+  "&:hover": {
+    transform: "translateY(-4px)",
+    boxShadow: "0 8px 24px rgba(0, 0, 0, 0.1)",
   },
 }));
 
-const ThumbnailImage = styled('img')({
-  width: '100%',
-  height: '200px',
-  objectFit: 'cover',
+const ThumbnailImage = styled("img")({
+  width: "100%",
+  height: "200px",
+  objectFit: "cover",
 });
 
-const DetailDialog = styled(Dialog)(({ theme }) => ({
-  '& .MuiDialog-paper': {
-    maxWidth: '1000px',
-    width: '90vw',
-    maxHeight: '90vh',
+export const DetailDialog = styled(Dialog)(({ theme }) => ({
+  "& .MuiDialog-paper": {
+    maxWidth: "800px", // Adjusted for vertical layout
+    width: "90vw",
+    maxHeight: "90vh",
     margin: theme.spacing(2),
+  },
+  "& .MuiDialogContent-root": {
+    padding: theme.spacing(2),
+    [theme.breakpoints.up("md")]: {
+      padding: theme.spacing(3),
+    },
   },
 }));
 
-const DialogHeader = styled('div')(({ theme }) => ({
-  display: 'flex',
-  justifyContent: 'flex-end',
+const DialogHeader = styled("div")(({ theme }) => ({
+  display: "flex",
+  justifyContent: "flex-end",
   padding: theme.spacing(1),
 }));
 
+// First update the Fab button styles in ProjectCard.js
+const FabButton = styled(Fab)(({ theme }) => ({
+  zIndex: 1, // Lower z-index than navbar
+  "&.MuiFab-root": {
+    boxShadow: "0 4px 8px rgba(0, 0, 0, 0.15)",
+  },
+}));
+
+// Update the Dialog content layout in ProjectCard.js
 const ProjectCard = (props) => {
   const [open, setOpen] = useState(false);
   const [showDetails, setShowDetails] = useState(false);
@@ -91,54 +106,74 @@ const ProjectCard = (props) => {
     <>
       <ThumbnailCard>
         <ThumbnailImage
-          src={props.images?.[0] || '/placeholder-image.jpg'}
+          src={props.images?.[0] || "/placeholder-image.jpg"}
           alt={props.header}
         />
         <ProjectContent>
-          <Typography variant="h6" sx={{
-            fontWeight: 600,
-            fontSize: '1.0rem',
-            marginBottom: 1,
-            lineHeight: 1.3
-          }}>
+          <Typography
+            variant="h6"
+            sx={{
+              fontWeight: 600,
+              fontSize: "1.0rem",
+              marginBottom: 1,
+              lineHeight: 1.3,
+            }}
+          >
             {props.header}
           </Typography>
-          <Box sx={{ 
-                    display: 'flex',
-                    alignItems: 'center',
-                    gap: 0.5,
-                    color: 'text.secondary'
-                  }}>
-                    <DateIcon sx={{ fontSize: '1.0rem' }} />
-                    <Typography sx={{ fontSize: '0.9rem' }}>{props.meta}</Typography>
-                  </Box>
-          
-          <Box sx={{ position: 'absolute', bottom: 16, right: 16 }}>
-            <Fab
-              color="primary"
+          <Box
+            sx={{
+              display: "flex",
+              alignItems: "center",
+              gap: 0.5,
+              color: "text.secondary",
+            }}
+          >
+            <DateIcon sx={{ fontSize: "1.0rem" }} />
+            <Typography sx={{ fontSize: "0.9rem" }}>{props.meta}</Typography>
+          </Box>
+          {props.chips && (
+            <ChipContainer>
+              {props.chips.map((chip, index) => (
+                <StyledChip
+                  key={index}
+                  label={chip.label}
+                  chipType={chip.type}
+                  size="small"
+                />
+              ))}
+            </ChipContainer>
+          )}
+
+          <Box sx={{ position: "absolute", bottom: 16, right: 16 }}>
+            <FabButton
               aria-label="view details"
               size="small"
               onClick={handleOpen}
+              sx={{
+                bgcolor: '#f5f5f5',
+                color: '#757575',
+                '&:hover': {
+                  bgcolor: '#e0e0e0',
+                },
+                boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)',
+              }}
             >
               <AddIcon />
-            </Fab>
+            </FabButton>
           </Box>
         </ProjectContent>
       </ThumbnailCard>
 
-      <DetailDialog
-        open={open}
-        onClose={handleClose}
-        scroll="paper"
-      >
+      <DetailDialog open={open} onClose={handleClose} scroll="paper">
         <DialogHeader>
           <IconButton onClick={handleClose} size="small">
             <CloseIcon />
           </IconButton>
         </DialogHeader>
         <DialogContent>
-          <Grid container spacing={3}>
-            <Grid item xs={12} md={6}>
+          <Grid container spacing={3} direction="column">
+            <Grid item xs={12}>
               <CarouselContainer>
                 <Carousel
                   animation="fade"
@@ -146,7 +181,7 @@ const ProjectCard = (props) => {
                   NavButton={({ onClick, next }) => (
                     <CarouselNavButton
                       onClick={onClick}
-                      direction={next ? 'next' : 'prev'}
+                      direction={next ? "next" : "prev"}
                       size="small"
                     >
                       {next ? <NavigateNext /> : <NavigateBefore />}
@@ -167,25 +202,32 @@ const ProjectCard = (props) => {
                 </Carousel>
               </CarouselContainer>
             </Grid>
-            
-            <Grid item xs={12} md={6}>
+
+            <Grid item xs={12}>
               <ProjectHeader>
                 <Box>
-                  <Typography variant="h5" sx={{ fontWeight: 600, marginBottom: 1 }}>
+                  <Typography
+                    variant="h5"
+                    sx={{ fontWeight: 600, marginBottom: 1 }}
+                  >
                     {props.header}
                   </Typography>
-                  <Box sx={{ 
-                    display: 'flex',
-                    alignItems: 'center',
-                    gap: 0.5,
-                    color: 'text.secondary'
-                  }}>
-                    <DateIcon sx={{ fontSize: '1.0rem' }} />
-                    <Typography sx={{ fontSize: '0.9rem' }}>{props.meta}</Typography>
+                  <Box
+                    sx={{
+                      display: "flex",
+                      alignItems: "center",
+                      gap: 0.5,
+                      color: "text.secondary",
+                    }}
+                  >
+                    <DateIcon sx={{ fontSize: "1.0rem" }} />
+                    <Typography sx={{ fontSize: "0.9rem" }}>
+                      {props.meta}
+                    </Typography>
                   </Box>
                 </Box>
 
-                <Box sx={{ display: 'flex', gap: 1.5, flexWrap: 'wrap' }}>
+                <Box sx={{ display: "flex", gap: 1.5, flexWrap: "wrap" }}>
                   {props.githubLink && (
                     <ProjectLink
                       href={props.githubLink}
@@ -221,25 +263,15 @@ const ProjectCard = (props) => {
 
               <Divider sx={{ my: 2 }} />
 
-              <Typography variant="body2" sx={{ color: 'text.secondary' }}>
+              <Typography variant="body2" sx={{ color: "text.secondary" }}>
                 {props.description}
               </Typography>
 
-              {props.chips && (
-                <ChipContainer>
-                  {props.chips.map((chip, index) => (
-                    <StyledChip
-                      key={index}
-                      label={chip.label}
-                      chipType={chip.type}
-                      size="small"
-                    />
-                  ))}
-                </ChipContainer>
-              )}
-
-              <ShowMoreButton onClick={() => setShowDetails(!showDetails)} disableRipple>
-                {showDetails ? 'Show less' : 'Show more'}
+              <ShowMoreButton
+                onClick={() => setShowDetails(!showDetails)}
+                disableRipple
+              >
+                {showDetails ? "Show less" : "Show more"}
               </ShowMoreButton>
 
               <Collapse in={showDetails} timeout="auto">
@@ -252,7 +284,9 @@ const ProjectCard = (props) => {
                           <BulletList isSubList>
                             {item.subItems.map((subItem, subIndex) => (
                               <li key={subIndex}>
-                                <Typography variant="body2">{subItem}</Typography>
+                                <Typography variant="body2">
+                                  {subItem}
+                                </Typography>
                               </li>
                             ))}
                           </BulletList>
@@ -280,8 +314,16 @@ ProjectCard.propTypes = {
   publicationLink: PropTypes.string,
   listItems: PropTypes.arrayOf(
     PropTypes.shape({
-      main: PropTypes.string.isRequired,
-      subItems: PropTypes.arrayOf(PropTypes.string)
+      main: PropTypes.oneOfType([
+        PropTypes.string,
+        PropTypes.object
+      ]).isRequired,
+      subItems: PropTypes.arrayOf(
+        PropTypes.oneOfType([
+          PropTypes.string,
+          PropTypes.object
+        ])
+      )
     })
   ),
   chips: PropTypes.arrayOf(

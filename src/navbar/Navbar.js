@@ -1,27 +1,23 @@
+// NavigationBar.js
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-import { useTheme, useMediaQuery, MenuItem, Avatar } from '@mui/material';
+import { useTheme, useMediaQuery, MenuItem } from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
+import LinkedInIcon from '@mui/icons-material/LinkedIn';
+import GitHubIcon from '@mui/icons-material/GitHub';
 import {
   NavContainer,
   StyledNavButton,
   StyledMenuButton,
   StyledMenu,
   StyledMenuItem,
-  NavAvatarButton,
   NavbarContent,
   NavButtons,
-  MobileNavControl
+  MobileNavControl,
+  SocialLinks // Renamed from AvatarWrapper
 } from './NavbarStyles';
-import AvatarImage from '../images/myAvatar.png';
 
-const NavigationBar = ({ 
-  sections, 
-  onNavClick, 
-  activeSection, 
-  onAvatarClick,
-  showBanner 
-}) => {
+const NavigationBar = ({ sections, onNavClick, activeSection = null }) => {
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down('md'));
   const [anchorEl, setAnchorEl] = useState(null);
@@ -42,13 +38,24 @@ const NavigationBar = ({
   return (
     <NavContainer>
       <NavbarContent>
-        <NavAvatarButton onClick={onAvatarClick} active={showBanner}>
-          <Avatar
-            src={AvatarImage}
-            alt="Profile"
-            sx={{ width: 32, height: 32 }}
-          />
-        </NavAvatarButton>
+        <SocialLinks>
+          <a 
+            href="https://www.linkedin.com/in/ying-cheng-chen/" 
+            target="_blank" 
+            rel="noopener noreferrer"
+            aria-label="LinkedIn Profile"
+          >
+            <LinkedInIcon sx={{ fontSize: 24 }} />
+          </a>
+          <a 
+            href="https://github.com/yingchengchen" 
+            target="_blank" 
+            rel="noopener noreferrer"
+            aria-label="GitHub Profile"
+          >
+            <GitHubIcon sx={{ fontSize: 24 }} />
+          </a>
+        </SocialLinks>
 
         {/* Desktop Navigation */}
         <NavButtons>
@@ -57,7 +64,7 @@ const NavigationBar = ({
               key={index}
               onClick={() => onNavClick(section)}
               disableElevation
-              active={activeSection === section}
+              active={activeSection === section ? "true" : undefined}
             >
               {section}
             </StyledNavButton>
@@ -94,7 +101,7 @@ const NavigationBar = ({
                 key={index}
                 onClick={() => handleSectionClick(section)}
                 component={StyledMenuItem}
-                active={activeSection === section}
+                active={activeSection === section ? "true" : undefined}
               >
                 {section}
               </MenuItem>
@@ -110,12 +117,6 @@ NavigationBar.propTypes = {
   sections: PropTypes.arrayOf(PropTypes.string).isRequired,
   onNavClick: PropTypes.func.isRequired,
   activeSection: PropTypes.string,
-  onAvatarClick: PropTypes.func.isRequired,
-  showBanner: PropTypes.bool.isRequired,
-};
-
-NavigationBar.defaultProps = {
-  activeSection: null,
 };
 
 export default NavigationBar;

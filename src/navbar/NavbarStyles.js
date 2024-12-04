@@ -14,6 +14,7 @@ export const NavContainer = styled('nav')(({ theme }) => ({
   backdropFilter: 'blur(8px)',
   borderBottom: `1px solid ${theme.palette.divider}`,
   zIndex: 1000,
+  boxShadow: theme.shadows[1],
   [theme.breakpoints.down('md')]: {
     height: 'var(--mobile-navbar-height)',
     padding: theme.spacing(0, 2),
@@ -31,19 +32,37 @@ export const NavbarContent = styled('div')(({ theme }) => ({
   height: '100%',
 }));
 
-export const NavAvatarButton = styled(IconButton, {
-  shouldForwardProp: prop => prop !== 'active'
-})(({ theme, active }) => ({
-  padding: 4,
-  transition: 'all 0.3s ease',
-  border: '2px solid transparent',
-  '&:hover': {
-    border: `2px solid ${theme.palette.primary.main}`,
+// Replace AvatarWrapper with SocialLinks in NavbarStyles.js
+export const SocialLinks = styled('div')(({ theme }) => ({
+  display: 'flex',
+  alignItems: 'center',
+  gap: theme.spacing(2),
+  
+  '& a': {
+    color: theme.palette.text.secondary,
+    transition: 'all 0.3s ease',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    padding: 4,
+    borderRadius: '50%',
   },
-  ...(active && {
-    border: `2px solid ${theme.palette.primary.main}`,
-    transform: 'scale(1.1)',
-  })
+
+  // LinkedIn-specific styling
+  '& a:first-of-type': {
+    '&:hover': {
+      color: theme.palette.custom.linkedIn,
+      transform: 'scale(1.1)',
+    }
+  },
+
+  // GitHub-specific styling
+  '& a:last-of-type': {
+    '&:hover': {
+      color: theme.palette.custom.github,
+      transform: 'scale(1.1)',
+    }
+  }
 }));
 
 export const NavButtons = styled('div')(({ theme }) => ({
@@ -82,7 +101,7 @@ export const StyledNavButton = styled(Button)(({ theme, active }) => ({
     color: theme.palette.custom.accent1,
   },
 
-  ...(active && {
+  ...(active === "true" && {
     backgroundColor: 'transparent',
     color: theme.palette.custom.accent1,
     fontWeight: 600,
@@ -136,7 +155,7 @@ export const StyledMenuItem = styled('div')(({ theme, active }) => ({
     color: theme.palette.custom.accent1,
   },
 
-  ...(active && {
+  ...(active === "true" && {
     color: theme.palette.custom.accent1,
     backgroundColor: `${theme.palette.custom.accent1}10`,
     '&:hover': {

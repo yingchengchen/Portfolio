@@ -1,6 +1,6 @@
 import React from "react";
 const projectExperience = {
-    header: "Project Experience",
+    header: "Projects",
     type: "project",
     items: [
       {
@@ -195,6 +195,50 @@ const projectExperience = {
           { label: "Data Analysis", type: "secondary" }
         ]
       },
+      {
+        sectionType: "project",
+        header: "School Shooting Events Storytelling platform",
+        subheader: "Self Projects",
+        meta: "September 2023 - Dec 2023",
+        images: [
+          `${process.env.PUBLIC_URL}/schoolshooting/01.png`,
+          `${process.env.PUBLIC_URL}/schoolshooting/02.png`,
+          `${process.env.PUBLIC_URL}/schoolshooting/03.png`,
+          `${process.env.PUBLIC_URL}/schoolshooting/04.png`,
+          `${process.env.PUBLIC_URL}/schoolshooting/05.png`
+        ],
+        description:"Visualizes Columbine's influence on US school shootings using Vue.js, Vuetify, HTML, CSS, and JavaScript. Features a scrollable story-telling design with charts and web-scraped text snippets. Explores gun culture's impact on school violence through interactive data visualization and contextual information.",
+        githubLink:"https://github.com/yingchengchen/SchoolShootingEvents_US",
+        listItems: [
+          {
+            main: (
+              <>
+                Created a <strong>Vue.js</strong> platform for <strong>storytelling</strong> on school shooting events
+              </>
+            )
+          },
+          {
+            main: (
+              <>
+                Utilized <strong>web-scraped</strong> text snippets to enhance user engagement
+              </>
+            )
+          },
+          {
+            main: (
+              <>
+                Designed <strong>interactive</strong> data visualizations to explore gun culture's impact on school violence
+              </>
+            )
+          }
+        ],
+        chips: [
+          { label: "Vue.js", type: "primary" },
+          { label: "Vuetify", type: "primary" },
+          { label: "TypeScript", type: "primary" },
+          { label: "storytelling", type: "secondary" }
+        ]
+      }
     ]
   }
 
