@@ -45,7 +45,7 @@ const NavigationBar = ({ sections, onNavClick, activeSection = null }) => {
             rel="noopener noreferrer"
             aria-label="LinkedIn Profile"
           >
-            <LinkedInIcon sx={{ fontSize: 24 }} />
+            <LinkedInIcon sx={{ fontSize: 30 }} />
           </a>
           <a 
             href="https://github.com/yingchengchen" 
@@ -53,7 +53,7 @@ const NavigationBar = ({ sections, onNavClick, activeSection = null }) => {
             rel="noopener noreferrer"
             aria-label="GitHub Profile"
           >
-            <GitHubIcon sx={{ fontSize: 24 }} />
+            <GitHubIcon sx={{ fontSize: 30 }} />
           </a>
         </SocialLinks>
 

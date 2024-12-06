@@ -71,57 +71,60 @@ const About = ({ id }) => {
   // New handler for going back
   const handleBack = () => {
     setSelectedRole(null);
+    setStartTyping(true); // Reset typing animation
   };
 
   return (
-    <AboutRoot id={id}>
-      {!selectedRole ? (
-        // Initial layout
-        <>
-          <ContentWrapper>
-            <ContentInnerGroup>
-              <StyledAvatar alt="Avatar" src={AvatarImage} />
-              <IntroContainer>
-                <StyledTyped>
-                  {startTyping && (
-                    <ReactTyped
-                      strings={[introText]}
-                      typeSpeed={40}
-                      cursorChar="|"
-                      showCursor={true}
-                    />
-                  )}
-                </StyledTyped>
-              </IntroContainer>
-            </ContentInnerGroup>
-          </ContentWrapper>
+    <div style={{ backgroundColor: '#F0EFFC', width: '100%', display: 'flex', justifyContent: 'center' }}>
+      <AboutRoot id={id}>
+        {!selectedRole ? (
+          // Initial layout
+          <>
+            <ContentWrapper>
+              <ContentInnerGroup>
+                <StyledAvatar alt="Avatar" src={AvatarImage} />
+                <IntroContainer>
+                  <StyledTyped>
+                    {startTyping && (
+                      <ReactTyped
+                        strings={[introText]}
+                        typeSpeed={40}
+                        cursorChar="|"
+                        showCursor={true}
+                      />
+                    )}
+                  </StyledTyped>
+                </IntroContainer>
+              </ContentInnerGroup>
+            </ContentWrapper>
 
-          <CardContainer>
-            <CardsGroup>
-              {roles.map((role) => (
-                <RoleCard
-                  key={role.type}
-                  cardType={role.type}
-                  onClick={() => handleCardClick(role.type)}
-                >
-                  <span>{role.title}</span>
-                </RoleCard>
-              ))}
-            </CardsGroup>
-          </CardContainer>
-        </>
-      ) : (
-        // Selected state layout
-        <AboutAfterSelected
-          selectedRole={selectedRole}
-          roles={roles}
-          onCardClick={handleCardClick}
-          roleDescriptions={roleDescriptions}
-          AvatarImage={AvatarImage}
-          onBack={handleBack}
-        />
-      )}
-    </AboutRoot>
+            <CardContainer>
+              <CardsGroup>
+                {roles.map((role) => (
+                  <RoleCard
+                    key={role.type}
+                    cardType={role.type}
+                    onClick={() => handleCardClick(role.type)}
+                  >
+                    <span>{role.title}</span>
+                  </RoleCard>
+                ))}
+              </CardsGroup>
+            </CardContainer>
+          </>
+        ) : (
+          // Selected state layout
+          <AboutAfterSelected
+            selectedRole={selectedRole}
+            roles={roles}
+            onCardClick={handleCardClick}
+            roleDescriptions={roleDescriptions}
+            AvatarImage={AvatarImage}
+            onBack={handleBack}
+          />
+        )}
+      </AboutRoot>
+    </div>
   );
 };
 

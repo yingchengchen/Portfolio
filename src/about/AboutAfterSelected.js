@@ -6,9 +6,6 @@ import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import { StyledAvatar, IntroContainer, StyledTyped } from "./AboutStyle";
 
 const BackButton = styled("button")({
-  position: "absolute",
-  top: "5rem",
-  left: "5rem",
   background: "none",
   border: "none",
   cursor: "pointer",
@@ -98,7 +95,6 @@ const SelectedCard = styled("div")(({ theme, cardType }) => {
     borderRadius: theme.shape.borderRadius,
     border: "0.156rem solid #697478",
     padding: "2.25rem", // 1.5rem * 1.5
-    cursor: "pointer",
     color: "#697478",
     fontWeight: 500,
     fontSize: "2.25rem", // 1.5rem * 1.5
@@ -116,9 +112,7 @@ const SelectedCard = styled("div")(({ theme, cardType }) => {
       boxSizing: "border-box",
     },
 
-    "&:hover": {
-      boxShadow: "0 0.625rem 1.25rem rgba(0,0,0,0.1)",
-    },
+    
   };
 });
 
@@ -144,7 +138,7 @@ const UnselectedCard = styled("div")(({ theme, cardType }) => {
     display: "flex",
     transition: "all 0.5s ease",
     position: "relative",
-    top: "1.5rem",
+    // top: "1.5rem",
 
     "& > span": {
       width: "50%",
@@ -176,11 +170,12 @@ const AboutAfterSelected = ({
 
   return (
     <SelectedContainer>
-      <BackButton onClick={onBack}>
-        <ArrowBackIcon />
-        <span>Back</span>
-      </BackButton>
+
       <LeftSection>
+        <BackButton onClick={onBack}>
+            <ArrowBackIcon />
+            <span>Back</span>
+        </BackButton>
         <SelectedCard
           cardType={selectedRole}
           onClick={() => onCardClick(selectedRole)}
