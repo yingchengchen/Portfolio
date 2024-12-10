@@ -11,3 +11,47 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+@font-face {
+  font-family: 'Ank';
+  src: local('Ank'), url('./font/AnkhSanctuary-PVK0B.ttf') format('truetype');
+}
+@font-face {
+  font-family: 'CoffeeHealing';
+  src: local('CoffeeHealing'), url('./font/CoffeeHealing-1GrKe.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'Drip';
+  src: local('Drip'), url('./font//DripOctober-vm0JA.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'Hollow';
+  src:local('Hollow'), url('./font/HollowCartoonlings-45Jp.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'Night';
+  src: local('Night'), url('./font/NightPumpkind-1GpGv.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'Engineer';
+  src: local('Engineer'), url('./font/EngineerHand-l780.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'Seaside';
+  src: local('Seaside'), url('./font/Seasideresortnf-popd.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'Techno';
+  src: local('Techno'), url('./font/TechnoTech-K7VzX.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'God';
+  src: local('God'), url('./font/Godshomedemo-K794e.ttf') format('truetype');
+}

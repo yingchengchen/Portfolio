@@ -50,6 +50,7 @@ export const SocialLinks = styled('div')(({ theme }) => ({
 
   // LinkedIn-specific styling
   '& a:first-of-type': {
+    color: theme.palette.custom.linkedIn,
     '&:hover': {
       color: theme.palette.custom.linkedIn,
       transform: 'scale(1.1)',
@@ -58,6 +59,7 @@ export const SocialLinks = styled('div')(({ theme }) => ({
 
   // GitHub-specific styling
   '& a:last-of-type': {
+    color: theme.palette.custom.github,
     '&:hover': {
       color: theme.palette.custom.github,
       transform: 'scale(1.1)',
@@ -93,6 +95,7 @@ export const StyledNavButton = styled(Button)(({ theme, active }) => ({
   textTransform: 'none',
   fontWeight: 500,
   fontSize: '0.9rem',
+  fontFamily: 'Techno',
   letterSpacing: '0.5px',
   position: 'relative',
   whiteSpace: 'nowrap',

@@ -10,7 +10,7 @@ const BASE_ROOT = {
 
 // Base dimensions for content
 const CONTENT_BASE = {
-  avatarSize: 5, // rem
+  avatarSize: 4, // rem
   introMaxWidth: 30, // rem
   fontSize: 1.0, // rem
   gap: 2, // rem
@@ -36,7 +36,7 @@ const BASE_DIMENSIONS = {
 };
 
 // Scale multipliers
-const SCALE_MULTIPLIERS = {
+export const SCALE_MULTIPLIERS = {
   lg: 0.75,
   md: 0.7,
   sm: 0.55, // smallest website
@@ -283,7 +283,7 @@ export const CardsGroup = styled("div")(({ theme }) => {
   };
 });
 
-export const RoleCard = styled("div")(({ theme, cardType = "developer" }) => {
+export const RoleCard = styled("div")(({ theme, cardType = "developer", bounce }) => {
   const baseStyles = generateCardStyles(1)[cardType];
 
   return {
@@ -294,8 +294,19 @@ export const RoleCard = styled("div")(({ theme, cardType = "developer" }) => {
     cursor: "pointer",
     color: "#697478",
     fontWeight: 500,
+    fontFamily:'God',
     transition: "all 0.3s ease",
     display: "flex",
+    animation: bounce ? "bounce 0.5s ease" : "none",
+
+    "@keyframes bounce": {
+      "0%, 100%": {
+        transform: "translateY(0)",
+      },
+      "50%": {
+        transform: "translateY(-10px)",
+      }
+    },
 
     ...baseStyles,
 
