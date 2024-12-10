@@ -15,11 +15,29 @@ const roleData = {
     title: "Data Visualization Engineer",
     skills: [
       "Preprocessing data with Machine Learning",
-      <>
-        Visualization libraries (
-        <span style={{ fontStyle: "italic" }}>Python</span>,
-        <span style={{ fontStyle: "italic" }}>JavaScript</span>)
-      </>,
+      <span style={{ display: "flex", alignItems: "center" }}>
+        Visualization libraries
+        <img
+          src={`${process.env.PUBLIC_URL}/icons/python.svg`}
+          alt="Python"
+          style={{
+            width: "1.5em",
+            height: "1.5em",
+            marginLeft: "0.3em",
+            marginRight: "0.3em",
+          }}
+        />
+        <img
+          src={`${process.env.PUBLIC_URL}/icons/javascript.svg`}
+          alt="Python"
+          style={{
+            width: "1.5em",
+            height: "1.5em",
+            marginLeft: "0.3em",
+            marginRight: "0.3em",
+          }}
+        />
+      </span>,
       "Interactive dashboards",
       <>Clear, easy understanding, and actionable insights</>,
     ],
@@ -27,34 +45,119 @@ const roleData = {
   researcher: {
     title: "Visual Analytics Researcher",
     skills: [
-      <>
-        Manage larger dataset (<span style={{ fontStyle: "italic" }}>AWS</span>)
-      </>,
+      <span style={{ display: "flex", alignItems: "center" }}>
+        Manage larger dataset
+        <img
+          src={`${process.env.PUBLIC_URL}/icons/amazon.svg`}
+          alt="Python"
+          style={{
+            width: "1.5em",
+            height: "1.5em",
+            marginLeft: "0.3em",
+            marginRight: "0.3em",
+          }}
+        />
+      </span>,
       <>Large Language Model Data Analysis</>,
-      <>
-        Web Development & User Study (
-        <span style={{ fontStyle: "italic" }}>React</span>,
-        <span style={{ fontStyle: "italic" }}>Vue</span>,
-        <span style={{ fontStyle: "italic" }}>Svelte</span>)
-      </>,
+      <>User Study</>,
+      <span style={{ display: "flex", alignItems: "center" }}>
+        Web Development
+        <img
+          src={`${process.env.PUBLIC_URL}/icons/react.svg`}
+          alt="Python"
+          style={{
+            width: "1.5em",
+            height: "1.5em",
+            marginLeft: "0.3em",
+            marginRight: "0.3em",
+          }}
+        />
+        <img
+          src={`${process.env.PUBLIC_URL}/icons/vue-js.svg`}
+          alt="Python"
+          style={{
+            width: "1.5em",
+            height: "1.5em",
+            marginLeft: "0.3em",
+            marginRight: "0.3em",
+          }}
+        />
+        <img
+          src={`${process.env.PUBLIC_URL}/icons/svelte.svg`}
+          alt="Python"
+          style={{
+            width: "1.5em",
+            height: "1.5em",
+            marginLeft: "0.3em",
+            marginRight: "0.3em",
+          }}
+        />
+      </span>,
       "Solve real-world problems",
     ],
   },
   developer: {
     title: "UI/UX and Frontend Web Developer",
     skills: [
-      <>
-        Database management (<span style={{ fontStyle: "italic" }}>SQL</span>)
-      </>,
-      <>
-        API and server integration (
-        <span style={{ fontStyle: "italic" }}>Node.js</span>,
-        <span style={{ fontStyle: "italic" }}>Flask</span>)
-      </>,
-      <>
-        User-Centered Design (<span style={{ fontStyle: "italic" }}>Figma</span>
-        )
-      </>,
+      <span style={{ display: "flex", alignItems: "center" }}>
+        Database management
+        <img
+          src={`${process.env.PUBLIC_URL}/icons/postgresql.svg`}
+          alt="Python"
+          style={{
+            width: "1.5em",
+            height: "1.5em",
+            marginLeft: "0.3em",
+            marginRight: "0.3em",
+          }}
+        />
+        <img
+          src={`${process.env.PUBLIC_URL}/icons/mysql.svg`}
+          alt="Python"
+          style={{
+            width: "2em",
+            height: "2em",
+            marginLeft: "0.3em",
+            marginRight: "0.3em",
+          }}
+        />
+      </span>,
+      <span style={{ display: "flex", alignItems: "center" }}>
+        API and server integration
+        <img
+          src={`${process.env.PUBLIC_URL}/icons/node-js.svg`}
+          alt="Python"
+          style={{
+            width: "1.5em",
+            height: "1.5em",
+            marginLeft: "0.3em",
+            marginRight: "0.3em",
+          }}
+        />
+        <img
+          src={`${process.env.PUBLIC_URL}/icons/flask.svg`}
+          alt="Python"
+          style={{
+            width: "1.5em",
+            height: "1.5em",
+            marginLeft: "0.3em",
+            marginRight: "0.3em",
+          }}
+        />
+      </span>,
+      <span style={{ display: "flex", alignItems: "center" }}>
+        User-Centered Design
+        <img
+          src={`${process.env.PUBLIC_URL}/icons/figma.svg`}
+          alt="Python"
+          style={{
+            width: "1.5em",
+            height: "1.5em",
+            marginLeft: "0.3em",
+            marginRight: "0.3em",
+          }}
+        />
+      </span>,
       "Practical web application",
     ],
   },

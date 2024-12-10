@@ -28,7 +28,7 @@ const About = ({ id }) => {
   ];
 
   const introText =
-   `Hi, I'm Ying-Cheng Chen (Jessica) Chen, welcome to my portfolio. On the right hand side are the chapter of the different roles which shape my journey at the intersection of <span style="background-color: #FFEB3B">Data and Design</span>.`;
+   `Hi, I'm Ying-Cheng Chen (Jessica) Chen, welcome to my portfolio. On the right hand side are the chapter of the different roles which shape my journey at the intersection of <span style="background-color: #FFEB3B">Data</span> and <span style="background-color: #FFEB3B">Design</span>.`;
 
   const roleDescriptions = {
     engineer:
