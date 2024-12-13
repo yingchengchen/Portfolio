@@ -14,10 +14,22 @@ export const SkillsVisualSection = styled('div')(({ theme }) => ({
   }
 }));
 
+export const SkillsWrapper = styled('div')({
+  width: '100%',
+  minHeight: 'calc(100vh - var(--navbar-height))',
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'center',
+  // backgroundColor: '#F0EFFC',
+});
 export const SkillsRoot = styled('div')(({ theme }) => ({
   height: 'calc(100vh - var(--navbar-height))', // Subtract navbar height
   width: '100%',
-  backgroundColor: '#F0EFFC',
+  
+  maxWidth: "1403px", 
+  margin: '0 auto',
+  maxHeight: '638px',
+  // backgroundColor: '#F0EFFC',
   padding: theme.spacing(4),
   display: 'flex',
   alignItems: 'center', // Changed to center

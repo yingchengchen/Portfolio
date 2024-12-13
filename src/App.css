@@ -27,7 +27,13 @@ html {
 /* App root container */
 .App-root {
   min-height: 100vh;
-  background: linear-gradient(0deg, #F0EFFC 0%, #ffffff 100%);
+  background: linear-gradient(0deg, 
+  #F0EFFC 0%, 
+  #FFFFFF 30%,
+  #F0EFFC 50%,
+  #FFFFFF 75%, 
+  #F0EFFC 100%
+);
   display: flex;
   flex-direction: column;
 }

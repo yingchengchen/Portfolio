@@ -1,17 +1,13 @@
 import React, { useState } from "react";
 import PropTypes from "prop-types";
 import {
-  Card,
-  Dialog,
   DialogContent,
   IconButton,
   Typography,
   Box,
   Divider,
   Collapse,
-  Fab,
   Grid,
-  styled,
 } from "@mui/material";
 import {
   Language as WebIcon,
@@ -24,8 +20,12 @@ import {
 } from "@mui/icons-material";
 import Carousel from "react-material-ui-carousel";
 
-// Reuse existing styled components
 import {
+  ThumbnailCard,
+  ThumbnailImage,
+  DetailDialog,
+  DialogHeader,
+  FabButton,
   ProjectContent,
   ProjectHeader,
   ProjectLink,
@@ -37,61 +37,8 @@ import {
   ChipContainer,
   StyledChip,
   BulletList,
-} from "./sectionItemStyle";
+} from "./ProjectCardStyle";
 
-const ThumbnailCard = styled(Card)(({ theme }) => ({
-  position: "relative",
-  height: "100%",
-  minHeight: "350px", // Add minimum height
-  maxHeight: "400px", // Add maximum height
-  display: "flex",
-  flexDirection: "column",
-  borderRadius: theme.shape.borderRadius,
-  overflow: "hidden",
-  boxShadow: "0 4px 12px rgba(0, 0, 0, 0.05)",
-  transition: "transform 0.2s ease, box-shadow 0.2s ease",
-  "&:hover": {
-    transform: "translateY(-4px)",
-    boxShadow: "0 8px 24px rgba(0, 0, 0, 0.1)",
-  },
-}));
-
-const ThumbnailImage = styled("img")({
-  width: "100%",
-  height: "200px",
-  objectFit: "cover",
-});
-
-export const DetailDialog = styled(Dialog)(({ theme }) => ({
-  "& .MuiDialog-paper": {
-    maxWidth: "800px", // Adjusted for vertical layout
-    width: "90vw",
-    maxHeight: "90vh",
-    margin: theme.spacing(2),
-  },
-  "& .MuiDialogContent-root": {
-    padding: theme.spacing(2),
-    [theme.breakpoints.up("md")]: {
-      padding: theme.spacing(3),
-    },
-  },
-}));
-
-const DialogHeader = styled("div")(({ theme }) => ({
-  display: "flex",
-  justifyContent: "flex-end",
-  padding: theme.spacing(1),
-}));
-
-// First update the Fab button styles in ProjectCard.js
-const FabButton = styled(Fab)(({ theme }) => ({
-  zIndex: 1, // Lower z-index than navbar
-  "&.MuiFab-root": {
-    boxShadow: "0 4px 8px rgba(0, 0, 0, 0.15)",
-  },
-}));
-
-// Update the Dialog content layout in ProjectCard.js
 const ProjectCard = (props) => {
   const [open, setOpen] = useState(false);
   const [showDetails, setShowDetails] = useState(false);
@@ -151,12 +98,12 @@ const ProjectCard = (props) => {
               size="small"
               onClick={handleOpen}
               sx={{
-                bgcolor: '#f5f5f5',
-                color: '#757575',
-                '&:hover': {
-                  bgcolor: '#e0e0e0',
+                bgcolor: "#f5f5f5",
+                color: "#757575",
+                "&:hover": {
+                  bgcolor: "#e0e0e0",
                 },
-                boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)',
+                boxShadow: "0 4px 8px rgba(0, 0, 0, 0.1)",
               }}
             >
               <AddIcon />
@@ -314,24 +261,19 @@ ProjectCard.propTypes = {
   publicationLink: PropTypes.string,
   listItems: PropTypes.arrayOf(
     PropTypes.shape({
-      main: PropTypes.oneOfType([
-        PropTypes.string,
-        PropTypes.object
-      ]).isRequired,
+      main: PropTypes.oneOfType([PropTypes.string, PropTypes.object])
+        .isRequired,
       subItems: PropTypes.arrayOf(
-        PropTypes.oneOfType([
-          PropTypes.string,
-          PropTypes.object
-        ])
-      )
+        PropTypes.oneOfType([PropTypes.string, PropTypes.object])
+      ),
     })
   ),
   chips: PropTypes.arrayOf(
     PropTypes.shape({
       label: PropTypes.string.isRequired,
-      type: PropTypes.oneOf(['primary', 'secondary']).isRequired
+      type: PropTypes.oneOf(["primary", "secondary"]).isRequired,
     })
-  )
+  ),
 };
 
 export default ProjectCard;

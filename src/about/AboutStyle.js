@@ -91,15 +91,15 @@ const generateCardStyles = (multiplier = 1) => {
 export const AboutRoot = styled("div")(({ theme }) => ({
   height: "calc(100vh - var(--navbar-height))",
   width: "100%",
-  maxWidth: "1403px",
+  maxWidth: "1403px",  
   margin: "0 auto",
-  backgroundColor: "#F0EFFC",
+  // backgroundColor: "#F0EFFC",
   padding: `${BASE_ROOT.padding}rem`,
   display: "flex",
   alignItems: "flex-start",
   gap: `${BASE_ROOT.gap}rem`,
   overflow: "hidden",
-  transition: "all 0.3s ease",
+  // transition: "all 0.3s ease",
   position: "relative",
 
   [theme.breakpoints.down("lg")]: {

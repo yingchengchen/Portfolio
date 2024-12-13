@@ -98,7 +98,7 @@ const About = ({ id }) => {
   };
 
   return (
-    <div style={{ backgroundColor: '#F0EFFC', width: '100%', display: 'flex', justifyContent: 'center' }}>
+    <div style={{ width: '100%', display: 'flex', justifyContent: 'center' }}>
       <AboutRoot id={id}>
         {!selectedRole ? (
           // Initial layout

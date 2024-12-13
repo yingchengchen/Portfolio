@@ -96,6 +96,7 @@ export const StyledNavButton = styled(Button)(({ theme, active }) => ({
   fontWeight: 500,
   fontSize: '0.9rem',
   fontFamily: 'Techno',
+  textTransform: "uppercase",
   letterSpacing: '0.5px',
   position: 'relative',
   whiteSpace: 'nowrap',

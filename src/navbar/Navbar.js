@@ -15,7 +15,7 @@ import {
   NavButtons,
   MobileNavControl,
   SocialLinks // Renamed from AvatarWrapper
-} from './NavbarStyles';
+} from './NavbarStyle';
 
 const NavigationBar = ({ sections, onNavClick, activeSection = null }) => {
   const theme = useTheme();

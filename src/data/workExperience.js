@@ -7,13 +7,13 @@ const wotkExperience = {
     {
       sectionType: "work",
       header:
-        "Graduate Student Assistant (AI-Assisted Visual Analytics Developer)",
-      subheader: "UCDavis, VIDI lab",
+        "Visual Analytics Researcher",
+      // subheader: "UCDavis, VIDI lab",
       meta: "July 2023 - September 2024",
-      location: "Davis, CA",
+      location: "UCDavis, VIDI lab",
       logo: `${process.env.PUBLIC_URL}/uc_davis_logo.jpg`,
       description:
-        "Developed interactive visual interfaces for media bias assessment and environmental policy analysis",
+        "Developed interactive visual interfaces for domain experts for generating insights from large-scale datasets",
       listItems: [
         {
           main: (
@@ -97,18 +97,17 @@ const wotkExperience = {
       chips: [
         { label: "Vue.js", type: "primary" },
         { label: "Svelte", type: "primary" },
-        { label: "PostgreSQL", type: "secondary" },
-        { label: "AWS", type: "secondary" },
-        { label: "LLM", type: "secondary" },
         { label: "NLP", type: "primary" },
+        // { label: "PostgreSQL", type: "secondary" },
+        // { label: "AWS", type: "secondary" },
       ],
     },
     {
       sectionType: "work",
       header: "Programming Teaching Assistant",
-      subheader: "UCDavis, Information Visualization",
-      meta: "January 2024 - March 2024",
-      location: "Davis, CA",
+      // subheader: "UCDavis, Information Visualization",
+      meta: "January 2023 - March 2023",
+      location: "UCDavis",
       logo: `${process.env.PUBLIC_URL}/uc_davis_logo.jpg`,
       description:
         "Prepared course materials and coding assignments focusing on JavaScript and modern data visualization libraries like D3.js, with materials maintained in GitHub repository",
@@ -137,15 +136,37 @@ const wotkExperience = {
       chips: [
         { label: "JavaScript", type: "primary" },
         { label: "D3.js", type: "primary" },
-        { label: "Git", type: "secondary" },
+        { label: "GitHub", type: "primary" },
       ],
     },
     {
       sectionType: "work",
-      header: "Undergraduate Research Assistant",
-      subheader: "NTNU, Data Visualization Lab",
-      meta: "September 2021 - June 2022",
-      location: "Taipei, Taiwan",
+      header: "3D Visualization Researcher",
+      // subheader: "NTNU, Data Visualization Lab",
+      meta: "September 2020 - June 2021",
+      location: "NTNU, Data Visualization Lab",
+      logo: `${process.env.PUBLIC_URL}/ntnu_logo.jpg`,
+      description:
+        "Analyzed Isabel Typhoon Data using Unity platform and C# with 3D visualization",
+      listItems: [
+        {
+          main: "Analyzed Isabel Typhoon Data using Unity platform and C# with 3D visualization",
+        },
+        {
+          main: "Implemented Marching Cubes algorithm for iso-surface generation and volume rendering",
+        },
+      ],
+      chips: [
+        { label: "C#", type: "primary" },
+        { label: "Unity", type: "primary" },
+      ],
+    },
+    {
+      sectionType: "work",
+      header: "UI/UX Designer",
+      // subheader: "NTNU, Data Visualization Lab",
+      meta: "October 2024 - now",
+      location: "NTNU, Data Visualization Lab",
       logo: `${process.env.PUBLIC_URL}/ntnu_logo.jpg`,
       description:
         "Analyzed Isabel Typhoon Data using Unity platform and C# with 3D visualization",
