@@ -1,16 +1,25 @@
 {
   "files": {
-    "main.css": "/Portfolio/static/css/main.4305eed8.css",
-    "main.js": "/Portfolio/static/js/main.e168ce38.js",
+    "main.css": "/Portfolio/static/css/main.2e7c87c3.css",
+    "main.js": "/Portfolio/static/js/main.c2727cc8.js",
     "static/js/488.885f458f.chunk.js": "/Portfolio/static/js/488.885f458f.chunk.js",
     "static/media/myAvatar.png": "/Portfolio/static/media/myAvatar.b1676616f7b1c84c1429.png",
+    "static/media/AnkhSanctuary-PVK0B.ttf": "/Portfolio/static/media/AnkhSanctuary-PVK0B.14b8d3aaa658b8f9ff7a.ttf",
+    "static/media/DripOctober-vm0JA.ttf": "/Portfolio/static/media/DripOctober-vm0JA.a4c5490c29c5f91402b5.ttf",
+    "static/media/EngineerHand-l780.ttf": "/Portfolio/static/media/EngineerHand-l780.2deed3e4a51a9a79546e.ttf",
+    "static/media/NightPumpkind-1GpGv.ttf": "/Portfolio/static/media/NightPumpkind-1GpGv.72d88b6b3e3c05526bad.ttf",
+    "static/media/CoffeeHealing-1GrKe.ttf": "/Portfolio/static/media/CoffeeHealing-1GrKe.698105754fd6ac4ca470.ttf",
+    "static/media/Seasideresortnf-popd.ttf": "/Portfolio/static/media/Seasideresortnf-popd.93d18d00e29bc39e9505.ttf",
+    "static/media/TechnoTech-K7VzX.ttf": "/Portfolio/static/media/TechnoTech-K7VzX.b08b8da1a05cf71ddc46.ttf",
+    "static/media/Godshomedemo-K794e.ttf": "/Portfolio/static/media/Godshomedemo-K794e.e178d416f7bd1ade54e7.ttf",
+    "static/media/HollowCartoonlings-45Jp.ttf": "/Portfolio/static/media/HollowCartoonlings-45Jp.45697d3e7e10dcae9691.ttf",
     "index.html": "/Portfolio/index.html",
-    "main.4305eed8.css.map": "/Portfolio/static/css/main.4305eed8.css.map",
-    "main.e168ce38.js.map": "/Portfolio/static/js/main.e168ce38.js.map",
+    "main.2e7c87c3.css.map": "/Portfolio/static/css/main.2e7c87c3.css.map",
+    "main.c2727cc8.js.map": "/Portfolio/static/js/main.c2727cc8.js.map",
     "488.885f458f.chunk.js.map": "/Portfolio/static/js/488.885f458f.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.4305eed8.css",
-    "static/js/main.e168ce38.js"
+    "static/css/main.2e7c87c3.css",
+    "static/js/main.c2727cc8.js"
   ]
 }
