@@ -1,6 +1,7 @@
 // Skills.js
 import React, { useState, useEffect } from "react";
-import { isMobile } from "react-device-detect";
+import { useTheme } from '@mui/material/styles';
+import useMediaQuery from '@mui/material/useMediaQuery';
 import { Typography } from "@mui/material";
 import { ReactTyped } from "react-typed";
 import {
@@ -8,24 +9,34 @@ import {
   SkillsWrapper,
   SkillsVisualSection,
   ContentWrapper,
+  ContentInnerGroup,
   StyledAvatar,
   IntroContainer,
   StyledTyped,
 } from "./SkillsStyle";
 import AvatarImage from "../images/myAvatar.png";
+import { Radar } from "./Radar";
+import { data } from "./data";
+import { DIMENSIONS } from "./scaleUtils";
 
 const Skills = ({ id }) => {
   const [isVisible, setIsVisible] = useState(false);
   const [startTyping, setStartTyping] = useState(false);
+  const theme = useTheme();
+  const isLg = useMediaQuery(theme.breakpoints.down('lg'));
+  const isMd = useMediaQuery(theme.breakpoints.down('md'));
+  const isSm = useMediaQuery(theme.breakpoints.down('sm'));
+
+  // Get dimensions based on screen size
+  const dimensions = isSm ? DIMENSIONS.sm : isMd ? DIMENSIONS.md : isLg ? DIMENSIONS.lg : DIMENSIONS.lg;
+
   const skillText =
-    "Through each role, I've developed a diverse skill set spanning various programming languages and tools - click each area to discover my technical expertise.";
+    "Through each role, I've developed a diverse skill set spanning various tools - click each area to discover my technical expertise.";
 
   useEffect(() => {
     const observer = new IntersectionObserver(
       ([entry]) => {
-        // Set visibility state based on intersection
         setIsVisible(entry.isIntersecting);
-        // Start typing if section becomes visible
         if (entry.isIntersecting) {
           setStartTyping(true);
         }
@@ -33,7 +44,7 @@ const Skills = ({ id }) => {
       {
         root: null,
         rootMargin: "0px",
-        threshold: 0.3, // Adjust this value to control when the typing starts
+        threshold: 0.3,
       }
     );
 
@@ -42,7 +53,6 @@ const Skills = ({ id }) => {
       observer.observe(section);
     }
 
-    // Cleanup observer
     return () => {
       if (section) {
         observer.unobserve(section);
@@ -50,7 +60,6 @@ const Skills = ({ id }) => {
     };
   }, [id]);
 
-  // Also start typing if section is clicked in navbar
   useEffect(() => {
     const handleHashChange = () => {
       if (window.location.hash === `#${id}`) {
@@ -64,24 +73,38 @@ const Skills = ({ id }) => {
 
   return (
     <SkillsWrapper id={id}>
-      <SkillsRoot>
+      <SkillsRoot container>
         <SkillsVisualSection>
-          {/* Spider chart will be added later */}
+          <Radar
+            data={data}
+            width={dimensions.width}
+            height={dimensions.height}
+            axisConfig={[
+              { name: "Programming Languages", max: 100 },
+              { name: "Data Analysis & Storage", max: 100 },
+              { name: "Compiler & Architecture", max: 100 },
+              { name: "Software", max: 100 },
+              { name: "Machine Learning", max: 100 },
+              { name: "Visualizations & Graphics", max: 100 },
+            ]}
+          />
         </SkillsVisualSection>
         <ContentWrapper>
-          <StyledAvatar alt="Avatar" src={AvatarImage} />
-          <IntroContainer>
-            <StyledTyped>
-              {startTyping && (
-                <ReactTyped
-                  strings={[skillText]}
-                  typeSpeed={40}
-                  cursorChar="|"
-                  showCursor={true}
-                />
-              )}
-            </StyledTyped>
-          </IntroContainer>
+          <ContentInnerGroup>
+            <StyledAvatar alt="Avatar" src={AvatarImage} />
+            <IntroContainer>
+              <StyledTyped>
+                {startTyping && (
+                  <ReactTyped
+                    strings={[skillText]}
+                    typeSpeed={40}
+                    cursorChar="|"
+                    showCursor={true}
+                  />
+                )}
+              </StyledTyped>
+            </IntroContainer>
+          </ContentInnerGroup>
         </ContentWrapper>
       </SkillsRoot>
     </SkillsWrapper>

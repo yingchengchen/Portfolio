@@ -6,10 +6,10 @@ const education = {
   items: [
     {
       sectionType: "education",
-      header: "Master of Science Degree",
-      subheader: "Computer Science, University of California, Davis",
+      header: "Master of Computer Science",
+      subheader: "UCDavis",
       location:"University of California, Davis",
-      meta: "September 2022 - June 2024",
+      meta: "Sep. 2022 - June 2024",
       logo: `${process.env.PUBLIC_URL}/uc_davis_logo.jpg`,
       description: "Specialized in information visualization techniques and advanced analytics, complemented by expertise in machine learning, distributed systems architecture, and network security fundamentals.",
       chips: [
@@ -19,10 +19,10 @@ const education = {
     },
     {
       sectionType: "education",
-      header: "Bachelor of Science Degree",
-      subheader: "Computer Science",
+      header: "Bachelor of Computer Science",
+      subheader: "NTNU",
       location:"National Taiwan Normal University",
-      meta: "September 2018 - June 2022",
+      meta: "Sep. 2018 - June 2022",
       logo: `${process.env.PUBLIC_URL}/ntnu_logo.jpg`,
       description: "Focus on data-centric computing fundamentals with expertise spanning algorithmic design, artificial intelligence, data visualization, and computational methods.",
       chips: [

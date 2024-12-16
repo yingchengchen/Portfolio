@@ -9,7 +9,7 @@ const wotkExperience = {
       header:
         "Visual Analytics Researcher",
       // subheader: "UCDavis, VIDI lab",
-      meta: "July 2023 - September 2024",
+      meta: "July 2023 - Sep. 2024",
       location: "UCDavis, VIDI lab",
       logo: `${process.env.PUBLIC_URL}/uc_davis_logo.jpg`,
       description:
@@ -106,7 +106,7 @@ const wotkExperience = {
       sectionType: "work",
       header: "Programming Teaching Assistant",
       // subheader: "UCDavis, Information Visualization",
-      meta: "January 2023 - March 2023",
+      meta: "Jan. 2023 - Mar. 2023",
       location: "UCDavis",
       logo: `${process.env.PUBLIC_URL}/uc_davis_logo.jpg`,
       description:
@@ -143,7 +143,7 @@ const wotkExperience = {
       sectionType: "work",
       header: "3D Visualization Researcher",
       // subheader: "NTNU, Data Visualization Lab",
-      meta: "September 2020 - June 2021",
+      meta: "Sep. 2020 - June 2021",
       location: "NTNU, Data Visualization Lab",
       logo: `${process.env.PUBLIC_URL}/ntnu_logo.jpg`,
       description:
@@ -165,7 +165,7 @@ const wotkExperience = {
       sectionType: "work",
       header: "UI/UX Designer",
       // subheader: "NTNU, Data Visualization Lab",
-      meta: "October 2024 - now",
+      meta: "Oct. 2024 - now",
       location: "NTNU, Data Visualization Lab",
       logo: `${process.env.PUBLIC_URL}/ntnu_logo.jpg`,
       description:

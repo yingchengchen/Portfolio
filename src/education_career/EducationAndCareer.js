@@ -1,9 +1,9 @@
 // EducationAndCareer.js
 import React, { useState, useEffect } from "react";
-import { Box, Popover } from '@mui/material';
-import SchoolIcon from '@mui/icons-material/School';
-import WorkIcon from '@mui/icons-material/Work';
-import LocationOnIcon from '@mui/icons-material/LocationOn';
+import { Box, Popover } from "@mui/material";
+import SchoolIcon from "@mui/icons-material/School";
+import WorkIcon from "@mui/icons-material/Work";
+import LocationOnIcon from "@mui/icons-material/LocationOn";
 import IntroModal from "../components/IntroModal";
 import AvatarImage from "../images/myAvatar.png";
 import {
@@ -21,7 +21,7 @@ import {
   TimelineTitle,
   TimelineSubtitle,
   CustomAvatar,
-  PopoverContent
+  PopoverContent,
 } from "./EducationAndCareerStyle";
 import data from "../data/data";
 
@@ -41,13 +41,14 @@ const TimelineItemWithPopover = ({ item, totalItems }) => {
   return (
     <TimelineItem totalItems={totalItems}>
       <TimelineDot type={item.type}>
-        {item.type === 'education' ? <SchoolIcon /> : <WorkIcon />}
+        {item.type === "education" ? <SchoolIcon /> : <WorkIcon />}
       </TimelineDot>
       <TimelineContent type={item.type}>
-        <TimelineContentCard 
+        <TimelineContentCard
           elevation={3}
           onClick={handleClick}
-          style={{ cursor: 'pointer' }}
+          style={{ cursor: "pointer" }}
+          type={item.type}
         >
           <TimelinePeriod>{item.meta}</TimelinePeriod>
           <TimelineTitle>{item.header}</TimelineTitle>
@@ -58,44 +59,50 @@ const TimelineItemWithPopover = ({ item, totalItems }) => {
           anchorEl={anchorEl}
           onClose={handleClose}
           anchorOrigin={{
-            vertical: item.type === 'education' ? 'bottom' : 'top',
-            horizontal: 'center',
+            vertical: item.type === "education" ? "bottom" : "top",
+            horizontal: "center",
           }}
           transformOrigin={{
-            vertical: item.type === 'education' ? 'top' : 'bottom',
-            horizontal: 'center',
+            vertical: item.type === "education" ? "top" : "bottom",
+            horizontal: "center",
           }}
           slotProps={{
             paper: {
               elevation: 3,
               sx: {
-                mt: item.type === 'education' ? 2 :-2,
-                mb: item.type === 'education' ? -2 : 2,
+                mt: item.type === "education" ? 2 : -2,
+                mb: item.type === "education" ? -2 : 2,
                 border: (theme) => `1px solid ${theme.palette.custom.accent1}`,
                 borderRadius: 2,
-                overflow: 'visible',
-                '&::before': {
+                overflow: "visible",
+                "&::before": {
                   content: '""',
-                  display: 'block',
-                  position: 'absolute',
+                  display: "block",
+                  position: "absolute",
                   width: 10,
                   height: 10,
-                  backgroundColor: 'background.paper',
-                  transform: 'rotate(-135deg)',
-                  ...(item.type === 'education' ? {
-                    top: -5,
-                    left: 'calc(50% - 5px)',
-                    borderRight: (theme) => `1px solid ${theme.palette.custom.accent1}`,
-                    borderBottom: (theme) => `1px solid ${theme.palette.custom.accent1}`,
-                  } : {
-                    bottom: -5,
-                    left: 'calc(50% - 5px)',
-                    borderLeft: (theme) => `1px solid ${theme.palette.custom.accent1}`,
-                    borderTop: (theme) => `1px solid ${theme.palette.custom.accent1}`,
-                  })
-                }
-              }
-            }
+                  backgroundColor: "background.paper",
+                  transform: "rotate(-135deg)",
+                  ...(item.type === "education"
+                    ? {
+                        top: -5,
+                        left: "calc(50% - 5px)",
+                        borderRight: (theme) =>
+                          `1px solid ${theme.palette.custom.accent1}`,
+                        borderBottom: (theme) =>
+                          `1px solid ${theme.palette.custom.accent1}`,
+                      }
+                    : {
+                        bottom: -5,
+                        left: "calc(50% - 5px)",
+                        borderLeft: (theme) =>
+                          `1px solid ${theme.palette.custom.accent1}`,
+                        borderTop: (theme) =>
+                          `1px solid ${theme.palette.custom.accent1}`,
+                      }),
+                },
+              },
+            },
           }}
         >
           <PopoverContent>
@@ -128,7 +135,8 @@ const EducationAndCareer = ({ id, activeSection }) => {
   const [showIntro, setShowIntro] = useState(false);
   const [hasBeenClosed, setHasBeenClosed] = useState(false);
 
-  const introText = "Let me share my educational background and professional journey with you.";
+  const introText =
+    "Let me share my educational background and professional journey with you.";
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -164,40 +172,33 @@ const EducationAndCareer = ({ id, activeSection }) => {
   };
 
   const getEndDate = (dateRange) => {
-    const endDateStr = dateRange.split(' - ')[1];
-    return endDateStr === 'now' ? new Date('2099-12-31') : new Date(endDateStr);
+    const endDateStr = dateRange.split(" - ")[1];
+    return endDateStr === "now" ? new Date("2099-12-31") : new Date(endDateStr);
   };
 
   const timelineData = [
-    ...data.body.education.items.map(item => ({
+    ...data.body.education.items.map((item) => ({
       ...item,
-      type: 'education',
-      endDate: getEndDate(item.meta)
+      type: "education",
+      endDate: getEndDate(item.meta),
     })),
-    ...data.body.workExperience.items.map(item => ({
+    ...data.body.workExperience.items.map((item) => ({
       ...item,
-      type: 'work',
-      endDate: getEndDate(item.meta)
-    }))
+      type: "work",
+      endDate: getEndDate(item.meta),
+    })),
   ].sort((a, b) => b.endDate - a.endDate);
 
   return (
     <EduCaWrapper id={id}>
       <EducationCareerRoot>
-        <IntroModal
-          isVisible={showIntro}
-          onClose={handleModalClose}
-          introText={introText}
-          sectionId={id}
-          avatarImage={AvatarImage}
-        />
         <HeaderTitle>Education & Career Timeline</HeaderTitle>
         <ContentContainer>
-          <CustomAvatar src={AvatarImage} alt="Avatar" />
           <TimelineContainer>
+            <CustomAvatar src={AvatarImage} alt="Avatar" />
             <TimelineLine />
             {[...timelineData].reverse().map((item, index) => (
-              <TimelineItemWithPopover 
+              <TimelineItemWithPopover
                 key={index}
                 item={item}
                 totalItems={timelineData.length}
