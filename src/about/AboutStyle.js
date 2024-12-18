@@ -19,7 +19,7 @@ const CONTENT_BASE = {
 // Base dimensions for cards
 const BASE_DIMENSIONS = {
   HEIGHT: 638, // px
-  mobileHEIGHT: 820, // px
+  mobileHEIGHT: 700, // px
   cardWidth: 23, // rem
   cardHeight: 15, // rem
   baseFontSize: 1.5, // rem

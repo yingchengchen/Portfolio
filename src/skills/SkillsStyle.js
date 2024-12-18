@@ -10,7 +10,7 @@ const BASE = {
     xs: 0.6,
   },
   HEIGHT:550, //px
-  mobileHEIGHT: 700, //px
+  mobileHEIGHT: 600, //px
 };
 
 export const SkillsWrapper = styled("div")(({ theme }) => ({
