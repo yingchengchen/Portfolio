@@ -1,4 +1,5 @@
 import OpenInNewIcon from '@mui/icons-material/OpenInNew';
+import { sort } from 'd3';
 import React from 'react';
 const wotkExperience = {
   header: "Work Experience",
@@ -10,6 +11,7 @@ const wotkExperience = {
         "Visual Analytics Researcher",
       // subheader: "UCDavis, VIDI lab",
       meta: "July 2023 - Sep. 2024",
+      sortDate: "2024-09",
       location: "UCDavis, VIDI lab",
       description:
         "I devoted my time to developing interactive visual interfaces that helped domain experts discover meaningful insights from their large-scale datasets.",
@@ -24,6 +26,7 @@ const wotkExperience = {
       header: "Programming Teaching Assistant",
       // subheader: "UCDavis, Information Visualization",
       meta: "Jan. 2023 - Mar. 2023",
+      sortDate: "2023-03",
       location: "UCDavis",
       description:
         "As a TA, I created course materials and coding assignments to teach students JavaScript and modern data visualization libraries like D3.js, keeping everything organized in a GitHub repository.",
@@ -38,6 +41,7 @@ const wotkExperience = {
       header: "3D Visualization Researcher",
       // subheader: "NTNU, Data Visualization Lab",
       meta: "Sep. 2020 - June 2021",
+      sortDate: "2021-06",
       location: "NTNU, Data Visualization Lab",
       description:"In this research, I tackled the visualization of Isabel Typhoon Data by implementing advanced 3D techniques like iso-surface and volume rendering to help us better understand the typhoon's behavior.",
       // listItems: [
@@ -58,6 +62,7 @@ const wotkExperience = {
       header: "UI/UX Designer",
       // subheader: "NTNU, Data Visualization Lab",
       meta: "Oct. 2024 - now",
+      sortDate: "2024-10",
       location: "Community School of the Arts Foundation",
       description:
         "I designed and developed a website for the foundation where I focused on making it easy and intuitive for both students and parents to navigate and find what they need.",

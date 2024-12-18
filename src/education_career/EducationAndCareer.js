@@ -188,23 +188,17 @@ const EducationAndCareer = ({ id, activeSection }) => {
   //   toggleScroll(false);
   // };
 
-  const getEndDate = (dateRange) => {
-    const endDateStr = dateRange.split(" - ")[1];
-    return endDateStr === "now" ? new Date("2099-12-31") : new Date(endDateStr);
-  };
-
+  
   const timelineData = [
     ...data.body.education.items.map((item) => ({
       ...item,
       type: "education",
-      endDate: getEndDate(item.meta),
     })),
     ...data.body.workExperience.items.map((item) => ({
       ...item,
       type: "work",
-      endDate: getEndDate(item.meta),
     })),
-  ].sort((a, b) => b.endDate - a.endDate);
+  ].sort((a, b) => b.sortDate.localeCompare(a.sortDate));
 
   return (
     <EduCaWrapper id={id}>
