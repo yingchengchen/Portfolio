@@ -9,6 +9,8 @@ const BASE = {
     sm: 0.7,
     xs: 0.6,
   },
+  HEIGHT:550, //px
+  mobileHEIGHT: 700, //px
 };
 
 export const SkillsWrapper = styled("div")(({ theme }) => ({
@@ -18,19 +20,24 @@ export const SkillsWrapper = styled("div")(({ theme }) => ({
   flexDirection: "column",
   alignItems: "center",
   justifyContent: "center",
+  '@media (max-width: 480px)': {
+    minHeight: "auto",
+    padding: theme.spacing(2, 1),
+  }
 }));
 
 export const SkillsRoot = styled(Grid)(({ theme }) => ({
   width: "100%",
   maxWidth: "1403px",
   margin: "0 auto",
-  height: "638px",
-  padding: theme.spacing(4),
+  height: `${BASE.HEIGHT}px`,
+  padding: theme.spacing(4), // Outer padding for border position
   display: "flex",
   flexDirection: "row",
   position: "relative",
   backgroundColor: "none",
 
+  // Border styles
   "&::after": {
     content: '""',
     position: "absolute",
@@ -43,18 +50,74 @@ export const SkillsRoot = styled(Grid)(({ theme }) => ({
     pointerEvents: "none",
   },
 
+  // Inner container for content
+  "& > *": {
+    padding: theme.spacing(2), // Add inner padding for content
+  },
+
   [theme.breakpoints.down("lg")]: {
-    height: `${638 * BASE.spacing.lg}px`,
+    height: `${BASE.HEIGHT * BASE.spacing.lg}px`,
     padding: theme.spacing(3),
+    "& > *": {
+      padding: theme.spacing(1.5),
+    },
+    "&::after": {
+      top: theme.spacing(3),
+      right: theme.spacing(3),
+      bottom: theme.spacing(3),
+      left: theme.spacing(3),
+    },
   },
+
   [theme.breakpoints.down("md")]: {
-    height: "844px",
+    height: `${BASE.mobileHEIGHT}px`,
     flexDirection: "column",
+    padding: theme.spacing(3),
+    "& > *": {
+      padding: theme.spacing(1.5),
+    },
+    "&::after": {
+      top: theme.spacing(3),
+      right: theme.spacing(3),
+      bottom: theme.spacing(3),
+      left: theme.spacing(3),
+    },
   },
+
   [theme.breakpoints.down("sm")]: {
-    height: "844px",
+    height: `${BASE.mobileHEIGHT}px`,
     flexDirection: "column",
+    padding: theme.spacing(2.5),
+    "& > *": {
+      padding: theme.spacing(1.25),
+    },
+    "&::after": {
+      top: theme.spacing(2.5),
+      right: theme.spacing(2.5),
+      bottom: theme.spacing(2.5),
+      left: theme.spacing(2.5),
+    },
   },
+
+  '@media (max-width: 480px)': {
+    // height: "auto",
+    // minHeight: "100vh",
+    // minheight:`${BASE.mobileHEIGHT}px`,
+    height: `${BASE.mobileHEIGHT}px`,
+    padding: theme.spacing(2),
+    flexDirection: "column",
+    gap: theme.spacing(1),
+    
+    "& > *": {
+      padding: theme.spacing(1),
+    },
+    "&::after": {
+      top: theme.spacing(2),
+      right: theme.spacing(2),
+      bottom: theme.spacing(2),
+      left: theme.spacing(2),
+    }
+  }
 }));
 
 export const SkillsVisualSection = styled(Grid)(({ theme }) => ({
@@ -63,32 +126,33 @@ export const SkillsVisualSection = styled(Grid)(({ theme }) => ({
   alignItems: "center",
   justifyContent: "center",
   padding: theme.spacing(2),
-  minHeight: "550px", // Accommodating the large chart size
+  height: "100%", 
 
-  [theme.breakpoints.down("lg")]: {
-    minHeight: "550px", // Maintaining the same size
-  },
+
   [theme.breakpoints.down("md")]: {
     flexDirection: "column",
-    flex: 1,
-    // height: "66.67vh",
-    minHeight: "400px",
   },
+
   [theme.breakpoints.down("sm")]: {
     flexDirection: "column",
-    flex: 1,
-    minHeight: "400px",
     "& svg": {
-      // transform: "scale(0.9)", // Further scale down if needed
       transformOrigin: "center center",
     },
   },
+
+  '@media (max-width: 480px)': {
+    padding: theme.spacing(1),
+    "& svg": {
+      maxWidth: "100%",
+      height: "auto",
+    }
+  }
 }));
 
 // Base dimensions for content - matching About's scale
 const CONTENT_BASE = {
   avatarSize: 4, // rem
-  introMaxWidth: 18, // rem
+  introMaxWidth: 23, // rem
   fontSize: 1.0, // rem
   gap: 2, // rem
 };
@@ -117,14 +181,10 @@ export const ContentWrapper = styled(Grid)(({ theme }) => ({
   },
   [theme.breakpoints.down("md")]: {
     flexDirection: "column",
-    alignItems: "center",
-    // textAlign: 'center',
     width: "100%",
   },
   [theme.breakpoints.down("sm")]: {
     flexDirection: "column",
-    alignItems: "center",
-    // textAlign: 'center',
     width: "100%",
   },
 }));
@@ -139,8 +199,6 @@ export const ContentInnerGroup = styled("div")(({ theme }) => ({
   }rem`,
   width: "100%",
   [theme.breakpoints.down("lg")]:{
-    // flexDirection: "column",
-    alignItems: "center",
     maxWidth: `${
       CONTENT_BASE.introMaxWidth * SCALE_MULTIPLIERS.lg +
       CONTENT_BASE.avatarSize * SCALE_MULTIPLIERS.lg +
@@ -150,12 +208,19 @@ export const ContentInnerGroup = styled("div")(({ theme }) => ({
 
   [theme.breakpoints.down("md")]: {
     flexDirection: "column",
-    alignItems: "center",
   },
   [theme.breakpoints.down("sm")]: {
     flexDirection: "column",
-    alignItems: "center",
   },
+  '@media (max-width: 480px)': {
+    flexDirection: "column",
+    maxWidth: `${
+      CONTENT_BASE.introMaxWidth * SCALE_MULTIPLIERS.xs +
+      CONTENT_BASE.avatarSize * SCALE_MULTIPLIERS.xs +
+      CONTENT_BASE.gap * SCALE_MULTIPLIERS.xs
+    }rem`,
+    gap: `${CONTENT_BASE.gap * SCALE_MULTIPLIERS.xs}rem`,
+  }
 }));
 
 export const StyledAvatar = styled(Avatar)(({ theme }) => ({
@@ -187,15 +252,12 @@ export const IntroContainer = styled("div")(({ theme }) => ({
   transition: "all 0.3s ease",
 
   [theme.breakpoints.down("lg")]: {
-    alignItems: "center",
     maxWidth: `${CONTENT_BASE.introMaxWidth * SCALE_MULTIPLIERS.lg}rem`,
   },
   [theme.breakpoints.down("md")]: {
-    alignItems: "center",
     maxWidth: `${CONTENT_BASE.introMaxWidth}rem`,
   },
   [theme.breakpoints.down("sm")]: {
-    alignItems: "center",
     maxWidth: `${CONTENT_BASE.introMaxWidth}rem`,
   },
 }));
@@ -213,11 +275,5 @@ export const StyledTyped = styled("div")(({ theme }) => ({
 
   [theme.breakpoints.down("lg")]: {
     fontSize: `${CONTENT_BASE.fontSize * SCALE_MULTIPLIERS.lg}rem`,
-  },
-  [theme.breakpoints.down("md")]: {
-    // textAlign: 'center',
-  },
-  [theme.breakpoints.down("sm")]: {
-    // textAlign: 'center',
   },
 }));

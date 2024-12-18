@@ -187,7 +187,7 @@ const SELECTED_BASE = {
     gap: 1, // rem
   },
   contentGroup: {
-    height: 27, // rem (same as selected card)
+    height: 30, // rem (same as selected card)
     gap: 2, // rem
   },
 };
@@ -217,6 +217,10 @@ const SelectedContainer = styled("div")(({ theme }) => ({
     gap: `${SELECTED_BASE.containerGap * SCALE_MULTIPLIERS.sm}rem`,
     flexDirection: "column",
   },
+  [theme.breakpoints.down("xs")]: {
+    gap: `${SELECTED_BASE.containerGap * SCALE_MULTIPLIERS.xs}rem`,
+    flexDirection: "column",
+  },
 }));
 
 const CardGroup = styled("div")(({ theme }) => ({
@@ -236,6 +240,10 @@ const CardGroup = styled("div")(({ theme }) => ({
   [theme.breakpoints.down("sm")]: {
     gap: `${SELECTED_BASE.gap * SCALE_MULTIPLIERS.sm}rem`,
     padding: `${SELECTED_BASE.padding * SCALE_MULTIPLIERS.sm}rem`,
+  },
+  [theme.breakpoints.down("xs")]: {
+    gap: `${SELECTED_BASE.gap * SCALE_MULTIPLIERS.xs}rem`,
+    padding: `${SELECTED_BASE.padding * SCALE_MULTIPLIERS.xs}rem`,
   },
 }));
 
@@ -270,7 +278,7 @@ const BackButton = styled("button")(({ theme }) => ({
       SELECTED_BASE.backButtonSize.fontSize * SCALE_MULTIPLIERS.md
     }rem`,
     padding: `${
-      SELECTED_BASE.backButtonSize.padding * SCALE_MULTIPLIERS.md
+      SELECTED_BASE.backButtonSize.padding *SCALE_MULTIPLIERS.md
     }rem`,
     gap: `${SELECTED_BASE.backButtonSize.gap * SCALE_MULTIPLIERS.md}rem`,
   },
@@ -283,6 +291,15 @@ const BackButton = styled("button")(({ theme }) => ({
     }rem`,
     gap: `${SELECTED_BASE.backButtonSize.gap * SCALE_MULTIPLIERS.sm}rem`,
   },
+  [theme.breakpoints.down("xs")]: {
+    fontSize: `${
+      SELECTED_BASE.backButtonSize.fontSize * SCALE_MULTIPLIERS.xs
+    }rem`,
+    padding: `${
+      SELECTED_BASE.backButtonSize.padding * SCALE_MULTIPLIERS.xs
+    }rem`,
+    gap: `${SELECTED_BASE.backButtonSize.gap * SCALE_MULTIPLIERS.xs}rem`,
+  },
 }));
 
 const LeftSection = styled("div")(({ theme }) => ({
@@ -293,7 +310,7 @@ const LeftSection = styled("div")(({ theme }) => ({
 }));
 
 const RightSection = styled("div")(({ theme }) => ({
-  flex: "1",
+  flex: "2",
   display: "flex",
   flexDirection: "column",
   height: "100%",
@@ -322,6 +339,10 @@ const ContentGroup = styled("div")(({ theme }) => ({
     height: `${SELECTED_BASE.contentGroup.height * SCALE_MULTIPLIERS.sm}rem`,
     gap: `${SELECTED_BASE.contentGroup.gap * SCALE_MULTIPLIERS.sm}rem`,
   },
+  [theme.breakpoints.down("xs")]: {
+    height: `${SELECTED_BASE.contentGroup.height * SCALE_MULTIPLIERS.xs}rem`,
+    gap: `${SELECTED_BASE.contentGroup.gap * SCALE_MULTIPLIERS.xs}rem`,
+  },
 }));
 
 const UnselectedCards = styled("div")(({ theme }) => ({
@@ -334,7 +355,7 @@ const UnselectedCards = styled("div")(({ theme }) => ({
 
   [theme.breakpoints.down("lg")]: {
     height: `calc((${
-      SELECTED_BASE.contentGroup.height * SCALE_MULTIPLIERS.lg
+      SELECTED_BASE.contentGroup.height * 2*SCALE_MULTIPLIERS.lg
     }rem - ${SELECTED_BASE.contentGroup.gap * SCALE_MULTIPLIERS.lg}rem) / 2)`,
     gap: `${SELECTED_BASE.unselectedCard.gap * SCALE_MULTIPLIERS.lg}rem`,
   },
@@ -349,6 +370,12 @@ const UnselectedCards = styled("div")(({ theme }) => ({
       SELECTED_BASE.contentGroup.height * SCALE_MULTIPLIERS.sm
     }rem - ${SELECTED_BASE.contentGroup.gap * SCALE_MULTIPLIERS.sm}rem) / 2)`,
     gap: `${SELECTED_BASE.unselectedCard.gap * SCALE_MULTIPLIERS.sm}rem`,
+  },
+  [theme.breakpoints.down("xs")]: {
+    height: `calc((${
+      SELECTED_BASE.contentGroup.height * SCALE_MULTIPLIERS.xs
+    }rem - ${SELECTED_BASE.contentGroup.gap * SCALE_MULTIPLIERS.xs}rem) / 2)`,
+    gap: `${SELECTED_BASE.unselectedCard.gap * SCALE_MULTIPLIERS.xs}rem`,
   },
 }));
 
@@ -376,8 +403,14 @@ const ContentSection = styled("div")(({ theme }) => ({
   [theme.breakpoints.down("sm")]: {
     height: `calc((${
       SELECTED_BASE.contentGroup.height * SCALE_MULTIPLIERS.sm
-    }rem - ${SELECTED_BASE.contentGroup.gap * SCALE_MULTIPLIERS.sm}rem) / 2)`,
+    }rem - ${SELECTED_BASE.contentGroup.gap * SCALE_MULTIPLIERS.sm}rem)*2 / 3)`,
     gap: `${SELECTED_BASE.gap * SCALE_MULTIPLIERS.sm}rem`,
+  },
+  [theme.breakpoints.down("xs")]: {
+    height:`calc((${
+      SELECTED_BASE.contentGroup.height * SCALE_MULTIPLIERS.xs
+    }rem - ${SELECTED_BASE.contentGroup.gap * SCALE_MULTIPLIERS.xs}rem)*2 / 3)`,
+    gap: `${SELECTED_BASE.gap * SCALE_MULTIPLIERS.xs}rem`,
   },
 }));
 
@@ -405,6 +438,28 @@ const SelectedCard = styled("div")(({ theme, cardType }) => ({
   },
   "& > span.title": {
     fontFamily: "God",
+    fontSize: "1em", 
+    
+    [theme.breakpoints.down("lg")]: {
+      fontSize: `${
+      SELECTED_BASE.selectedCard.fontSize*0.8 * SCALE_MULTIPLIERS.lg
+    }rem`,
+    },
+    [theme.breakpoints.down("md")]: {
+      fontSize: `${
+        SELECTED_BASE.selectedCard.fontSize* 0.8 * SCALE_MULTIPLIERS.md
+      }rem`,
+    },
+    [theme.breakpoints.down("sm")]: {
+      fontSize: `${
+        SELECTED_BASE.selectedCard.fontSize* 0.8 * SCALE_MULTIPLIERS.sm
+      }rem`,
+    },
+    [theme.breakpoints.down("xs")]: {
+      fontSize: `${
+        SELECTED_BASE.selectedCard.fontSize* 0.8 * SCALE_MULTIPLIERS.xs
+      }rem`,
+    },
   },
 
   [theme.breakpoints.down("lg")]: {
@@ -423,9 +478,16 @@ const SelectedCard = styled("div")(({ theme, cardType }) => ({
   },
   [theme.breakpoints.down("sm")]: {
     width: `${SELECTED_BASE.selectedCard.width * SCALE_MULTIPLIERS.sm}rem`,
-    height: `${SELECTED_BASE.selectedCard.height * SCALE_MULTIPLIERS.sm}rem`,
+    height: `${SELECTED_BASE.selectedCard.height *1.2* SCALE_MULTIPLIERS.sm}rem`,
     fontSize: `${
       SELECTED_BASE.selectedCard.fontSize * SCALE_MULTIPLIERS.sm
+    }rem`,
+  },
+  [theme.breakpoints.down("xs")]: {
+    width: `${SELECTED_BASE.selectedCard.width * SCALE_MULTIPLIERS.xs}rem`,
+    height: `${SELECTED_BASE.selectedCard.height * SCALE_MULTIPLIERS.xs}rem`,
+    fontSize: `${
+      SELECTED_BASE.selectedCard.fontSize * SCALE_MULTIPLIERS.xs
     }rem`,
   },
 }));
@@ -524,7 +586,7 @@ const UnselectedCard = styled("div")(({ theme, cardType }) => ({
       SELECTED_BASE.unselectedCard.padding * SCALE_MULTIPLIERS.lg
     }rem`,
     "& > span.click-text": {
-      fontSize: `${0.7 * SCALE_MULTIPLIERS.lg}em`,
+      fontSize: "0.7em",
     },
   },
   [theme.breakpoints.down("md")]: {
@@ -537,12 +599,13 @@ const UnselectedCard = styled("div")(({ theme, cardType }) => ({
       SELECTED_BASE.unselectedCard.padding * SCALE_MULTIPLIERS.md
     }rem`,
     "& > span.click-text": {
-      fontSize: `${0.7 * SCALE_MULTIPLIERS.md}em`,
+      fontSize: "0.7em",
+
     },
   },
   [theme.breakpoints.down("sm")]: {
-    width: `${SELECTED_BASE.unselectedCard.width * SCALE_MULTIPLIERS.sm}rem`,
-    height: `${SELECTED_BASE.unselectedCard.height * SCALE_MULTIPLIERS.sm}rem`,
+    width: `${SELECTED_BASE.unselectedCard.width *1.2* SCALE_MULTIPLIERS.sm}rem`,
+    height: `${SELECTED_BASE.unselectedCard.height *1.2* SCALE_MULTIPLIERS.sm}rem`,
     fontSize: `${
       SELECTED_BASE.unselectedCard.fontSize * SCALE_MULTIPLIERS.sm
     }rem`,
@@ -550,7 +613,20 @@ const UnselectedCard = styled("div")(({ theme, cardType }) => ({
       SELECTED_BASE.unselectedCard.padding * SCALE_MULTIPLIERS.sm
     }rem`,
     "& > span.click-text": {
-      fontSize: `${0.7 * SCALE_MULTIPLIERS.sm}em`,
+      fontSize: "0.7em",
+    },
+  },
+  [theme.breakpoints.down("xs")]: {
+    width: `${SELECTED_BASE.unselectedCard.width * SCALE_MULTIPLIERS.xs}rem`,
+    height: `${SELECTED_BASE.unselectedCard.height * SCALE_MULTIPLIERS.xs}rem`,
+    fontSize: `${
+      SELECTED_BASE.unselectedCard.fontSize * SCALE_MULTIPLIERS.xs
+    }rem`,
+    padding: `${
+      SELECTED_BASE.unselectedCard.padding * SCALE_MULTIPLIERS.xs
+    }rem`,
+    "& > span.click-text": {
+      fontSize: "0.7em",
     },
   },
 }));

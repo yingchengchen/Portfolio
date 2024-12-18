@@ -15,9 +15,21 @@ export const NavContainer = styled('nav')(({ theme }) => ({
   borderBottom: `1px solid ${theme.palette.divider}`,
   zIndex: 1000,
   boxShadow: theme.shadows[1],
+  [theme.breakpoints.down('lg')]: {
+    padding: theme.spacing(0, 3),
+  },
+
   [theme.breakpoints.down('md')]: {
+    padding: theme.spacing(0, 2.5),
+  },
+
+  [theme.breakpoints.down('sm')]: {
     height: 'var(--mobile-navbar-height)',
     padding: theme.spacing(0, 2),
+  },
+
+  '@media (max-width: 480px)': {
+    padding: theme.spacing(0, 1.5),
   }
 }));
 
@@ -30,6 +42,21 @@ export const NavbarContent = styled('div')(({ theme }) => ({
   margin: '0 auto',
   gap: '16px',
   height: '100%',
+
+  [theme.breakpoints.down('lg')]: {
+    maxWidth: '1000px',
+    gap: '14px',
+  },
+
+  [theme.breakpoints.down('md')]: {
+    maxWidth: '768px',
+    gap: '12px',
+  },
+
+  [theme.breakpoints.down('sm')]: {
+    maxWidth: '100%',
+    gap: '10px',
+  }
 }));
 
 // Replace AvatarWrapper with SocialLinks in NavbarStyles.js
@@ -46,6 +73,22 @@ export const SocialLinks = styled('div')(({ theme }) => ({
     justifyContent: 'center',
     padding: 4,
     borderRadius: '50%',
+  },
+  '& svg': {
+    fontSize: 30,
+    
+    [theme.breakpoints.down('lg')]: {
+      fontSize: 28,
+    },
+    [theme.breakpoints.down('md')]: {
+      fontSize: 26,
+    },
+    [theme.breakpoints.down('sm')]: {
+      fontSize: 24,
+    },
+    '@media (max-width: 480px)': {
+      fontSize: 22,
+    }
   },
 
   // LinkedIn-specific styling
@@ -72,8 +115,16 @@ export const NavButtons = styled('div')(({ theme }) => ({
   alignItems: 'center',
   justifyContent: 'center',
   gap: theme.spacing(1.5),
+  [theme.breakpoints.down('lg')]: {
+    gap: theme.spacing(1.25),
+  },
+
+  [theme.breakpoints.down('md')]: {
+    gap: theme.spacing(1),
+  },
+
   [theme.breakpoints.down('sm')]: {
-    display: 'none'
+    display: 'none'  // Hide nav buttons and show hamburger instead
   }
 }));
 
@@ -100,6 +151,16 @@ export const StyledNavButton = styled(Button)(({ theme, active }) => ({
   letterSpacing: '0.5px',
   position: 'relative',
   whiteSpace: 'nowrap',
+
+  [theme.breakpoints.down('lg')]: {
+    fontSize: '0.85rem',
+    padding: theme.spacing(0.7, 1.75),
+  },
+
+  [theme.breakpoints.down('md')]: {
+    fontSize: '0.8rem',
+    padding: theme.spacing(0.65, 1.5),
+  },
   
   '&:hover': {
     backgroundColor: 'transparent',
@@ -129,6 +190,16 @@ export const StyledNavButton = styled(Button)(({ theme, active }) => ({
 export const StyledMenuButton = styled(IconButton)(({ theme }) => ({
   color: theme.palette.text.primary,
   marginLeft: theme.spacing(1),
+  padding: theme.spacing(1),
+
+  '& svg': {
+    fontSize: 24,
+    
+    '@media (max-width: 480px)': {
+      fontSize: 22,
+    }
+  },
+
   '&:hover': {
     backgroundColor: 'rgba(0, 0, 0, 0.04)',
   },
@@ -144,6 +215,10 @@ export const StyledMenu = styled(Menu)(({ theme }) => ({
     backgroundColor: 'rgba(240, 239, 252, 0.98)',
     backdropFilter: 'blur(8px)',
     border: `1px solid ${theme.palette.divider}`,
+
+    '@media (max-width: 480px)': {
+      width: '180px',
+    }
   },
 }));
 
@@ -154,7 +229,15 @@ export const StyledMenuItem = styled('div')(({ theme, active }) => ({
   color: theme.palette.text.secondary,
   transition: 'all 0.2s ease',
   cursor: 'pointer',
-  
+  [theme.breakpoints.down('sm')]: {
+    fontSize: '0.85rem',
+    padding: theme.spacing(1.25, 2.5),
+  },
+
+  '@media (max-width: 480px)': {
+    fontSize: '0.8rem',
+    padding: theme.spacing(1, 2),
+  },
   '&:hover': {
     backgroundColor: `${theme.palette.custom.accent1}10`,
     color: theme.palette.custom.accent1,

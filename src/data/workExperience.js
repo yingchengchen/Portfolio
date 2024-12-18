@@ -11,95 +11,12 @@ const wotkExperience = {
       // subheader: "UCDavis, VIDI lab",
       meta: "July 2023 - Sep. 2024",
       location: "UCDavis, VIDI lab",
-      logo: `${process.env.PUBLIC_URL}/uc_davis_logo.jpg`,
       description:
-        "Developed interactive visual interfaces for domain experts for generating insights from large-scale datasets",
-      listItems: [
-        {
-          main: (
-            <>
-              Created a <strong>Vue-based</strong> three-stage visual interface
-              for media bias assessment
-            </>
-          ),
-          subItems: [
-            <>
-              Spearheaded improvements reaching <strong>83.3%</strong> effective
-              navigation and <strong>73.8%</strong> user engagement
-            </>,
-            <>
-              Managed <strong>25,000+</strong> articles from 6 news outlets
-              using <strong>PostgreSQL</strong> on <strong>AWS EC2</strong> for
-              data storage
-            </>,
-            <>
-              Co-authored{" "}
-              <strong>
-                <a
-                  href="https://arxiv.org/abs/2403.00334"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  style={{
-                    color: "#6C5CE7",
-                    textDecoration: "none",
-                    display: "inline-flex",
-                    alignItems: "center",
-                  }}
-                  onMouseOver={(e) =>
-                    (e.target.style.textDecoration = "underline")
-                  }
-                  onMouseOut={(e) => (e.target.style.textDecoration = "none")}
-                >
-                  "NOVA: A visual interface for assessing polarizing media
-                  coverage"
-                  <OpenInNewIcon
-                    style={{
-                      fontSize: 16,
-                      marginLeft: 4,
-                      opacity: 0.7,
-                    }}
-                  />
-                </a>
-              </strong>{" "}
-              published in{" "}
-              <em>
-                <strong>IEEE</strong> Transactions on Visualization and Computer
-                Graphics
-              </em>
-            </>,
-          ],
-        },
-        {
-          main: (
-            <>
-              Initiated <strong>Svelte-based</strong> frontend for environmental
-              policy analysis with <strong>LLM</strong>
-            </>
-          ),
-          subItems: [
-            <>
-              Created <strong>5+</strong> interactive visualizations, including
-              network graphs and <strong>sentiment analysis</strong>, to
-              interpret complex ecological data
-            </>,
-            <>
-              Implemented an AI-driven <strong>Orthogonal Routing</strong>{" "}
-              algorithm using A* search
-            </>,
-            <>
-              Collaborated with environmental scientists to engineer{" "}
-              <strong>ChatGPT API</strong> prompts analyzing interview
-              transcripts with <strong>NLP</strong>
-            </>,
-          ],
-        },
-      ],
+        "I devoted my time to developing interactive visual interfaces that helped domain experts discover meaningful insights from their large-scale datasets.",
       chips: [
         { label: "Vue.js", type: "primary" },
         { label: "Svelte", type: "primary" },
         { label: "NLP", type: "primary" },
-        // { label: "PostgreSQL", type: "secondary" },
-        // { label: "AWS", type: "secondary" },
       ],
     },
     {
@@ -108,31 +25,8 @@ const wotkExperience = {
       // subheader: "UCDavis, Information Visualization",
       meta: "Jan. 2023 - Mar. 2023",
       location: "UCDavis",
-      logo: `${process.env.PUBLIC_URL}/uc_davis_logo.jpg`,
       description:
-        "Prepared course materials and coding assignments focusing on JavaScript and modern data visualization libraries like D3.js, with materials maintained in GitHub repository",
-      listItems: [
-        {
-          main: (
-            <>
-              Prepared course materials and coding assignments focusing on{" "}
-              <strong>JavaScript</strong> and modern data visualization
-              libraries like <strong>D3.js</strong>, with materials maintained
-              in <strong>GitHub</strong> repository
-            </>
-          ),
-        },
-        {
-          main: (
-            <>
-              Mentored <strong>50+</strong> students in applying current
-              research to analytical and <strong>storytelling</strong> projects,
-              emphasizing <strong>JavaScript</strong>-based web visualization
-              techniques
-            </>
-          ),
-        },
-      ],
+        "As a TA, I created course materials and coding assignments to teach students JavaScript and modern data visualization libraries like D3.js, keeping everything organized in a GitHub repository.",
       chips: [
         { label: "JavaScript", type: "primary" },
         { label: "D3.js", type: "primary" },
@@ -145,17 +39,15 @@ const wotkExperience = {
       // subheader: "NTNU, Data Visualization Lab",
       meta: "Sep. 2020 - June 2021",
       location: "NTNU, Data Visualization Lab",
-      logo: `${process.env.PUBLIC_URL}/ntnu_logo.jpg`,
-      description:
-        "Analyzed Isabel Typhoon Data using Unity platform and C# with 3D visualization",
-      listItems: [
-        {
-          main: "Analyzed Isabel Typhoon Data using Unity platform and C# with 3D visualization",
-        },
-        {
-          main: "Implemented Marching Cubes algorithm for iso-surface generation and volume rendering",
-        },
-      ],
+      description:"In this research, I tackled the visualization of Isabel Typhoon Data by implementing advanced 3D techniques like iso-surface and volume rendering to help us better understand the typhoon's behavior.",
+      // listItems: [
+      //   {
+      //     main: "Analyzed Isabel Typhoon Data using Unity platform and C# with 3D visualization",
+      //   },
+      //   {
+      //     main: "Implemented Marching Cubes algorithm for iso-surface generation and volume rendering",
+      //   },
+      // ],
       chips: [
         { label: "C#", type: "primary" },
         { label: "Unity", type: "primary" },
@@ -166,21 +58,14 @@ const wotkExperience = {
       header: "UI/UX Designer",
       // subheader: "NTNU, Data Visualization Lab",
       meta: "Oct. 2024 - now",
-      location: "NTNU, Data Visualization Lab",
-      logo: `${process.env.PUBLIC_URL}/ntnu_logo.jpg`,
+      location: "Community School of the Arts Foundation",
       description:
-        "Analyzed Isabel Typhoon Data using Unity platform and C# with 3D visualization",
-      listItems: [
-        {
-          main: "Analyzed Isabel Typhoon Data using Unity platform and C# with 3D visualization",
-        },
-        {
-          main: "Implemented Marching Cubes algorithm for iso-surface generation and volume rendering",
-        },
-      ],
+        "I designed and developed a website for the foundation where I focused on making it easy and intuitive for both students and parents to navigate and find what they need.",
       chips: [
-        { label: "C#", type: "primary" },
-        { label: "Unity", type: "primary" },
+        { label: "Figma", type: "primary" },
+        { label: "React", type: "primary" },
+        { label: "Next.js", type: "primary" },
+        { label: "Tailwind CSS", type: "primary" },
       ],
     },
   ],

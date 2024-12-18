@@ -2,8 +2,8 @@ import React, { useState, useEffect } from 'react';
 import './App.css';
 import { ThemeProvider } from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline';
-import About from './about/About'; 
-import Skills from './skills/Skills'; 
+import About from './about/About';
+import Skills from './skills/Skills';
 import NavigationBar from './navbar/Navbar';
 import Projects from './projects/Projects';
 import EducationAndCareer from './education_career/EducationAndCareer';
@@ -13,9 +13,7 @@ import theme from './theme';
 function App() {
   const sections = ['About', 'Skills', 'Education & Career', 'Projects'];
   const [activeSection, setActiveSection] = useState("About");
-  const [scrollTriggerPoint, setScrollTriggerPoint] = useState(100);
 
-  // Helper function to convert section names to IDs
   const getSectionId = (section) => {
     switch(section) {
       case 'Education & Career':
@@ -25,45 +23,54 @@ function App() {
     }
   };
 
-  useEffect(() => {
-    const handleScroll = () => {
-      const scrollPosition = window.scrollY;
-      const windowHeight = window.innerHeight;
-      const documentHeight = document.documentElement.scrollHeight;
-      const offset = scrollTriggerPoint;
+  // useEffect(() => {
+  //   const handleScroll = () => {
+  //     const scrollPosition = window.scrollY;
+  //     const windowHeight = window.innerHeight;
+  //     const aboutElement = document.getElementById('about');
+      
+  //     // Handle About section visibility
+  //     if (scrollPosition <= windowHeight / 4) {
+  //       setActiveSection('About');
+  //       return;
+  //     }
 
-      if (scrollPosition + windowHeight >= documentHeight - offset) {
-        setActiveSection('Projects');
-        return;
-      }
+  //     // Handle other sections
+  //     for (const section of sections) {
+  //       if (section === 'About') continue;
+  //       const element = document.getElementById(getSectionId(section));
+  //       if (element) {
+  //         const { top, bottom } = element.getBoundingClientRect();
+  //         if (top <= windowHeight / 2 && bottom >= windowHeight / 2) {
+  //           setActiveSection(section);
+  //           break;
+  //         }
+  //       }
+  //     }
+  //   };
 
-      for (const section of sections) {
-        const element = document.getElementById(getSectionId(section));
-        if (element) {
-          const { top, bottom } = element.getBoundingClientRect();
-          if (top <= offset && bottom >= offset) {
-            setActiveSection(section);
-            break;
-          }
-        }
-      }
-    };
-
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, [sections, scrollTriggerPoint]);
+  //   window.addEventListener('scroll', handleScroll);
+  //   return () => window.removeEventListener('scroll', handleScroll);
+  // }, [sections]);
 
   const handleNavClick = (section) => {
     const element = document.getElementById(getSectionId(section));
     if (element) {
-      const navbarHeight = 64;
-      const elementPosition = element.getBoundingClientRect().top;
-      const offsetPosition = elementPosition + window.pageYOffset - navbarHeight;
-      
-      window.scrollTo({
-        top: offsetPosition,
-        behavior: "smooth"
-      });
+      if (section === 'About') {
+        window.scrollTo({
+          top: 0,
+          behavior: "smooth"
+        });
+      } else {
+        const navbarHeight = 64;
+        const elementPosition = element.getBoundingClientRect().top;
+        const offsetPosition = elementPosition + window.pageYOffset - navbarHeight;
+        
+        window.scrollTo({
+          top: offsetPosition,
+          behavior: "smooth"
+        });
+      }
     }
   };
 

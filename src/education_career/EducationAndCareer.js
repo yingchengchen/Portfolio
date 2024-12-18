@@ -1,6 +1,7 @@
 // EducationAndCareer.js
 import React, { useState, useEffect } from "react";
 import { Box, Popover } from "@mui/material";
+import DateIcon from "@mui/icons-material/DateRange";
 import SchoolIcon from "@mui/icons-material/School";
 import WorkIcon from "@mui/icons-material/Work";
 import LocationOnIcon from "@mui/icons-material/LocationOn";
@@ -25,7 +26,7 @@ import {
 } from "./EducationAndCareerStyle";
 import data from "../data/data";
 
-const TimelineItemWithPopover = ({ item, totalItems }) => {
+const TimelineItemWithPopover = ({ item, totalItems, index, showHopping }) => {
   const [anchorEl, setAnchorEl] = useState(null);
 
   const handleClick = (event) => {
@@ -49,10 +50,16 @@ const TimelineItemWithPopover = ({ item, totalItems }) => {
           onClick={handleClick}
           style={{ cursor: "pointer" }}
           type={item.type}
+          index={index}
+          showHopping={showHopping}
         >
-          <TimelinePeriod>{item.meta}</TimelinePeriod>
+          <TimelinePeriod>
+            <DateIcon fontSize="inherit" /> {item.meta}
+          </TimelinePeriod>
           <TimelineTitle>{item.header}</TimelineTitle>
-          <TimelineSubtitle>{item.subheader}</TimelineSubtitle>
+          <TimelineSubtitle id={item.subheader}>
+            {item.subheader}
+          </TimelineSubtitle>
         </TimelineContentCard>
         <Popover
           open={open}
@@ -72,7 +79,8 @@ const TimelineItemWithPopover = ({ item, totalItems }) => {
               sx: {
                 mt: item.type === "education" ? 2 : -2,
                 mb: item.type === "education" ? -2 : 2,
-                border: (theme) => `1px solid ${theme.palette.custom.accent1}`,
+                border: (theme) =>
+                  `1.5px solid ${theme.palette.custom.accent1}`,
                 borderRadius: 2,
                 overflow: "visible",
                 "&::before": {
@@ -88,17 +96,17 @@ const TimelineItemWithPopover = ({ item, totalItems }) => {
                         top: -5,
                         left: "calc(50% - 5px)",
                         borderRight: (theme) =>
-                          `1px solid ${theme.palette.custom.accent1}`,
+                          `1.5px solid ${theme.palette.custom.accent1}`,
                         borderBottom: (theme) =>
-                          `1px solid ${theme.palette.custom.accent1}`,
+                          `1.5px solid ${theme.palette.custom.accent1}`,
                       }
                     : {
                         bottom: -5,
                         left: "calc(50% - 5px)",
                         borderLeft: (theme) =>
-                          `1px solid ${theme.palette.custom.accent1}`,
+                          `1.5px solid ${theme.palette.custom.accent1}`,
                         borderTop: (theme) =>
-                          `1px solid ${theme.palette.custom.accent1}`,
+                          `1.5px solid ${theme.palette.custom.accent1}`,
                       }),
                 },
               },
@@ -134,42 +142,51 @@ const TimelineItemWithPopover = ({ item, totalItems }) => {
 const EducationAndCareer = ({ id, activeSection }) => {
   const [showIntro, setShowIntro] = useState(false);
   const [hasBeenClosed, setHasBeenClosed] = useState(false);
+  const [showHopping, setShowHopping] = useState(false);
 
   const introText =
     "Let me share my educational background and professional journey with you.";
+  // const toggleScroll = (disable) => {
+  //   if (disable) {
+  //     document.body.style.overflow = "hidden";
+  //   } else {
+  //     document.body.style.overflow = "auto";
+  //   }
+  // };
+  // useEffect(() => {
+  //   const observer = new IntersectionObserver(
+  //     ([entry]) => {
+  //       if (
+  //         entry.isIntersecting &&
+  //         !hasBeenClosed &&
+  //         activeSection === "Education & Career"
+  //       ) {
+  //         setShowIntro(true);
+  //         toggleScroll(true);
+  //       }
+  //     },
+  //     { threshold: 0.3 }
+  //   );
 
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting && !hasBeenClosed) {
-          if (activeSection === "Education & Career" && !hasBeenClosed) {
-            setShowIntro(true);
-          }
-        }
-      },
-      { threshold: 0.3 }
-    );
+  //   const section = document.getElementById(id);
+  //   if (section) {
+  //     observer.observe(section);
+  //   }
 
-    const section = document.getElementById(id);
-    if (section) {
-      observer.observe(section);
-    }
+  //   return () => {
+  //     if (section) {
+  //       observer.unobserve(section);
+  //     }
+  //     toggleScroll(false);
+  //   };
+  // }, [id, hasBeenClosed, activeSection]);
 
-    if (activeSection === "Education & Career" && !hasBeenClosed) {
-      setShowIntro(true);
-    }
-
-    return () => {
-      if (section) {
-        observer.unobserve(section);
-      }
-    };
-  }, [id, hasBeenClosed, activeSection]);
-
-  const handleModalClose = () => {
-    setShowIntro(false);
-    setHasBeenClosed(true);
-  };
+  // const handleModalClose = () => {
+  //   setShowIntro(false);
+  //   setHasBeenClosed(true);
+  //   setShowHopping(true);
+  //   toggleScroll(false);
+  // };
 
   const getEndDate = (dateRange) => {
     const endDateStr = dateRange.split(" - ")[1];
@@ -192,6 +209,13 @@ const EducationAndCareer = ({ id, activeSection }) => {
   return (
     <EduCaWrapper id={id}>
       <EducationCareerRoot>
+        {/* <IntroModal
+          isVisible={showIntro}
+          onClose={handleModalClose}
+          introText={introText}
+          sectionId={id}
+          avatarImage={AvatarImage}
+        /> */}
         <HeaderTitle>Education & Career Timeline</HeaderTitle>
         <ContentContainer>
           <TimelineContainer>
@@ -202,6 +226,8 @@ const EducationAndCareer = ({ id, activeSection }) => {
                 key={index}
                 item={item}
                 totalItems={timelineData.length}
+                index={index}
+                showHopping={showHopping}
               />
             ))}
           </TimelineContainer>

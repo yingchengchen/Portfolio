@@ -26,9 +26,25 @@ const Skills = ({ id }) => {
   const isLg = useMediaQuery(theme.breakpoints.down('lg'));
   const isMd = useMediaQuery(theme.breakpoints.down('md'));
   const isSm = useMediaQuery(theme.breakpoints.down('sm'));
+  const isMobile = useMediaQuery('(max-width:480px)');
 
   // Get dimensions based on screen size
-  const dimensions = isSm ? DIMENSIONS.sm : isMd ? DIMENSIONS.md : isLg ? DIMENSIONS.lg : DIMENSIONS.lg;
+  const dimensions = isMobile ? DIMENSIONS.xs 
+    : isSm ? DIMENSIONS.sm 
+    : isMd ? DIMENSIONS.md 
+    : isLg ? DIMENSIONS.lg 
+    : DIMENSIONS.lg;
+
+    const { 
+      width, 
+      height, 
+      margin, 
+      innerRadius, 
+      labelPadding, 
+      textWidth, 
+      fontSize, 
+      dotRadius 
+    } = dimensions;
 
   const skillText =
     "Through each role, I've developed a diverse skill set spanning various tools - click each area to discover my technical expertise.";
@@ -75,10 +91,16 @@ const Skills = ({ id }) => {
     <SkillsWrapper id={id}>
       <SkillsRoot container>
         <SkillsVisualSection>
-          <Radar
+        <Radar
             data={data}
-            width={dimensions.width}
-            height={dimensions.height}
+            width={width}
+            height={height}
+            margin={margin}
+            innerRadius={innerRadius}
+            labelPadding={labelPadding}
+            textWidth={textWidth}
+            fontSize={fontSize}
+            dotRadius={dotRadius}
             axisConfig={[
               { name: "Programming Languages", max: 100 },
               { name: "Data Analysis & Storage", max: 100 },

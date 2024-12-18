@@ -29,5 +29,15 @@ export const DIMENSIONS = {
       textWidth: 80,
       fontSize: 11,
       dotRadius: 3,
-    }
+    },
+    xs: {
+      width: 320,  // Smaller width for mobile
+      height: 320, // Smaller height for mobile
+      margin: 70,  // Reduced margin
+      innerRadius: 28,
+      labelPadding: 15,
+      textWidth: 60,
+      fontSize: 8,
+      dotRadius: 2,
+    },
   };

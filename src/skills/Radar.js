@@ -1,20 +1,26 @@
-// Radar.js
 import * as d3 from 'd3';
 import { useTheme } from '@mui/material/styles';
 import useMediaQuery from '@mui/material/useMediaQuery';
-import { DIMENSIONS } from './scaleUtils';
 import { RadarGrid } from './RadarGrid';
 
 const DOT_COLOR = '#7E47FD';
 
-export const Radar = ({ width, height, data, axisConfig }) => {
+export const Radar = ({ 
+  width, 
+  height, 
+  margin,
+  innerRadius,
+  labelPadding,
+  textWidth,
+  fontSize,
+  dotRadius,
+  data, 
+  axisConfig 
+}) => {
   const theme = useTheme();
-  const isLg = useMediaQuery(theme.breakpoints.down('lg'));
-  const isMd = useMediaQuery(theme.breakpoints.down('md'));
   const isSm = useMediaQuery(theme.breakpoints.down('sm'));
-
-  const dimensions = isSm ? DIMENSIONS.sm : isMd ? DIMENSIONS.md : isLg ? DIMENSIONS.lg : DIMENSIONS.lg;
-  const { margin, innerRadius, dotRadius } = dimensions;
+  const isMd = useMediaQuery(theme.breakpoints.down('md'));
+  const isMobile = useMediaQuery('(max-width:480px)');
 
   const outerRadius = Math.min(width, height) / 2 - margin;
 
@@ -25,7 +31,7 @@ export const Radar = ({ width, height, data, axisConfig }) => {
     .domain(allVariableNames)
     .range([0, 2 * Math.PI]);
 
-  // Compute the y scales: 1 scale per variable.
+  // Compute the y scales: 1 scale per variable
   let yScales = {};
   axisConfig.forEach((axis) => {
     yScales[axis.name] = d3
@@ -40,8 +46,7 @@ export const Radar = ({ width, height, data, axisConfig }) => {
     const yScale = yScales[axis.name];
     const angle = xScale(axis.name) ?? 0;
     const radius = yScale(data[axis.name]);
-    const coordinate = [angle, radius];
-    return coordinate;
+    return [angle, radius];
   });
 
   const linePath = lineGenerator([...allCoordinates, allCoordinates[0]]);
@@ -51,19 +56,31 @@ export const Radar = ({ width, height, data, axisConfig }) => {
     y: Math.sin(angle - Math.PI / 2) * radius
   }));
 
+  // Get stroke width based on screen size
+  const getStrokeWidth = () => {
+    if (isMobile) return 2;
+    if (isSm) return 2;
+    if (isMd) return 2.5;
+    return 3;
+  };
+
   return (
     <svg width={width} height={height}>
-      <g transform={'translate(' + width / 2 + ',' + height / 2 + ')'}>
+      <g transform={`translate(${width / 2},${height / 2})`}>
         <RadarGrid
           outerRadius={outerRadius}
+          innerRadius={innerRadius}
+          labelPadding={labelPadding}
+          textWidth={textWidth}
+          fontSize={fontSize}
           xScale={xScale}
           axisConfig={axisConfig}
-          dimensions={dimensions}
+          isMobile={isMobile}
         />
         <path
           d={linePath}
           stroke={DOT_COLOR}
-          strokeWidth={isSm ? 2 : isMd ? 2.5 : 3}
+          strokeWidth={getStrokeWidth()}
           fill={DOT_COLOR}
           fillOpacity={0.1}
         />

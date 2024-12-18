@@ -1,12 +1,10 @@
-/* App.css */
 :root {
   --banner-height: 350px;
   --navbar-height: 64px;
   --mobile-navbar-height: 56px;
-  --scroll-padding: 80px;
+  --scroll-padding: 64px;
 }
 
-/* Reset and base styles */
 * {
   box-sizing: border-box;
   margin: 0;
@@ -15,40 +13,28 @@
 
 html {
   scroll-behavior: smooth;
-  scroll-padding-top: var(--navbar-height);
 }
 
-@media (max-width: 768px) {
-  html {
-    scroll-padding-top: var(--mobile-navbar-height);
-  }
-}
-
-/* App root container */
 .App-root {
   min-height: 100vh;
   background: linear-gradient(0deg, 
-  #F0EFFC 0%, 
-  #FFFFFF 30%,
-  #F0EFFC 50%,
-  #FFFFFF 75%, 
-  #F0EFFC 100%
-);
+    #F0EFFC 0%, 
+    #FFFFFF 30%,
+    #F0EFFC 50%,
+    #FFFFFF 75%, 
+    #F0EFFC 100%
+  );
   display: flex;
   flex-direction: column;
 }
 
-/* Main content area */
 .main-content {
-  padding-top: var(--navbar-height);
   flex: 1;
   display: flex;
   flex-direction: column;
   position: relative;
-  transition: padding-top 0.3s ease-in-out;
 }
 
-/* Content container */
 .content-container {
   display: flex;
   flex-direction: column;
@@ -57,16 +43,9 @@ html {
   scroll-behavior: smooth;
   transition: all 0.3s ease-in-out;
   padding: 0 24px;
-  scroll-padding-top: var(--scroll-padding);
 }
 
-.content-container.no-banner {
-  margin-top: 0;
-}
-
-/* Section specific styles */
 .section {
-  scroll-margin-top: var(--scroll-padding);
   padding: 24px 0;
 }
 
@@ -88,32 +67,9 @@ html {
   background-color: rgba(0, 0, 0, 0.3);
 }
 
-/* Smooth transitions */
-.fade-enter {
-  opacity: 0;
-  transform: translateY(20px);
-}
 
-.fade-enter-active {
-  opacity: 1;
-  transform: translateY(0);
-  transition: opacity 300ms, transform 300ms;
-}
-
-.fade-exit {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-.fade-exit-active {
-  opacity: 0;
-  transform: translateY(-20px);
-  transition: opacity 300ms, transform 300ms;
-}
-
-
-/* Mobile responsive styles */
-@media (max-width: 768px) {
+/* for md and sm screen sizes */
+@media (max-width: 900px) {
   :root {
     --banner-height: 470px;
     --scroll-padding: 72px;
@@ -130,24 +86,8 @@ html {
   .section {
     padding: 16px 0;
   }
-}
 
-/* Print styles */
-@media print {
-  .App-root {
-    background: white;
-  }
-
-  .main-content {
-    padding-top: 0;
-  }
-
-  .content-container {
-    overflow: visible;
-    padding: 20px;
-  }
-
-  .content-container::-webkit-scrollbar {
-    display: none;
+  #about {
+    min-height: 844px;
   }
 }

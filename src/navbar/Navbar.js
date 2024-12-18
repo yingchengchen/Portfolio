@@ -19,7 +19,6 @@ import {
 
 const NavigationBar = ({ sections, onNavClick, activeSection = null }) => {
   const theme = useTheme();
-  const isMobile = useMediaQuery(theme.breakpoints.down('md'));
   const [anchorEl, setAnchorEl] = useState(null);
 
   const handleMenuClick = (event) => {

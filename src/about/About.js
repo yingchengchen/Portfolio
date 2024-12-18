@@ -11,6 +11,7 @@ import {
   CardContainer,
   RoleCard,
   CardsGroup,
+  AboutContainer,
 } from "./AboutStyle";
 import AboutAfterSelected from "./AboutAfterSelected";
 import AvatarImage from "../images/myAvatar.png";
@@ -27,16 +28,12 @@ const About = ({ id }) => {
     { type: "developer", title: "UI/UX and Frontend Web Developer" },
   ];
 
-  const introText =
-   `Hi, I'm Ying-Cheng Chen (Jessica) Chen, welcome to my portfolio. On the right hand side are the chapter of the different roles which shape my journey at the intersection of <span style="background-color: #FFEB3B">Data</span> and <span style="background-color: #FFEB3B">Design</span>.`;
+  const introText = `Hi, I'm Ying-Cheng Chen (Jessica) Chen, welcome to my portfolio! These are the chapter of the different roles which shape my journey at the intersection of <span style="background-color: #FFEB3B">Data</span> and <span style="background-color: #FFEB3B">Design</span>.`;
 
   const roleDescriptions = {
-    engineer:
-      `My journey into data visualization began during my undergraduate years in Taiwan, sparked by a simple curiosity about <span style="background-color: #FFEB3B">how data could tell compelling stories</span>.`,
-    researcher:
-      `At <span style="background-color: #FFEB3B">UC Davis's VIDI lab</span>, I created an interface for media bias assessment achieving over <span style="background-color: #FFEB3B">80%</span> effectiveness. Through this work, I discovered visual analytics is about building bridges between complex data and <span style="background-color: #FFEB3B">human intuition</span>, enabling data-driven decisions.`,
-    developer:
-      `Throughout my academic years participating in several projects, I've evolved from crafting simple interfaces to building comprehensive platforms that bridge <span style="background-color: #FFEB3B">frontend experiences</span> with <span style="background-color: #FFEB3B">backend systems</span>. `,
+    engineer: `My journey into data visualization began during my undergraduate years in Taiwan, sparked by a simple curiosity about <span style="background-color: #FFEB3B">how data could tell compelling stories</span>.`,
+    researcher: `At <span style="background-color: #FFEB3B">UC Davis's VIDI lab</span>, I created an interface for media bias assessment achieving over <span style="background-color: #FFEB3B">80%</span> effectiveness. Through this work, I discovered visual analytics is about building bridges between complex data and <span style="background-color: #FFEB3B">human intuition</span>, enabling data-driven decisions.`,
+    developer: `Throughout my academic years participating in several projects, I've evolved from crafting simple interfaces to building comprehensive platforms that bridge <span style="background-color: #FFEB3B">frontend experiences</span> with <span style="background-color: #FFEB3B">backend systems</span>. `,
   };
 
   useEffect(() => {
@@ -69,16 +66,16 @@ const About = ({ id }) => {
     if (typingComplete) {
       roles.forEach((role, index) => {
         setTimeout(() => {
-          setBouncingCards(prev => ({
+          setBouncingCards((prev) => ({
             ...prev,
-            [role.type]: true
+            [role.type]: true,
           }));
-          
+
           // Reset bounce after animation
           setTimeout(() => {
-            setBouncingCards(prev => ({
+            setBouncingCards((prev) => ({
               ...prev,
-              [role.type]: false
+              [role.type]: false,
             }));
           }, 500); // Match animation duration
         }, index * 600); // Slight delay between each card
@@ -98,59 +95,61 @@ const About = ({ id }) => {
   };
 
   return (
-    <div style={{ width: '100%', display: 'flex', justifyContent: 'center' }}>
-      <AboutRoot id={id}>
-        {!selectedRole ? (
-          // Initial layout
-          <>
-            <ContentWrapper>
-              <ContentInnerGroup>
-                <StyledAvatar alt="Avatar" src={AvatarImage} />
-                <IntroContainer>
-                  <StyledTyped>
-                    {startTyping && (
-                      <ReactTyped
-                        strings={[introText]}
-                        typeSpeed={40}
-                        cursorChar="|"
-                        showCursor={true}
-                        html={true}
-                        onComplete={() => setTypingComplete(true)}
-                      />
-                    )}
-                  </StyledTyped>
-                </IntroContainer>
-              </ContentInnerGroup>
-            </ContentWrapper>
+    <AboutContainer>
+      <div id={id}>
+        <AboutRoot>
+          {!selectedRole ? (
+            // Initial layout
+            <>
+              <ContentWrapper>
+                <ContentInnerGroup>
+                  <StyledAvatar alt="Avatar" src={AvatarImage} />
+                  <IntroContainer>
+                    <StyledTyped>
+                      {startTyping && (
+                        <ReactTyped
+                          strings={[introText]}
+                          typeSpeed={40}
+                          cursorChar="|"
+                          showCursor={true}
+                          html={true}
+                          onComplete={() => setTypingComplete(true)}
+                        />
+                      )}
+                    </StyledTyped>
+                  </IntroContainer>
+                </ContentInnerGroup>
+              </ContentWrapper>
 
-            <CardContainer>
-              <CardsGroup>
-                {roles.map((role) => (
-                  <RoleCard
-                    key={role.type}
-                    cardType={role.type}
-                    onClick={() => handleCardClick(role.type)}
-                    bounce={bouncingCards[role.type]}
-                  >
-                    <span>{role.title}</span>
-                  </RoleCard>
-                ))}
-              </CardsGroup>
-            </CardContainer>
-          </>
-        ) : (
-          // Selected state layout
-          <AboutAfterSelected
-            selectedRole={selectedRole}
-            roles={roles}
-            onCardClick={handleCardClick}
-            roleDescriptions={roleDescriptions}
-            AvatarImage={AvatarImage}
-            onBack={handleBack}
-          />
-        )}
-      </AboutRoot>
-    </div>
+              <CardContainer>
+                <CardsGroup>
+                  {roles.map((role) => (
+                    <RoleCard
+                      key={role.type}
+                      cardType={role.type}
+                      onClick={() => handleCardClick(role.type)}
+                      bounce={bouncingCards[role.type]}
+                    >
+                      <span>{role.title}</span>
+                    </RoleCard>
+                  ))}
+                </CardsGroup>
+              </CardContainer>
+            </>
+          ) : (
+            // Selected state layout
+            <AboutAfterSelected
+              selectedRole={selectedRole}
+              roles={roles}
+              onCardClick={handleCardClick}
+              roleDescriptions={roleDescriptions}
+              AvatarImage={AvatarImage}
+              onBack={handleBack}
+            />
+          )}
+        </AboutRoot>
+      </div>
+    </AboutContainer>
   );
 };
 

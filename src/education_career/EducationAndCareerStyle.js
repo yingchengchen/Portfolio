@@ -1,6 +1,7 @@
 // EducationAndCareerStyle.js
 import { styled } from "@mui/material/styles";
 import { Paper, Avatar, Grid } from "@mui/material";
+import { text } from "d3";
 
 const BASE = {
   spacing: {
@@ -13,6 +14,7 @@ const BASE = {
     maxWidth: 200, // base max width in pixels
     minWidth: 100, // base min width in pixels
   },
+  HEIGHT: 638, //px
 };
 
 export const EduCaWrapper = styled("div")(({ theme }) => ({
@@ -29,7 +31,7 @@ export const EducationCareerRoot = styled(Grid)(({ theme }) => ({
   width: "100%",
   maxWidth: "1403px",
   margin: "0 auto",
-  height: "638px",
+  height: `${BASE.HEIGHT}px`,
   padding: theme.spacing(4),
   display: "flex",
   flexDirection: "column",
@@ -37,7 +39,7 @@ export const EducationCareerRoot = styled(Grid)(({ theme }) => ({
   backgroundColor: "none",
 
   [theme.breakpoints.down("lg")]: {
-    height: `${638 * BASE.spacing.lg}px`,
+    height: `${BASE.HEIGHT * BASE.spacing.lg}px`,
     padding: theme.spacing(3),
   },
   [theme.breakpoints.down("md")]: {
@@ -148,7 +150,7 @@ export const TimelineItem = styled(Grid)(({ theme, totalItems }) => ({
   },
 }));
 
-export const TimelineContentCard = styled(Paper)(({ theme, type }) => ({
+export const TimelineContentCard = styled(Paper)(({ theme, type, index, showHopping }) => ({
   padding: theme.spacing(2),
   backgroundColor: "#ffffff",
   borderRadius: theme.spacing(1),
@@ -161,6 +163,19 @@ export const TimelineContentCard = styled(Paper)(({ theme, type }) => ({
   margin: "0 auto",
   whiteSpace: "normal",
   wordWrap: "break-word",
+  animation: showHopping ? `hopAnimation 0.8s ease ${index * 0.5}s` : "none",
+
+  "@keyframes hopAnimation": {
+    "0%": {
+      transform: "translateY(0)",
+    },
+    "50%": {
+      transform: "translateY(-10px)",
+    },
+    "100%": {
+      transform: "translateY(0)",
+    },
+  },
 
   "&:hover": {
     transform: "translateY(-2px)",
@@ -376,8 +391,20 @@ export const TimelineTitle = styled("h4")(({ theme }) => ({
 }));
 
 export const TimelineSubtitle = styled("div")(({ theme }) => ({
+  padding: theme.spacing(0.2, 0),
+  fontWeight: 600,
   fontSize: "0.8rem",
-  color: theme.palette.text.secondary,
+  borderRadius: theme.spacing(1),
+
+  "#NTNU&": {
+    backgroundColor: "#862633",
+    color: "#FFFFFF",
+  },
+
+  "#UCDavis&": {
+    backgroundColor: "#FFBF00",
+    color: "#022851",
+  },
 
   [theme.breakpoints.down("lg")]: {
     fontSize: "0.75rem",
@@ -388,6 +415,9 @@ export const TimelineSubtitle = styled("div")(({ theme }) => ({
   [theme.breakpoints.down("sm")]: {
     fontSize: "0.65rem",
   },
+  '@media (max-width: 480px)': {
+    fontSize: "0.6rem",
+  }
 }));
 
 export const CustomAvatar = styled(Avatar)(({ theme }) => ({
@@ -421,49 +451,111 @@ export const CustomAvatar = styled(Avatar)(({ theme }) => ({
   },
 }));
 
-export const PopoverContent = styled("div")(({ theme }) => ({
-  padding: theme.spacing(3),
-  maxWidth: "300px",
-  minWidth: "200px",
-  "& .location": {
-    display: "flex",
-    alignItems: "center",
-    color: theme.palette.text.secondary,
-    fontSize: "0.85rem",
-    marginBottom: theme.spacing(2),
-    "& svg": {
-      fontSize: "1rem",
-      marginRight: theme.spacing(0.5),
+
+export const PopoverContent = styled("div")(({ theme }) => {
+  // Base font sizes
+  const fontSizes = {
+    location: '0.85rem',
+    description: '0.9rem',
+    chip: '0.75rem'
+  };
+
+  // Scale factors for different breakpoints
+  const scales = {
+    lg: 0.95,
+    md: 0.9,
+    sm: 0.85,
+    xs: 0.8
+  };
+
+  return {
+    padding: theme.spacing(3),
+    maxWidth: 300,
+    minWidth: 200,
+
+    // Content styles
+    "& .location": {
+      display: "flex",
+      alignItems: "center",
+      color: theme.palette.text.secondary,
+      fontSize: fontSizes.location,
+      padding: theme.spacing(0.5, 1),
+      marginBottom: theme.spacing(2),
+      "& svg": {
+        fontSize: "1rem",
+        marginRight: theme.spacing(0.5),
+      },
     },
-  },
 
-  "& .description": {
-    color: theme.palette.text.secondary,
-    fontSize: "0.9rem",
-    lineHeight: 1.6,
-    marginBottom: theme.spacing(2),
-  },
+    "& .description": {
+      color: theme.palette.text.secondary,
+      fontSize: fontSizes.description,
+      lineHeight: 1.6,
+      marginBottom: theme.spacing(2),
+      textAlign: "justify",
+      padding:theme.spacing(0, 1),
+    },
 
-  "& .chips-container": {
-    display: "flex",
-    flexWrap: "wrap",
-    gap: theme.spacing(0.5),
-  },
+    "& .chips-container": {
+      display: "flex",
+      flexWrap: "wrap",
+      gap: theme.spacing(0.5),
+      padding:theme.spacing(0, 1),
+    },
 
-  "& .chip": {
-    padding: theme.spacing(0.5, 1.5),
-    borderRadius: "16px",
-    fontSize: "0.75rem",
-    fontWeight: 500,
-
-    "&.primary": {
+    "& .chip": {
+      padding: theme.spacing(0.2, 1),
+      borderRadius: 10,
+      fontSize: fontSizes.chip,
+      fontWeight: 500,
       backgroundColor: theme.palette.primary.main,
       color: theme.palette.primary.contrastText,
+
+      "&.secondary": {
+        backgroundColor: theme.palette.secondary.main,
+        color: theme.palette.secondary.contrastText,
+      },
     },
 
-    "&.secondary": {
-      backgroundColor: theme.palette.secondary.main,
-      color: theme.palette.secondary.contrastText,
+    // Breakpoint scaling
+    [theme.breakpoints.down("lg")]: {
+      padding: theme.spacing(2.5),
+      maxWidth: 300 * scales.lg,
+      minWidth: 200 * scales.lg,
+      "& .location": { fontSize: `calc(${fontSizes.location} * ${scales.lg})` },
+      "& .description": { fontSize: `calc(${fontSizes.description} * ${scales.lg})` },
+      "& .chip": { fontSize: `calc(${fontSizes.chip} * ${scales.lg})` },
     },
-  },
-}));
+
+    [theme.breakpoints.down("md")]: {
+      padding: theme.spacing(2),
+      maxWidth: 300 * scales.md,
+      minWidth: 200 * scales.md,
+      "& .location": { fontSize: `calc(${fontSizes.location} * ${scales.md})` },
+      "& .description": { fontSize: `calc(${fontSizes.description} * ${scales.md})` },
+      "& .chip": { fontSize: `calc(${fontSizes.chip} * ${scales.md})` },
+    },
+
+    [theme.breakpoints.down("sm")]: {
+      padding: theme.spacing(1.5),
+      maxWidth: 300 * scales.sm,
+      minWidth: 200 * scales.sm,
+      "& .location": { fontSize: `calc(${fontSizes.location} * ${scales.sm})` },
+      "& .description": { fontSize: `calc(${fontSizes.description} * ${scales.sm})` },
+      "& .chip": { fontSize: `calc(${fontSizes.chip} * ${scales.sm})` },
+    },
+
+    '@media (max-width: 480px)': {
+      padding: theme.spacing(1.25),
+      maxWidth: 300 * scales.xs,
+      minWidth: 200 * scales.xs,
+      "& .location": { fontSize: `calc(${fontSizes.location} * ${scales.xs})` },
+      "& .description": { fontSize: `calc(${fontSizes.description} * ${scales.xs})` },
+      "& .chip": { 
+        fontSize: `calc(${fontSizes.chip} * ${scales.xs})`,
+        borderRadius: 12,
+        padding: theme.spacing(0.3, 1),
+      },
+    },
+  };
+});

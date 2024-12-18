@@ -1,4 +1,3 @@
-// RadarGrid.js
 import { polarToCartesian } from './polarToCartesian';
 import * as d3 from 'd3';
 
@@ -33,8 +32,16 @@ function wrapText(text, width, fontSize) {
   return lines;
 }
 
-export const RadarGrid = ({ outerRadius, xScale, axisConfig, dimensions }) => {
-  const { innerRadius, labelPadding, textWidth, fontSize } = dimensions;
+export const RadarGrid = ({ 
+  outerRadius, 
+  innerRadius,
+  labelPadding,
+  textWidth,
+  fontSize,
+  xScale, 
+  axisConfig,
+  isMobile
+}) => {
   const lineGenerator = d3.lineRadial();
 
   const allAxes = axisConfig.map((axis, i) => {
@@ -52,13 +59,18 @@ export const RadarGrid = ({ outerRadius, xScale, axisConfig, dimensions }) => {
     );
 
     const lines = wrapText(axis.name, textWidth, `${fontSize}px`);
-    const lineHeight = 1.2;
+    const lineHeight = isMobile ? 1.1 : 1.2;
     const totalHeight = lines.length * lineHeight;
     const startY = labelPosition.y - (totalHeight * fontSize / 2);
 
     return (
       <g key={i}>
-        <path d={path} stroke={GRID_COLOR} strokeWidth={0.5} rx={1} />
+        <path 
+          d={path} 
+          stroke={GRID_COLOR} 
+          strokeWidth={isMobile ? 0.3 : 0.5} 
+          rx={1} 
+        />
         <text
           x={labelPosition.x}
           y={startY}
@@ -92,17 +104,18 @@ export const RadarGrid = ({ outerRadius, xScale, axisConfig, dimensions }) => {
           cy={0}
           r={radius}
           stroke={GRID_COLOR}
+          strokeWidth={isMobile ? 0.3 : 0.5}
           fill="none"
         />
         {i > 0 && (
           <text
             x={0}
             y={-radius}
-            fontSize={fontSize - 2}
+            fontSize={isMobile ? fontSize - 1 : fontSize - 2}
             fill="#636E72"
             textAnchor="middle"
             dominantBaseline="middle"
-            dy={-5}
+            dy={isMobile ? -3 : -5}
           >
             {value}
           </text>
