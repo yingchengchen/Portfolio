@@ -1,40 +1,71 @@
 import { styled } from "@mui/material/styles";
 import { Card, IconButton, Dialog, Button, Chip, Fab } from "@mui/material";
 
+const MOBILE_BREAKPOINT = "@media (max-width: 480px)";
+
 export const ThumbnailCard = styled(Card)(({ theme }) => ({
   position: "relative",
-  height: "100%",
-  minHeight: "350px", // Add minimum height
-  maxHeight: "400px", // Add maximum height
+  width: "100%",
+  aspectRatio: "4/5",
   display: "flex",
   flexDirection: "column",
   borderRadius: theme.shape.borderRadius,
   overflow: "hidden",
   boxShadow: "0 4px 12px rgba(0, 0, 0, 0.05)",
   transition: "transform 0.2s ease, box-shadow 0.2s ease",
+
   "&:hover": {
     transform: "translateY(-4px)",
     boxShadow: "0 8px 24px rgba(0, 0, 0, 0.1)",
   },
+
+  [theme.breakpoints.down("md")]: {
+    aspectRatio: "3/4",
+  },
+  [theme.breakpoints.down("sm")]: {
+    aspectRatio: "4/5",
+  },
+  [MOBILE_BREAKPOINT]: {
+    aspectRatio: "3/4",
+  },
 }));
 
-export const ThumbnailImage = styled("img")({
+export const ThumbnailImage = styled("div")(({ theme }) => ({
+  position: "relative",
   width: "100%",
-  height: "200px",
-  objectFit: "cover",
-});
+  paddingTop: "65%",
+  backgroundColor: theme.palette.background.default,
+  overflow: "hidden",
+
+  [MOBILE_BREAKPOINT]: {
+    paddingTop: "60%",
+  },
+
+  "& img": {
+    position: "absolute",
+    top: 0,
+    left: 0,
+    width: "100%",
+    height: "100%",
+    objectFit: "cover",
+  },
+}));
 
 export const DetailDialog = styled(Dialog)(({ theme }) => ({
   "& .MuiDialog-paper": {
-    maxWidth: "800px", // Adjusted for vertical layout
+    maxWidth: "800px",
     width: "90vw",
     maxHeight: "90vh",
     margin: theme.spacing(2),
+    [MOBILE_BREAKPOINT]: {
+      margin: theme.spacing(1),
+      width: "95vw",
+    },
   },
   "& .MuiDialogContent-root": {
-    padding: theme.spacing(2),
-    [theme.breakpoints.up("md")]: {
-      padding: theme.spacing(3),
+    padding: theme.spacing(3),
+    [MOBILE_BREAKPOINT]: {
+      padding: theme.spacing(2),
     },
   },
 }));
@@ -46,78 +77,81 @@ export const DialogHeader = styled("div")(({ theme }) => ({
 }));
 
 export const FabButton = styled(Fab)(({ theme }) => ({
-  zIndex: 1, // Lower z-index than navbar
+  zIndex: 1,
   "&.MuiFab-root": {
     boxShadow: "0 4px 8px rgba(0, 0, 0, 0.15)",
   },
+
+  [MOBILE_BREAKPOINT]: {
+    transform: "scale(0.9)",
+    "&.MuiFab-root": {
+      width: 32,
+      height: 32,
+      minHeight: 32,
+      "& .MuiSvgIcon-root": {
+        fontSize: "1.2rem",
+      },
+    },
+  },
 }));
-export const CarouselContainer = styled("div")(({ theme }) => ({
+
+export const CarouselSection = styled("div")(({ theme }) => ({
   width: "100%",
-  height: "420px", // Fixed height for consistency
   position: "relative",
+  marginBottom: theme.spacing(3),
+
+  [MOBILE_BREAKPOINT]: {
+    marginBottom: theme.spacing(2),
+  },
+}));
+
+export const CarouselContainer = styled("div")(({ theme }) => ({
+  position: "relative",
+  width: "100%",
   backgroundColor: theme.palette.background.default,
   borderRadius: theme.shape.borderRadius,
   overflow: "hidden",
-  marginBottom: theme.spacing(3),
-  [theme.breakpoints.down("sm")]: {
-    height: "300px",
-  },
-  "& .MuiIconButton-root": {
-    opacity: 0,
-    transition: "opacity 0.2s ease",
-  },
-  "&:hover .MuiIconButton-root": {
-    opacity: 1,
-  },
 }));
 
 export const CarouselSlide = styled("div")({
   width: "100%",
-  height: "auto",
-  position: "relative",
+  height: "100%",
   display: "flex",
   justifyContent: "center",
   alignItems: "center",
 });
 
 export const CarouselImage = styled("img")({
-  width: "100%",
-  height: "100%",
+  maxWidth: "100%",
+  maxHeight: "100%",
   objectFit: "contain",
-  objectPosition: "center",
-  backgroundColor: "#f5f5f5", // Light background for images
+  backgroundColor: "#f5f5f5",
 });
-
-export const CarouselNavButton = styled(IconButton)(({ theme, direction }) => ({
-  position: "absolute",
-  top: "50%",
-  transform: "translateY(-50%)",
-  zIndex: 2,
-  color: theme.palette.common.white,
-  backgroundColor: "rgba(0, 0, 0, 0.3)",
-  ...(direction === "prev" ? { left: 8 } : { right: 8 }),
-  "&:hover": {
-    backgroundColor: "rgba(0, 0, 0, 0.5)",
-  },
-  "&.MuiIconButton-root": {
-    padding: 8,
-  },
-}));
 
 export const ProjectContent = styled("div")(({ theme }) => ({
   padding: theme.spacing(2),
   display: "flex",
   flexDirection: "column",
-  gap: theme.spacing(2),
-  [theme.breakpoints.down("sm")]: {
+  gap: theme.spacing(1.5),
+  flexGrow: 1,
+  position: "relative",
+
+  [MOBILE_BREAKPOINT]: {
     padding: theme.spacing(1.5),
+    gap: theme.spacing(1),
   },
 }));
 
 export const ProjectHeader = styled("div")(({ theme }) => ({
   display: "flex",
   flexDirection: "column",
-  gap: theme.spacing(1.5),
+  gap: theme.spacing(2),
+  marginBottom: theme.spacing(3),
+
+  [MOBILE_BREAKPOINT]: {
+    gap: theme.spacing(1.5),
+    marginBottom: theme.spacing(2),
+  },
 }));
 
 export const ProjectLink = styled("a")(({ theme }) => ({
@@ -133,6 +167,7 @@ export const ProjectLink = styled("a")(({ theme }) => ({
   textDecoration: "none",
   fontSize: "0.85rem",
   fontWeight: 500,
+
   [theme.breakpoints.down("sm")]: {
     fontSize: "0.75rem",
     padding: theme.spacing(0.5, 0.75),
@@ -152,28 +187,22 @@ export const ProjectLink = styled("a")(({ theme }) => ({
   },
 }));
 
-export const ShowMoreButton = styled(Button)(({ theme }) => ({
-  alignSelf: "flex-start",
-  minWidth: "unset",
-  padding: theme.spacing(0.5, 0),
-  fontSize: "0.875rem",
-  color: theme.palette.primary.light,
-  textTransform: "none",
-  "&:hover": {
-    backgroundColor: "transparent",
-    textDecoration: "underline",
-  },
-  "&.MuiButton-root": {
-    padding: theme.spacing(0),
-    marginTop: theme.spacing(1),
-  },
-}));
-
 export const ChipContainer = styled("div")(({ theme }) => ({
   display: "flex",
   flexWrap: "wrap",
   gap: theme.spacing(0.5),
   marginTop: theme.spacing(1),
+
+  [MOBILE_BREAKPOINT]: {
+    gap: theme.spacing(0.25),
+    "& .MuiChip-root": {
+      height: 20,
+      fontSize: "0.7rem",
+      "& .MuiChip-label": {
+        padding: "0 8px",
+      },
+    },
+  },
 }));
 
 export const StyledChip = styled(Chip, {
@@ -189,12 +218,6 @@ export const StyledChip = styled(Chip, {
     chipType === "primary"
       ? theme.palette.primary.contrastText
       : theme.palette.secondary.contrastText,
-  "&:hover": {
-    backgroundColor:
-      chipType === "primary"
-        ? theme.palette.primary.dark
-        : theme.palette.secondary.dark,
-  },
 }));
 
 export const BulletList = styled("ul")(({ theme, isSubList }) => ({

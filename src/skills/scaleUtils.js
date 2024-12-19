@@ -21,8 +21,8 @@ export const DIMENSIONS = {
       dotRadius: 3,
     },
     sm: {
-      width: 400,
-      height: 400,
+      width: 360,
+      height: 360,
       margin: 80,
       innerRadius: 32,
       labelPadding: 25,

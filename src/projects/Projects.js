@@ -52,8 +52,6 @@ const Projects = ({ id, activeSection }) => {
   //   };
   // }, [id, hasBeenClosed, activeSection]);
 
-
-
   // const handleModalClose = () => {
   //   setShowIntro(false);
   //   setHasBeenClosed(true);
@@ -74,9 +72,15 @@ const Projects = ({ id, activeSection }) => {
         /> */}
         <HeaderTitle>{projectData.header}</HeaderTitle>
         <ProjectContent>
-          <Grid container spacing={3}>
+          <Grid container spacing={2} columns={12}>
             {projectData.items.map((project, index) => (
-              <Grid item xs={12} sm={12} md={4} lg={4} key={index}>
+              <Grid
+                item
+                xs={12} // Full width on mobile (<= 480px)
+                sm={6} // Two columns on small screens (> 480px)
+                md={4} // Three columns on medium up
+                key={index}
+              >
                 <ProjectCard {...project} />
               </Grid>
             ))}

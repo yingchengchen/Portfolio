@@ -357,7 +357,7 @@ export const RoleCard = styled("div")(
       ...baseStyles,
 
       "& > span": {
-        width: "50%",
+        width: "60%",
         wordWrap: "break-word",
         wordBreak: "break-word",
         hyphens: "auto",

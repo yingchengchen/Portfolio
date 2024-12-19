@@ -6,6 +6,7 @@ export const ProjectsWrapper = styled('div')({
   display: 'flex',
   alignItems: 'center',
   justifyContent: 'center',
+  padding: '2rem 0',
 });
 
 export const ProjectRoot = styled('div')(({ theme }) => ({
@@ -17,42 +18,57 @@ export const ProjectRoot = styled('div')(({ theme }) => ({
   flexDirection: 'column',
   alignItems: 'center',
   position: 'relative',
-  backgroundColor: 'none',
-
+  
+  [theme.breakpoints.down('md')]: {
+    padding: theme.spacing(3),
+  },
   [theme.breakpoints.down('sm')]: {
     padding: theme.spacing(2),
-    '&::after': {
-      top: theme.spacing(2),
-      right: theme.spacing(2),
-      bottom: theme.spacing(2),
-      left: theme.spacing(2),
-    }
   }
 }));
 
+
 export const ProjectContent = styled('div')(({ theme }) => ({
-  flex: 1,
   width: '100%',
-  padding: theme.spacing(2),
-  overflowY: 'auto',
-  [theme.breakpoints.down('sm')]: {
-    padding: theme.spacing(1)
+  display: 'grid',
+  gap: theme.spacing(3),
+
+  '& .MuiGrid-container': {
+    margin: 0,
+    width: '100%',
+  },
+
+  // Adjust grid items based on screen size
+  '& .MuiGrid-item': {
+    padding: theme.spacing(1.5),
+    // Reset default padding
+    [theme.breakpoints.down('lg')]: {
+      maxWidth: '50%',
+      flexBasis: '50%',
+    },
+    [theme.breakpoints.down('md')]: {
+      maxWidth: '100%',
+      flexBasis: '100%',
+    }
   }
 }));
 
 export const HeaderTitle = styled('h3')(({ theme }) => ({
   color: 'var(--accent1-color)',
-  margin: 0,
-  padding: theme.spacing(2),
-  fontSize: '1.2rem',
+  margin: `0 0 ${theme.spacing(4)} 0`,
+  fontSize: '2rem',
   fontFamily: 'Techno',
   fontWeight: 600,
   textTransform: 'uppercase',
   letterSpacing: '0.05em',
-  lineHeight: 1.2,
   alignSelf: 'flex-start',
+  
+  [theme.breakpoints.down('md')]: {
+    fontSize: '1.75rem',
+    marginBottom: theme.spacing(3),
+  },
   [theme.breakpoints.down('sm')]: {
-    fontSize: '0.9rem',
-    padding: theme.spacing(1.5),
+    fontSize: '1.5rem',
+    marginBottom: theme.spacing(2),
   }
 }));

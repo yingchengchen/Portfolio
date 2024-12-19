@@ -23,35 +23,34 @@ function App() {
     }
   };
 
-  // useEffect(() => {
-  //   const handleScroll = () => {
-  //     const scrollPosition = window.scrollY;
-  //     const windowHeight = window.innerHeight;
-  //     const aboutElement = document.getElementById('about');
+  useEffect(() => {
+    const handleScroll = () => {
+      const scrollPosition = window.scrollY;
+      const windowHeight = window.innerHeight;
       
-  //     // Handle About section visibility
-  //     if (scrollPosition <= windowHeight / 4) {
-  //       setActiveSection('About');
-  //       return;
-  //     }
+      // Handle About section visibility
+      if (scrollPosition <= windowHeight / 4) {
+        setActiveSection('About');
+        return;
+      }
 
-  //     // Handle other sections
-  //     for (const section of sections) {
-  //       if (section === 'About') continue;
-  //       const element = document.getElementById(getSectionId(section));
-  //       if (element) {
-  //         const { top, bottom } = element.getBoundingClientRect();
-  //         if (top <= windowHeight / 2 && bottom >= windowHeight / 2) {
-  //           setActiveSection(section);
-  //           break;
-  //         }
-  //       }
-  //     }
-  //   };
+      // Handle other sections
+      for (const section of sections) {
+        if (section === 'About') continue;
+        const element = document.getElementById(getSectionId(section));
+        if (element) {
+          const { top, bottom } = element.getBoundingClientRect();
+          if (top <= windowHeight / 2 && bottom >= windowHeight / 2) {
+            setActiveSection(section);
+            break;
+          }
+        }
+      }
+    };
 
-  //   window.addEventListener('scroll', handleScroll);
-  //   return () => window.removeEventListener('scroll', handleScroll);
-  // }, [sections]);
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, [sections]);
 
   const handleNavClick = (section) => {
     const element = document.getElementById(getSectionId(section));

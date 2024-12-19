@@ -8,6 +8,7 @@ import {
   Divider,
   Collapse,
   Grid,
+  Button,
 } from "@mui/material";
 import {
   Language as WebIcon,
@@ -30,10 +31,9 @@ import {
   ProjectHeader,
   ProjectLink,
   CarouselContainer,
+  CarouselSection,
   CarouselSlide,
   CarouselImage,
-  CarouselNavButton,
-  ShowMoreButton,
   ChipContainer,
   StyledChip,
   BulletList,
@@ -52,10 +52,12 @@ const ProjectCard = (props) => {
   return (
     <>
       <ThumbnailCard>
-        <ThumbnailImage
-          src={props.images?.[0] || "/placeholder-image.jpg"}
-          alt={props.header}
-        />
+        <ThumbnailImage>
+          <img
+            src={props.images?.[0] || "/placeholder-image.jpg"}
+            alt={props.header}
+          />
+        </ThumbnailImage>
         <ProjectContent>
           <Typography
             variant="h6"
@@ -121,33 +123,38 @@ const ProjectCard = (props) => {
         <DialogContent>
           <Grid container spacing={3} direction="column">
             <Grid item xs={12}>
-              <CarouselContainer>
-                <Carousel
-                  animation="fade"
-                  autoPlay={false}
-                  NavButton={({ onClick, next }) => (
-                    <CarouselNavButton
-                      onClick={onClick}
-                      direction={next ? "next" : "prev"}
-                      size="small"
-                    >
-                      {next ? <NavigateNext /> : <NavigateBefore />}
-                    </CarouselNavButton>
-                  )}
-                  timeout={300}
-                  interval={null}
-                  swipe={true}
-                >
-                  {props.images?.map((image, i) => (
-                    <CarouselSlide key={i}>
-                      <CarouselImage
-                        src={image}
-                        alt={`${props.header} - ${i + 1}`}
-                      />
-                    </CarouselSlide>
-                  ))}
-                </Carousel>
-              </CarouselContainer>
+              <CarouselSection>
+                <CarouselContainer>
+                  <Carousel
+                    animation="slide"
+                    autoPlay={false}
+                    indicators={false}
+                    timeout={300}
+                    interval={null}
+                    swipe={true}
+                    cycleNavigation={true}
+                    navButtonsAlwaysVisible={true}
+                    navButtonsProps={{
+                      style: {
+                        backgroundColor: "rgba(0, 0, 0, 0.3)",
+                        borderRadius: 20,
+                      },
+                    }}
+                    NextIcon={<NavigateNext />}
+                    PrevIcon={<NavigateBefore />}
+                  >
+                    {props.images?.map((image, i) => (
+                      <CarouselSlide key={i}>
+                        <CarouselImage
+                          src={image}
+                          alt={`${props.header} - ${i + 1}`}
+                          loading="lazy"
+                        />
+                      </CarouselSlide>
+                    ))}
+                  </Carousel>
+                </CarouselContainer>
+              </CarouselSection>
             </Grid>
 
             <Grid item xs={12}>
@@ -214,12 +221,23 @@ const ProjectCard = (props) => {
                 {props.description}
               </Typography>
 
-              <ShowMoreButton
-                onClick={() => setShowDetails(!showDetails)}
-                disableRipple
-              >
-                {showDetails ? "Show less" : "Show more"}
-              </ShowMoreButton>
+              <Box sx={{ mt: 2 }}>
+                <Button
+                  onClick={() => setShowDetails(!showDetails)}
+                  disableRipple
+                  sx={{
+                    minWidth: "unset",
+                    padding: 0,
+                    color: "primary.light",
+                    "&:hover": {
+                      background: "none",
+                      textDecoration: "underline",
+                    },
+                  }}
+                >
+                  {showDetails ? "Show less" : "Show more"}
+                </Button>
+              </Box>
 
               <Collapse in={showDetails} timeout="auto">
                 <Box sx={{ paddingTop: 2 }}>

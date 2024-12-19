@@ -51,14 +51,6 @@ function Footer() {
         >
           Avatar created by Cartoonize
         </StyledLink>
-        <Divider>|</Divider>
-        <StyledLink
-          href="https://github.com/VaidasTheDev/personal-website"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Portfolio Example
-        </StyledLink>
       </Typography>
     </FooterContainer>
   );

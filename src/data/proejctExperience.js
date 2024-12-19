@@ -16,7 +16,7 @@ const projectExperience = {
         `${process.env.PUBLIC_URL}/lyudao/04.png`,
       ],
       description:
-        "An Interactive Visualization System for Analyzing Public Opinions in Environmental Policy ",
+        "In collaboration with environmental experts from Taiwan, we developed a platform that visualizes insights from interviews with Green Island residents. The platform not only generates meaningful visualizations from interview transcripts but also provides an intuitive interface for non-technical experts to leverage ChatGPT for data analysis.",
       githubLink: "https://github.com/yingchengchen/Lyudao",
       listItems: [
         {
@@ -39,7 +39,7 @@ const projectExperience = {
         {
           main: (
             <>
-              Implemented an AI-driven <strong>Orthogonal Routing</strong>{" "}
+              Implemented an AI-driven <strong>Orthogonal Routing</strong>
               algorithm using A* search
             </>
           ),
@@ -47,9 +47,8 @@ const projectExperience = {
         {
           main: (
             <>
-              Collaborated with environmental scientists to engineer{" "}
-              <strong>ChatGPT API</strong> prompts analyzing interview
-              transcripts with <strong>NLP</strong>
+              Allowed modification of <strong>ChatGPT API</strong> prompts
+              through easy-to-use interface with tutorial
             </>
           ),
         },
@@ -65,7 +64,7 @@ const projectExperience = {
     {
       sectionType: "project",
       header:
-        "NOVA: A visual interface for assessing polarizing media coverage",
+        "NOVA: A Visual Interface for Assessing Polarizing Media Coverage",
       subheader: "VIDI Lab team project",
       meta: "July 2023 - March 2024",
       images: [
@@ -77,7 +76,7 @@ const projectExperience = {
         `${process.env.PUBLIC_URL}/nova/06.png`,
       ],
       description:
-        "A visual interface for assessing polarizing media coverage using AI-driven sentiment analysis.",
+        "Media news coverage can be polarizing, and NOVA aims to help users navigate through different perspectives. We developed a three-stage visual interface that allows users to explore news articles from different viewpoints, assess media bias, and compare news coverage across different outlets.",
       githubLink: "https://github.com/yingchengchen/Lyudao",
       publicationLink: "https://arxiv.org/abs/2403.00334",
       demoLink: "https://samlee-dedeboy.github.io/Nova/",
@@ -85,7 +84,7 @@ const projectExperience = {
         {
           main: (
             <>
-              Created a <strong>Vue-based</strong> three-stage visual interface
+              Created a Vue-based <strong>three-stage</strong> visual interface
               for media bias assessment
             </>
           ),
@@ -130,7 +129,7 @@ const projectExperience = {
         { label: "Vue.js", type: "primary" },
         { label: "Flask", type: "primary" },
         { label: "Publication Writing", type: "secondary" },
-        { label: "Corporate Communications", type: "secondary" },
+        { label: "Communications", type: "secondary" },
       ],
     },
     {
@@ -145,17 +144,9 @@ const projectExperience = {
         `${process.env.PUBLIC_URL}/resame/04.png`,
       ],
       description:
-        "A blockchain-based platform revolutionizing resume verification and sharing through decentralized technology.",
+        "Res-A-Me is a decentralized resume platform that leverages blockchain technology to provide a secure and immutable platform for users to store their resumes. The platform allows users to create, update, and share their resumes with potential employers, ensuring data integrity and privacy.",
       githubLink: "https://github.com/ResilientApp/Res-a-Me",
       listItems: [
-        {
-          main: (
-            <>
-              Developed a <strong>Blockchain-Based</strong> Decentralized Resume
-              Platform
-            </>
-          ),
-        },
         {
           main: (
             <>
@@ -196,23 +187,26 @@ const projectExperience = {
         `${process.env.PUBLIC_URL}/dssalary/02.png`,
       ],
       description:
-        "An interactive Drill-Down platform for analyze salary of data analyst from 2020 - 2023.",
+        "An interactive Drill-Down platform for analyze salary of data analyst from 2020 - 2023 from different country. We lead viewers to explore the salary distribution, job title composition, and relationship between salary and other factors (experience level and company size) of the selected country with interactive visulizations.",
       githubLink: "https://github.com/yingchengchen/Data-Analyst-Salary",
       listItems: [
         {
           main: (
             <>
-              Swichable scatter plot and box plot showing distribution of salary
-              in each country.
+              Dual-mode salary distribution visualization that switches between
+              scatter plots for granular data examination and box plots for
+              statistical analysis, enabling users to toggle between
+              comprehensive data overview and key statistical metrics (median,
+              quartiles, and outliers).
             </>
           ),
         },
         {
           main: (
             <>
-              Sankey diagram showing the relationship between salary and other
-              factors (experience level and company size) of the selected
-              country.
+              Color encoded Sankey diagram showing the composition of each
+              categorical factors and relationship between salary and others of
+              the selected country.
             </>
           ),
         },
@@ -234,7 +228,7 @@ const projectExperience = {
     },
     {
       sectionType: "project",
-      header: "School Shooting Events Storytelling platform",
+      header: "School Shooting Events Storytelling website",
       subheader: "Self Projects",
       meta: "September 2023 - Dec 2023",
       images: [
@@ -245,13 +239,13 @@ const projectExperience = {
         `${process.env.PUBLIC_URL}/schoolshooting/05.png`,
       ],
       description:
-        "Visualizes Columbine's influence on US school shootings using Vue.js, Vuetify, HTML, CSS, and JavaScript. Features a scrollable story-telling design with charts and web-scraped text snippets. Explores gun culture's impact on school violence through interactive data visualization and contextual information.",
+        "An interactive storytelling visualization that explores Columbine's lasting impact on U.S. school shootings. Through a scrollytelling design, users navigate through data visualizations , revealing patterns in subsequent school violence and examining the broader context of American gun culture.",
       githubLink: "https://github.com/yingchengchen/SchoolShootingEvents_US",
       listItems: [
         {
           main: (
             <>
-              Created a <strong>Vue.js</strong> platform for{" "}
+              Created a <strong>Vue.js</strong> platform for
               <strong>storytelling</strong> on school shooting events
             </>
           ),
@@ -267,8 +261,7 @@ const projectExperience = {
         {
           main: (
             <>
-              Designed <strong>interactive</strong> data visualizations to
-              explore gun culture's impact on school violence
+              Designed <strong>interactive</strong> data visualizations with analyzed data
             </>
           ),
         },

@@ -74,6 +74,7 @@ export const RadarGrid = ({
         <text
           x={labelPosition.x}
           y={startY}
+          fontWeight="600"
           fontSize={fontSize}
           fill={GRID_COLOR}
           textAnchor={labelPosition.x > 0 ? 'start' : 'end'}

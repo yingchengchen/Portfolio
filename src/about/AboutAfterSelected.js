@@ -9,6 +9,7 @@ import {
   StyledTyped,
   SCALE_MULTIPLIERS,
 } from "./AboutStyle";
+import { get } from "axios";
 
 const roleData = {
   engineer: {
@@ -203,22 +204,17 @@ const SelectedContainer = styled("div")(({ theme }) => ({
   display: "flex",
   width: "100%",
   height: "100%",
-  gap: `${SELECTED_BASE.containerGap}rem`,
   transition: "all 0.5s ease",
 
   [theme.breakpoints.down("lg")]: {
-    gap: `${SELECTED_BASE.containerGap * SCALE_MULTIPLIERS.lg}rem`,
   },
   [theme.breakpoints.down("md")]: {
-    gap: `${SELECTED_BASE.containerGap * SCALE_MULTIPLIERS.md}rem`,
     flexDirection: "column",
   },
   [theme.breakpoints.down("sm")]: {
-    gap: `${SELECTED_BASE.containerGap * SCALE_MULTIPLIERS.sm}rem`,
     flexDirection: "column",
   },
   [theme.breakpoints.down("xs")]: {
-    gap: `${SELECTED_BASE.containerGap * SCALE_MULTIPLIERS.xs}rem`,
     flexDirection: "column",
   },
 }));
@@ -278,7 +274,7 @@ const BackButton = styled("button")(({ theme }) => ({
       SELECTED_BASE.backButtonSize.fontSize * SCALE_MULTIPLIERS.md
     }rem`,
     padding: `${
-      SELECTED_BASE.backButtonSize.padding *SCALE_MULTIPLIERS.md
+      SELECTED_BASE.backButtonSize.padding * SCALE_MULTIPLIERS.md
     }rem`,
     gap: `${SELECTED_BASE.backButtonSize.gap * SCALE_MULTIPLIERS.md}rem`,
   },
@@ -310,7 +306,7 @@ const LeftSection = styled("div")(({ theme }) => ({
 }));
 
 const RightSection = styled("div")(({ theme }) => ({
-  flex: "2",
+  flex: "1",
   display: "flex",
   flexDirection: "column",
   height: "100%",
@@ -321,18 +317,20 @@ const RightSection = styled("div")(({ theme }) => ({
 const ContentGroup = styled("div")(({ theme }) => ({
   display: "flex",
   flexDirection: "column",
-  width: "100%",
   height: `${SELECTED_BASE.contentGroup.height}rem`,
+  padding: `${SELECTED_BASE.padding}rem`,
   gap: `${SELECTED_BASE.contentGroup.gap}rem`,
   justifyContent: "center",
   alignItems: "center",
 
   [theme.breakpoints.down("lg")]: {
     height: `${SELECTED_BASE.contentGroup.height * SCALE_MULTIPLIERS.lg}rem`,
+    padding: `${SELECTED_BASE.padding * SCALE_MULTIPLIERS.lg}rem`,
     gap: `${SELECTED_BASE.contentGroup.gap * SCALE_MULTIPLIERS.lg}rem`,
   },
   [theme.breakpoints.down("md")]: {
-    height: `${SELECTED_BASE.contentGroup.height * SCALE_MULTIPLIERS.md}rem`,
+    height: `${SELECTED_BASE.contentGroup.height *0.7* SCALE_MULTIPLIERS.md}rem`,
+    padding: `${SELECTED_BASE.padding * SCALE_MULTIPLIERS.md}rem`,
     gap: `${SELECTED_BASE.contentGroup.gap * SCALE_MULTIPLIERS.md}rem`,
   },
   [theme.breakpoints.down("sm")]: {
@@ -345,75 +343,44 @@ const ContentGroup = styled("div")(({ theme }) => ({
   },
 }));
 
-const UnselectedCards = styled("div")(({ theme }) => ({
-  height: `calc((${SELECTED_BASE.contentGroup.height}rem - ${SELECTED_BASE.contentGroup.gap}rem) / 2)`,
+const UnselectedCardsWrapper = styled("div")({
   display: "flex",
-  gap: `${SELECTED_BASE.unselectedCard.gap}rem`,
-  justifyContent: "center",
   alignItems: "center",
+  justifyContent: "center",
+  flexDirection: "column",
+  gap: `${SELECTED_BASE.unselectedCard.gap}rem`,
+  // flex: 1,
   width: "100%",
+});
 
-  [theme.breakpoints.down("lg")]: {
-    height: `calc((${
-      SELECTED_BASE.contentGroup.height * 2*SCALE_MULTIPLIERS.lg
-    }rem - ${SELECTED_BASE.contentGroup.gap * SCALE_MULTIPLIERS.lg}rem) / 2)`,
-    gap: `${SELECTED_BASE.unselectedCard.gap * SCALE_MULTIPLIERS.lg}rem`,
-  },
-  [theme.breakpoints.down("md")]: {
-    height: `calc((${
-      SELECTED_BASE.contentGroup.height * SCALE_MULTIPLIERS.md
-    }rem - ${SELECTED_BASE.contentGroup.gap * SCALE_MULTIPLIERS.md}rem) / 2)`,
-    gap: `${SELECTED_BASE.unselectedCard.gap * SCALE_MULTIPLIERS.md}rem`,
-  },
-  [theme.breakpoints.down("sm")]: {
-    height: `calc((${
-      SELECTED_BASE.contentGroup.height * SCALE_MULTIPLIERS.sm
-    }rem - ${SELECTED_BASE.contentGroup.gap * SCALE_MULTIPLIERS.sm}rem) / 2)`,
-    gap: `${SELECTED_BASE.unselectedCard.gap * SCALE_MULTIPLIERS.sm}rem`,
-  },
-  [theme.breakpoints.down("xs")]: {
-    height: `calc((${
-      SELECTED_BASE.contentGroup.height * SCALE_MULTIPLIERS.xs
-    }rem - ${SELECTED_BASE.contentGroup.gap * SCALE_MULTIPLIERS.xs}rem) / 2)`,
-    gap: `${SELECTED_BASE.unselectedCard.gap * SCALE_MULTIPLIERS.xs}rem`,
-  },
+const UnselectedCards = styled("div")(({ theme }) => ({
+  display: "flex",
+  flex: 1,
+
 }));
-
 const ContentSection = styled("div")(({ theme }) => ({
-  height: `calc((${SELECTED_BASE.contentGroup.height}rem - ${SELECTED_BASE.contentGroup.gap}rem) / 2)`,
   display: "flex",
   alignItems: "center",
   justifyContent: "center",
   flexDirection: "row",
   gap: `${SELECTED_BASE.gap}rem`,
   width: "100%",
+  flex: 1,
 
   [theme.breakpoints.down("lg")]: {
-    height: `calc((${
-      SELECTED_BASE.contentGroup.height * SCALE_MULTIPLIERS.lg
-    }rem - ${SELECTED_BASE.contentGroup.gap * SCALE_MULTIPLIERS.lg}rem) / 2)`,
     gap: `${SELECTED_BASE.gap * SCALE_MULTIPLIERS.lg}rem`,
   },
   [theme.breakpoints.down("md")]: {
-    height: `calc((${
-      SELECTED_BASE.contentGroup.height * SCALE_MULTIPLIERS.md
-    }rem - ${SELECTED_BASE.contentGroup.gap * SCALE_MULTIPLIERS.md}rem) / 2)`,
+    flex: 4,
     gap: `${SELECTED_BASE.gap * SCALE_MULTIPLIERS.md}rem`,
   },
   [theme.breakpoints.down("sm")]: {
-    height: `calc((${
-      SELECTED_BASE.contentGroup.height * SCALE_MULTIPLIERS.sm
-    }rem - ${SELECTED_BASE.contentGroup.gap * SCALE_MULTIPLIERS.sm}rem)*2 / 3)`,
     gap: `${SELECTED_BASE.gap * SCALE_MULTIPLIERS.sm}rem`,
   },
   [theme.breakpoints.down("xs")]: {
-    height:`calc((${
-      SELECTED_BASE.contentGroup.height * SCALE_MULTIPLIERS.xs
-    }rem - ${SELECTED_BASE.contentGroup.gap * SCALE_MULTIPLIERS.xs}rem)*2 / 3)`,
     gap: `${SELECTED_BASE.gap * SCALE_MULTIPLIERS.xs}rem`,
   },
 }));
-
 const SelectedCard = styled("div")(({ theme, cardType }) => ({
   width: `${SELECTED_BASE.selectedCard.width}rem`,
   height: `${SELECTED_BASE.selectedCard.height}rem`,
@@ -438,26 +405,26 @@ const SelectedCard = styled("div")(({ theme, cardType }) => ({
   },
   "& > span.title": {
     fontFamily: "God",
-    fontSize: "1em", 
-    
+    fontSize: "1em",
+
     [theme.breakpoints.down("lg")]: {
       fontSize: `${
-      SELECTED_BASE.selectedCard.fontSize*0.8 * SCALE_MULTIPLIERS.lg
-    }rem`,
+        SELECTED_BASE.selectedCard.fontSize * 0.8 * SCALE_MULTIPLIERS.lg
+      }rem`,
     },
     [theme.breakpoints.down("md")]: {
       fontSize: `${
-        SELECTED_BASE.selectedCard.fontSize* 0.8 * SCALE_MULTIPLIERS.md
+        SELECTED_BASE.selectedCard.fontSize * 0.8 * SCALE_MULTIPLIERS.md
       }rem`,
     },
     [theme.breakpoints.down("sm")]: {
       fontSize: `${
-        SELECTED_BASE.selectedCard.fontSize* 0.8 * SCALE_MULTIPLIERS.sm
+        SELECTED_BASE.selectedCard.fontSize * 0.8 * SCALE_MULTIPLIERS.sm
       }rem`,
     },
     [theme.breakpoints.down("xs")]: {
       fontSize: `${
-        SELECTED_BASE.selectedCard.fontSize* 0.8 * SCALE_MULTIPLIERS.xs
+        SELECTED_BASE.selectedCard.fontSize * 0.8 * SCALE_MULTIPLIERS.xs
       }rem`,
     },
   },
@@ -478,7 +445,9 @@ const SelectedCard = styled("div")(({ theme, cardType }) => ({
   },
   [theme.breakpoints.down("sm")]: {
     width: `${SELECTED_BASE.selectedCard.width * SCALE_MULTIPLIERS.sm}rem`,
-    height: `${SELECTED_BASE.selectedCard.height *1.2* SCALE_MULTIPLIERS.sm}rem`,
+    height: `${
+      SELECTED_BASE.selectedCard.height * 1.2 * SCALE_MULTIPLIERS.sm
+    }rem`,
     fontSize: `${
       SELECTED_BASE.selectedCard.fontSize * SCALE_MULTIPLIERS.sm
     }rem`,
@@ -526,107 +495,84 @@ const SkillItem = styled("div")(({ visible }) => ({
   transition: "all 0.5s ease",
 }));
 
-// New Unselected Card Component
 const UnselectedCard = styled("div")(({ theme, cardType }) => ({
-  width: `${SELECTED_BASE.unselectedCard.width}rem`,
-  height: `${SELECTED_BASE.unselectedCard.height}rem`,
-  backgroundColor: CARD_COLORS[cardType],
-  borderRadius: theme.shape.borderRadius,
-  border: "0.156rem solid #697478",
-  padding: `${SELECTED_BASE.unselectedCard.padding}rem`,
-  boxShadow: "0 0.625rem 1.25rem rgba(0,0,0,0.1)",
-  cursor: "pointer",
-  color: "#697478",
-  fontWeight: 500,
-  fontSize: `${SELECTED_BASE.unselectedCard.fontSize}rem`,
   display: "flex",
   flexDirection: "column",
-  transition: "all 0.5s ease",
-  position: "relative",
+  gap: theme.spacing(1.5),
+  cursor: "pointer",
+  transition: "transform 0.3s ease",
+  width: `${SELECTED_BASE.selectedCard.width*0.8}rem`,
 
-  "& > span.title": {
-    // Add specific class for title
-    width: "70%",
-    wordWrap: "break-word",
-    wordBreak: "break-word",
-    hyphens: "auto",
-    overflow: "hidden",
-    display: "block",
-    boxSizing: "border-box",
+  "& .title": {
+    padding: theme.spacing(0.8, 1.2),
+    fontWeight: 600,
+    fontSize: "0.8rem",
+    borderRadius: theme.spacing(1),
+    backgroundColor: CARD_COLORS[cardType],
+    color: "#697478",
+    textAlign: "center",
+    minWidth: "120px",
   },
 
-  "& > span.click-text": {
-    // New style for click text
-    position: "absolute",
-    bottom: "1rem",
-    left: "50%",
-    transform: "translateX(-50%)", // Center horizontally
-    fontSize: "0.7em", // Smaller than the title
+  "& .click-text": {
+    fontSize: "0.7rem",
+    fontWeight: 500,
+    textAlign: "center",
+    color: "#697478",
     fontStyle: "italic",
     opacity: 0.8,
-    letterSpacing: "0.05em",
   },
 
   "&:hover": {
-    transform: "scale(1.05)",
-    boxShadow: "0 0.625rem 1.25rem rgba(0,0,0,0.2)",
+    transform: "translateY(-2px)",
 
-    "& > span.click-text": {
-      opacity: 1, // Make more visible on hover
+    "& .click-text": {
+      opacity: 1,
     },
   },
 
+  // Responsive styles
   [theme.breakpoints.down("lg")]: {
-    width: `${SELECTED_BASE.unselectedCard.width * SCALE_MULTIPLIERS.lg}rem`,
-    height: `${SELECTED_BASE.unselectedCard.height * SCALE_MULTIPLIERS.lg}rem`,
-    fontSize: `${
-      SELECTED_BASE.unselectedCard.fontSize * SCALE_MULTIPLIERS.lg
-    }rem`,
-    padding: `${
-      SELECTED_BASE.unselectedCard.padding * SCALE_MULTIPLIERS.lg
-    }rem`,
-    "& > span.click-text": {
-      fontSize: "0.7em",
+    width: `${SELECTED_BASE.selectedCard.width*0.8 * SCALE_MULTIPLIERS.lg}rem`,
+    "& .title": {
+      fontSize: "0.75rem",
+      padding: theme.spacing(0.7, 1.1),
+    },
+    "& .click-text": {
+      fontSize: "0.65rem",
     },
   },
   [theme.breakpoints.down("md")]: {
-    width: `${SELECTED_BASE.unselectedCard.width * SCALE_MULTIPLIERS.md}rem`,
-    height: `${SELECTED_BASE.unselectedCard.height * SCALE_MULTIPLIERS.md}rem`,
-    fontSize: `${
-      SELECTED_BASE.unselectedCard.fontSize * SCALE_MULTIPLIERS.md
-    }rem`,
-    padding: `${
-      SELECTED_BASE.unselectedCard.padding * SCALE_MULTIPLIERS.md
-    }rem`,
-    "& > span.click-text": {
-      fontSize: "0.7em",
-
+    width: `${SELECTED_BASE.selectedCard.width*0.8 * SCALE_MULTIPLIERS.md}rem`,
+    "& .title": {
+      fontSize: "0.7rem",
+      padding: theme.spacing(0.6, 1),
+      minWidth: "100px",
+    },
+    "& .click-text": {
+      fontSize: "0.6rem",
     },
   },
   [theme.breakpoints.down("sm")]: {
-    width: `${SELECTED_BASE.unselectedCard.width *1.2* SCALE_MULTIPLIERS.sm}rem`,
-    height: `${SELECTED_BASE.unselectedCard.height *1.2* SCALE_MULTIPLIERS.sm}rem`,
-    fontSize: `${
-      SELECTED_BASE.unselectedCard.fontSize * SCALE_MULTIPLIERS.sm
-    }rem`,
-    padding: `${
-      SELECTED_BASE.unselectedCard.padding * SCALE_MULTIPLIERS.sm
-    }rem`,
-    "& > span.click-text": {
-      fontSize: "0.7em",
+    width: `${SELECTED_BASE.selectedCard.width * SCALE_MULTIPLIERS.sm}rem`,
+    "& .title": {
+      fontSize: "0.65rem",
+      padding: theme.spacing(0.5, 0.9),
+      minWidth: "90px",
+    },
+    "& .click-text": {
+      fontSize: "0.55rem",
     },
   },
-  [theme.breakpoints.down("xs")]: {
-    width: `${SELECTED_BASE.unselectedCard.width * SCALE_MULTIPLIERS.xs}rem`,
-    height: `${SELECTED_BASE.unselectedCard.height * SCALE_MULTIPLIERS.xs}rem`,
-    fontSize: `${
-      SELECTED_BASE.unselectedCard.fontSize * SCALE_MULTIPLIERS.xs
-    }rem`,
-    padding: `${
-      SELECTED_BASE.unselectedCard.padding * SCALE_MULTIPLIERS.xs
-    }rem`,
-    "& > span.click-text": {
-      fontSize: "0.7em",
+  "@media (max-width: 480px)": {
+    width: `${SELECTED_BASE.selectedCard.width * SCALE_MULTIPLIERS.xs}rem`,
+    "& .title": {
+      fontSize: "0.6rem",
+      padding: theme.spacing(0.4, 0.8),
+      minWidth: "80px",
+    },
+    "& .click-text": {
+      fontSize: "0.5rem",
     },
   },
 }));
@@ -714,16 +660,20 @@ const AboutAfterSelected = ({
       <RightSection>
         <ContentGroup>
           <UnselectedCards>
-            {getUnselectedRoles().map((role) => (
-              <UnselectedCard
-                key={role.type}
-                cardType={role.type}
-                onClick={() => onCardClick(role.type)}
-              >
-                <span className="title">{role.title}</span>
-                <span className="click-text">(click to view)</span>
-              </UnselectedCard>
-            ))}
+            <UnselectedCardsWrapper>
+              {getUnselectedRoles().map((role) => (
+                <UnselectedCard
+                  key={role.type}
+                  cardType={role.type}
+                  onClick={() => onCardClick(role.type)}
+                >
+                  <span className="title">
+                    {role.title}{" "}
+                    <span className="click-text">(click to view)</span>
+                  </span>
+                </UnselectedCard>
+              ))}
+            </UnselectedCardsWrapper>
           </UnselectedCards>
 
           <ContentSection>
