@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/Portfolio/static/css/main.d11d2878.css",
-    "main.js": "/Portfolio/static/js/main.62db5aa7.js",
+    "main.css": "/Portfolio/static/css/main.6d9dd5c4.css",
+    "main.js": "/Portfolio/static/js/main.60fc8b2b.js",
     "static/js/488.885f458f.chunk.js": "/Portfolio/static/js/488.885f458f.chunk.js",
     "static/media/myAvatar.png": "/Portfolio/static/media/myAvatar.b1676616f7b1c84c1429.png",
     "static/media/AnkhSanctuary-PVK0B.ttf": "/Portfolio/static/media/AnkhSanctuary-PVK0B.14b8d3aaa658b8f9ff7a.ttf",
@@ -14,12 +14,12 @@
     "static/media/Godshomedemo-K794e.ttf": "/Portfolio/static/media/Godshomedemo-K794e.e178d416f7bd1ade54e7.ttf",
     "static/media/HollowCartoonlings-45Jp.ttf": "/Portfolio/static/media/HollowCartoonlings-45Jp.45697d3e7e10dcae9691.ttf",
     "index.html": "/Portfolio/index.html",
-    "main.d11d2878.css.map": "/Portfolio/static/css/main.d11d2878.css.map",
-    "main.62db5aa7.js.map": "/Portfolio/static/js/main.62db5aa7.js.map",
+    "main.6d9dd5c4.css.map": "/Portfolio/static/css/main.6d9dd5c4.css.map",
+    "main.60fc8b2b.js.map": "/Portfolio/static/js/main.60fc8b2b.js.map",
     "488.885f458f.chunk.js.map": "/Portfolio/static/js/488.885f458f.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.d11d2878.css",
-    "static/js/main.62db5aa7.js"
+    "static/css/main.6d9dd5c4.css",
+    "static/js/main.60fc8b2b.js"
   ]
 }
