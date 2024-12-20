@@ -6,7 +6,6 @@ export const ProjectsWrapper = styled('div')({
   display: 'flex',
   alignItems: 'center',
   justifyContent: 'center',
-  padding: '2rem 0',
 });
 
 export const ProjectRoot = styled('div')(({ theme }) => ({

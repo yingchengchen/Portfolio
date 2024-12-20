@@ -1,6 +1,6 @@
 // EducationAndCareer.js
 import React, { useState, useEffect } from "react";
-import { Box, Popover } from "@mui/material";
+import { Popover } from "@mui/material";
 import DateIcon from "@mui/icons-material/DateRange";
 import SchoolIcon from "@mui/icons-material/School";
 import WorkIcon from "@mui/icons-material/Work";
@@ -143,6 +143,7 @@ const EducationAndCareer = ({ id, activeSection }) => {
   const [showIntro, setShowIntro] = useState(false);
   const [hasBeenClosed, setHasBeenClosed] = useState(false);
   const [showHopping, setShowHopping] = useState(false);
+  
   const toggleScroll = (disable) => {
     if (disable) {
       document.body.style.overflow = "hidden";
@@ -164,7 +165,7 @@ const EducationAndCareer = ({ id, activeSection }) => {
             toggleScroll(true);
           }
         },
-        { threshold: 0.3 }
+        { threshold: 0.1 }
       );
   
       const section = document.getElementById(id);

@@ -1,7 +1,6 @@
 :root {
-  --banner-height: 350px;
   --navbar-height: 64px;
-  --mobile-navbar-height: 56px;
+  --mobile-navbar-height: 64px;
   --scroll-padding: 64px;
 }
 

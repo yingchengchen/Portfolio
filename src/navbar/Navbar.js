@@ -1,7 +1,7 @@
 // NavigationBar.js
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-import { useTheme, useMediaQuery, MenuItem } from '@mui/material';
+import {  MenuItem } from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
 import LinkedInIcon from '@mui/icons-material/LinkedIn';
 import GitHubIcon from '@mui/icons-material/GitHub';
@@ -18,7 +18,6 @@ import {
 } from './NavbarStyle';
 
 const NavigationBar = ({ sections, onNavClick, activeSection = null }) => {
-  const theme = useTheme();
   const [anchorEl, setAnchorEl] = useState(null);
 
   const handleMenuClick = (event) => {

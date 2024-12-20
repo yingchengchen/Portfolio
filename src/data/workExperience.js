@@ -1,6 +1,3 @@
-import OpenInNewIcon from '@mui/icons-material/OpenInNew';
-import { sort } from 'd3';
-import React from 'react';
 const wotkExperience = {
   header: "Work Experience",
   type: "work",

@@ -36,7 +36,8 @@ const Projects = ({ id, activeSection }) => {
           toggleScroll(true);
         }
       },
-      { threshold: 0.3 }
+      { threshold: 0.1 }
+      
     );
 
     const section = document.getElementById(id);

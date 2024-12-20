@@ -3,22 +3,6 @@ import { styled } from '@mui/material/styles';
 import { ReactTyped } from "react-typed";
 import { IconButton } from '@mui/material';
 import CloseIcon from '@mui/icons-material/Close';
-import { max } from 'd3';
-
-const BASE = {
-  spacing: {
-    lg: 0.95,
-    md: 0.85,
-    sm: 0.75,
-    xs: 0.65
-  },
-  fontSize: {
-    lg: 0.9,
-    md: 0.85,
-    sm: 0.8,
-    xs: 0.75
-  }
-};
 
 
 const ModalOverlay = styled('div')(({ theme }) => ({

@@ -2,7 +2,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import { useTheme } from '@mui/material/styles';
 import useMediaQuery from '@mui/material/useMediaQuery';
-import { Typography } from "@mui/material";
 import { ReactTyped } from "react-typed";
 import {
   SkillsRoot,

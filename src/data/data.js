@@ -1,6 +1,3 @@
-// Personal account details i.e. GitHub username for now
-import React from 'react';
-// Body
 import education from './education';
 import workExperience from './workExperience';
 import projectExperience from './proejctExperience';

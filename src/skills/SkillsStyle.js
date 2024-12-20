@@ -1,6 +1,6 @@
 // SkillsStyle.js
 import { styled } from "@mui/material/styles";
-import { Typography, Avatar, Grid } from "@mui/material";
+import { Avatar, Grid } from "@mui/material";
 
 const BASE = {
   spacing: {
