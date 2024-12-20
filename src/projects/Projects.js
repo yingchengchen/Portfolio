@@ -17,59 +17,59 @@ const Projects = ({ id, activeSection }) => {
 
   const introText =
     "Now, let's explore my projects and journey through my achievements. I look forward to connecting with you and sharing my story.";
-  // const toggleScroll = (disable) => {
-  //   if (disable) {
-  //     document.body.style.overflow = "hidden";
-  //   } else {
-  //     document.body.style.overflow = "auto";
-  //   }
-  // };
-  // useEffect(() => {
-  //   const observer = new IntersectionObserver(
-  //     ([entry]) => {
-  //       if (
-  //         entry.isIntersecting &&
-  //         !hasBeenClosed &&
-  //         activeSection === "Projects"
-  //       ) {
-  //         setShowIntro(true);
-  //         toggleScroll(true);
-  //       }
-  //     },
-  //     { threshold: 0.3 }
-  //   );
+    const toggleScroll = (disable) => {
+    if (disable) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "auto";
+    }
+  };
+    useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (
+          entry.isIntersecting &&
+          activeSection === "Projects" &&
+          !hasBeenClosed
+        ) {
+          setShowIntro(true);
+          toggleScroll(true);
+        }
+      },
+      { threshold: 0.3 }
+    );
 
-  //   const section = document.getElementById(id);
-  //   if (section) {
-  //     observer.observe(section);
-  //   }
+    const section = document.getElementById(id);
+    if (section) {
+      observer.observe(section);
+    }
 
-  //   return () => {
-  //     if (section) {
-  //       observer.unobserve(section);
-  //     }
-  //     toggleScroll(false);
-  //   };
-  // }, [id, hasBeenClosed, activeSection]);
+    return () => {
+      if (section) {
+        observer.unobserve(section);
+      }
+      toggleScroll(false);
+    };
+  }, [id, hasBeenClosed, activeSection]);
 
-  // const handleModalClose = () => {
-  //   setShowIntro(false);
-  //   setHasBeenClosed(true);
-  //   toggleScroll(false);
-  // };
+  const handleModalClose = () => {
+    setShowIntro(false);
+    setHasBeenClosed(true);
+    toggleScroll(false);
+  };
 
   const projectData = data.body.projectExperience;
 
   return (
     <ProjectsWrapper id={id}>
       <ProjectRoot>
-        {/* <IntroModal
+        <IntroModal
           isVisible={showIntro}
           onClose={handleModalClose}
           introText={introText}
           sectionId={id}
           avatarImage={AvatarImage}
-        /> */}
+        />
         <HeaderTitle>{projectData.header}</HeaderTitle>
         <ProjectContent>
           <Grid container spacing={2} columns={12}>

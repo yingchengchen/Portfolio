@@ -28,7 +28,7 @@ const About = ({ id }) => {
     { type: "developer", title: "UI/UX and Frontend Web Developer" },
   ];
 
-  const introText = `Hi, I'm Ying-Cheng (Jessica) Chen, welcome to my portfolio! These are the chapter of the different roles which shape my journey at the intersection of <span style="background-color: #FFEB3B">Data</span> and <span style="background-color: #FFEB3B">Design</span>.`;
+  const introText = `Hi, I'm Ying-Cheng (Jessica) Chen, welcome to my portfolio! These are the chapter of the different roles which shape my journey at the intersection of <span style="background-color: #FFEB3B">Data</span> and <span style="background-color: #FFEB3B">Design</span> - click on each card to learn more!`;
 
   const roleDescriptions = {
     engineer: `My journey into data visualization began during my undergraduate years in Taiwan, sparked by a simple curiosity about <span style="background-color: #FFEB3B">how data could tell compelling stories</span>.`,

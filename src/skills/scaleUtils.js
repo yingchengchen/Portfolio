@@ -21,13 +21,13 @@ export const DIMENSIONS = {
       dotRadius: 3,
     },
     sm: {
-      width: 360,
-      height: 360,
-      margin: 80,
-      innerRadius: 32,
+      width: 380,
+      height: 380,
+      margin: 85,
+      innerRadius: 30,
       labelPadding: 25,
-      textWidth: 80,
-      fontSize: 11,
+      textWidth: 70,
+      fontSize: 10,
       dotRadius: 3,
     },
     xs: {
@@ -35,7 +35,7 @@ export const DIMENSIONS = {
       height: 320, // Smaller height for mobile
       margin: 70,  // Reduced margin
       innerRadius: 28,
-      labelPadding: 15,
+      labelPadding: 20,
       textWidth: 60,
       fontSize: 8,
       dotRadius: 2,

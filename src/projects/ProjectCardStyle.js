@@ -1,5 +1,5 @@
 import { styled } from "@mui/material/styles";
-import { Card, IconButton, Dialog, Button, Chip, Fab } from "@mui/material";
+import { Card, Dialog, Chip, Fab } from "@mui/material";
 
 const MOBILE_BREAKPOINT = "@media (max-width: 480px)";
 
@@ -13,10 +13,11 @@ export const ThumbnailCard = styled(Card)(({ theme }) => ({
   overflow: "hidden",
   boxShadow: "0 4px 12px rgba(0, 0, 0, 0.05)",
   transition: "transform 0.2s ease, box-shadow 0.2s ease",
-
-  "&:hover": {
-    transform: "translateY(-4px)",
-    boxShadow: "0 8px 24px rgba(0, 0, 0, 0.1)",
+  "@media (hover: hover)": {
+    "&:hover": {
+      transform: "translateY(-4px)",
+      boxShadow: "0 8px 24px rgba(0, 0, 0, 0.1)",
+    },
   },
 
   [theme.breakpoints.down("md")]: {
@@ -172,18 +173,20 @@ export const ProjectLink = styled("a")(({ theme }) => ({
     fontSize: "0.75rem",
     padding: theme.spacing(0.5, 0.75),
   },
-  "&:hover": {
-    backgroundColor: theme.palette.primary.main,
-    color: theme.palette.common.white,
-    transform: "translateY(-2px)",
-    boxShadow: "0 6px 12px rgba(0, 0, 0, 0.15)",
+  "@media (hover: hover)": {
+    "&:hover": {
+      backgroundColor: theme.palette.primary.main,
+      color: theme.palette.common.white,
+      transform: "translateY(-2px)",
+      boxShadow: "0 6px 12px rgba(0, 0, 0, 0.15)",
+    },
+    "&:hover .MuiSvgIcon-root": {
+      transform: "scale(1.1)",
+    },
   },
   "& .MuiSvgIcon-root": {
     fontSize: "1.2rem",
     transition: "transform 0.3s ease",
-  },
-  "&:hover .MuiSvgIcon-root": {
-    transform: "scale(1.1)",
   },
 }));
 

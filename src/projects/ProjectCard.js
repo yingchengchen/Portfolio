@@ -102,8 +102,10 @@ const ProjectCard = (props) => {
               sx={{
                 bgcolor: "#f5f5f5",
                 color: "#757575",
-                "&:hover": {
-                  bgcolor: "#e0e0e0",
+                "@media (hover: hover)": {
+                  "&:hover": {
+                    bgcolor: "#e0e0e0",
+                  },
                 },
                 boxShadow: "0 4px 8px rgba(0, 0, 0, 0.1)",
               }}
@@ -166,19 +168,6 @@ const ProjectCard = (props) => {
                   >
                     {props.header}
                   </Typography>
-                  <Box
-                    sx={{
-                      display: "flex",
-                      alignItems: "center",
-                      gap: 0.5,
-                      color: "text.secondary",
-                    }}
-                  >
-                    <DateIcon sx={{ fontSize: "1.0rem" }} />
-                    <Typography sx={{ fontSize: "0.9rem" }}>
-                      {props.meta}
-                    </Typography>
-                  </Box>
                 </Box>
 
                 <Box sx={{ display: "flex", gap: 1.5, flexWrap: "wrap" }}>
@@ -217,7 +206,10 @@ const ProjectCard = (props) => {
 
               <Divider sx={{ my: 2 }} />
 
-              <Typography variant="body2" sx={{ color: "text.secondary" }}>
+              <Typography
+                variant="body2"
+                sx={{ color: "text.secondary", textAlign: "justify" }}
+              >
                 {props.description}
               </Typography>
 
@@ -228,10 +220,12 @@ const ProjectCard = (props) => {
                   sx={{
                     minWidth: "unset",
                     padding: 0,
-                    color: "primary.light",
-                    "&:hover": {
-                      background: "none",
-                      textDecoration: "underline",
+                    color: "primary.main",
+                    "@media (hover: hover)": {
+                      "&:hover": {
+                        background: "none",
+                        textDecoration: "underline",
+                      },
                     },
                   }}
                 >
@@ -245,17 +239,6 @@ const ProjectCard = (props) => {
                     {props.listItems?.map((item, index) => (
                       <li key={index}>
                         <Typography component="div">{item.main}</Typography>
-                        {item.subItems && (
-                          <BulletList isSubList>
-                            {item.subItems.map((subItem, subIndex) => (
-                              <li key={subIndex}>
-                                <Typography variant="body2">
-                                  {subItem}
-                                </Typography>
-                              </li>
-                            ))}
-                          </BulletList>
-                        )}
                       </li>
                     ))}
                   </BulletList>

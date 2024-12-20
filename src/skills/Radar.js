@@ -15,7 +15,10 @@ export const Radar = ({
   fontSize,
   dotRadius,
   data, 
-  axisConfig 
+  axisConfig ,
+  skillsData,
+  onSkillSelect,
+  selectedSkill  
 }) => {
   const theme = useTheme();
   const isSm = useMediaQuery(theme.breakpoints.down('sm'));
@@ -76,6 +79,10 @@ export const Radar = ({
           xScale={xScale}
           axisConfig={axisConfig}
           isMobile={isMobile}
+          skillsData={skillsData}
+          onSkillSelect={onSkillSelect}
+          selectedSkill={selectedSkill} 
+          data={data}
         />
         <path
           d={linePath}

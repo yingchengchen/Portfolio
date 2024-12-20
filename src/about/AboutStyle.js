@@ -1,7 +1,6 @@
 // AboutStyle.js
 import { styled } from "@mui/material/styles";
 import { Avatar } from "@mui/material";
-import { max } from "d3";
 
 // Base dimensions for layout
 const BASE_ROOT = {
@@ -243,8 +242,7 @@ export const IntroContainer = styled("div")(({ theme }) => ({
   [theme.breakpoints.down("lg")]: {
     maxWidth: `${CONTENT_BASE.introMaxWidth * SCALE_MULTIPLIERS.lg}rem`,
   },
-  [theme.breakpoints.down("md")]: {
-  },
+  [theme.breakpoints.down("md")]: {},
   [theme.breakpoints.down("sm")]: {
     maxWidth: `${CONTENT_BASE.introMaxWidth * SCALE_MULTIPLIERS.sm}rem`,
   },
@@ -357,7 +355,7 @@ export const RoleCard = styled("div")(
       ...baseStyles,
 
       "& > span": {
-        width: "60%",
+        width: "70%",
         wordWrap: "break-word",
         wordBreak: "break-word",
         hyphens: "auto",
@@ -365,10 +363,11 @@ export const RoleCard = styled("div")(
         display: "block",
         boxSizing: "border-box",
       },
-
-      "&:hover": {
-        transform: "translateX(0.625rem) scale(1.05)",
-        boxShadow: "0 0.625rem 1.25rem rgba(0,0,0,0.1)",
+      "@media (hover: hover)": {
+        "&:hover": {
+          transform: "translateX(0.625rem) scale(1.05)",
+          boxShadow: "0 0.625rem 1.25rem rgba(0,0,0,0.1)",
+        },
       },
 
       [theme.breakpoints.down("lg")]: {

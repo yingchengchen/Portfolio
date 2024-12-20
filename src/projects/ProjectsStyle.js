@@ -55,20 +55,23 @@ export const ProjectContent = styled('div')(({ theme }) => ({
 
 export const HeaderTitle = styled('h3')(({ theme }) => ({
   color: 'var(--accent1-color)',
-  margin: `0 0 ${theme.spacing(4)} 0`,
-  fontSize: '2rem',
+  margin: 0,
+  padding: theme.spacing(2),
+  fontSize: "1.6rem",
   fontFamily: 'Techno',
   fontWeight: 600,
   textTransform: 'uppercase',
   letterSpacing: '0.05em',
+  lineHeight: 1.2,
   alignSelf: 'flex-start',
   
+  [theme.breakpoints.down('lg')]: {
+    fontSize: '1.6rem',
+  },
   [theme.breakpoints.down('md')]: {
-    fontSize: '1.75rem',
-    marginBottom: theme.spacing(3),
+    fontSize: '1.2rem',
   },
   [theme.breakpoints.down('sm')]: {
-    fontSize: '1.5rem',
-    marginBottom: theme.spacing(2),
+    fontSize: '1rem',
   }
 }));

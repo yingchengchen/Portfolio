@@ -2,7 +2,7 @@ import React from "react";
 import { styled } from "@mui/material/styles";
 import { Link as MuiLink, Typography } from "@mui/material";
 
-const FooterContainer = styled('footer')(({ theme }) => ({
+const FooterContainer = styled("footer")(({ theme }) => ({
   textAlign: "center",
   padding: theme.spacing(2.5),
   marginTop: theme.spacing(5),
@@ -11,20 +11,24 @@ const FooterContainer = styled('footer')(({ theme }) => ({
     color: theme.palette.text.secondary,
     textDecoration: "none",
     margin: theme.spacing(0, 0.5),
-    "&:hover": {
-      textDecoration: "underline",
+    "@media (hover: hover)": {
+      "&:hover": {
+        textDecoration: "underline",
+      },
     },
   },
 }));
 
-const Divider = styled('span')(({ theme }) => ({
+const Divider = styled("span")(({ theme }) => ({
   margin: theme.spacing(0, 1),
   color: theme.palette.text.disabled,
 }));
 
 const StyledLink = styled(MuiLink)({
-  '&:hover': {
-    textDecoration: 'underline',
+  "@media (hover: hover)": {
+    "&:hover": {
+      textDecoration: "underline",
+    },
   },
 });
 
@@ -32,7 +36,11 @@ function Footer() {
   return (
     <FooterContainer>
       <Typography variant="caption">
-        <StyledLink href="https://github.com/facebook/create-react-app" target="_blank" rel="noopener noreferrer">
+        <StyledLink
+          href="https://github.com/facebook/create-react-app"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
           Create React App
         </StyledLink>
         <Divider>|</Divider>

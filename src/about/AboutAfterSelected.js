@@ -9,7 +9,7 @@ import {
   StyledTyped,
   SCALE_MULTIPLIERS,
 } from "./AboutStyle";
-import { get } from "axios";
+import theme from "theme";
 
 const roleData = {
   engineer: {
@@ -175,9 +175,10 @@ const SELECTED_BASE = {
     gap: 0.5, // rem
   },
   selectedCard: {
-    width: 34.5, // rem (23 * 1.5)
+    width: 33, // rem (23 * 1.5)
     height: 27, // rem (18 * 1.5)
-    fontSize: 2.25, // rem (1.5 * 1.5)
+    titleFontSize: 1.8, // rem (1.5 * 1.5)
+    itemFontSize: 1.3, // rem (1 * 1.5)
     padding: 2.25, // rem (1.5 * 1.5)
   },
   unselectedCard: {
@@ -206,15 +207,11 @@ const SelectedContainer = styled("div")(({ theme }) => ({
   height: "100%",
   transition: "all 0.5s ease",
 
-  [theme.breakpoints.down("lg")]: {
-  },
+  [theme.breakpoints.down("lg")]: {},
   [theme.breakpoints.down("md")]: {
     flexDirection: "column",
   },
   [theme.breakpoints.down("sm")]: {
-    flexDirection: "column",
-  },
-  [theme.breakpoints.down("xs")]: {
     flexDirection: "column",
   },
 }));
@@ -237,10 +234,6 @@ const CardGroup = styled("div")(({ theme }) => ({
     gap: `${SELECTED_BASE.gap * SCALE_MULTIPLIERS.sm}rem`,
     padding: `${SELECTED_BASE.padding * SCALE_MULTIPLIERS.sm}rem`,
   },
-  [theme.breakpoints.down("xs")]: {
-    gap: `${SELECTED_BASE.gap * SCALE_MULTIPLIERS.xs}rem`,
-    padding: `${SELECTED_BASE.padding * SCALE_MULTIPLIERS.xs}rem`,
-  },
 }));
 
 const BackButton = styled("button")(({ theme }) => ({
@@ -256,8 +249,16 @@ const BackButton = styled("button")(({ theme }) => ({
   alignSelf: "flex-start",
   transition: "all 0.3s ease",
 
-  "&:hover": {
-    transform: "translateX(-5px)",
+  "& svg": {
+    width: `${SELECTED_BASE.backButtonSize.fontSize * 1.2}rem`,
+    height: `${SELECTED_BASE.backButtonSize.fontSize * 1.2}rem`,
+    transition: "all 0.3s ease",
+  },
+  "@media (hover: hover)": {
+    "&:hover": {
+      transform: "translateX(-5px)",
+      textDecoration: "underline",
+    },
   },
 
   [theme.breakpoints.down("lg")]: {
@@ -268,6 +269,14 @@ const BackButton = styled("button")(({ theme }) => ({
       SELECTED_BASE.backButtonSize.padding * SCALE_MULTIPLIERS.lg
     }rem`,
     gap: `${SELECTED_BASE.backButtonSize.gap * SCALE_MULTIPLIERS.lg}rem`,
+    "& svg": {
+      width: `${
+        SELECTED_BASE.backButtonSize.fontSize * 1.2 * SCALE_MULTIPLIERS.lg
+      }rem`,
+      height: `${
+        SELECTED_BASE.backButtonSize.fontSize * 1.2 * SCALE_MULTIPLIERS.lg
+      }rem`,
+    },
   },
   [theme.breakpoints.down("md")]: {
     fontSize: `${
@@ -277,6 +286,14 @@ const BackButton = styled("button")(({ theme }) => ({
       SELECTED_BASE.backButtonSize.padding * SCALE_MULTIPLIERS.md
     }rem`,
     gap: `${SELECTED_BASE.backButtonSize.gap * SCALE_MULTIPLIERS.md}rem`,
+    "& svg": {
+      width: `${
+        SELECTED_BASE.backButtonSize.fontSize * 1.2 * SCALE_MULTIPLIERS.md
+      }rem`,
+      height: `${
+        SELECTED_BASE.backButtonSize.fontSize * 1.2 * SCALE_MULTIPLIERS.md
+      }rem`,
+    },
   },
   [theme.breakpoints.down("sm")]: {
     fontSize: `${
@@ -286,15 +303,14 @@ const BackButton = styled("button")(({ theme }) => ({
       SELECTED_BASE.backButtonSize.padding * SCALE_MULTIPLIERS.sm
     }rem`,
     gap: `${SELECTED_BASE.backButtonSize.gap * SCALE_MULTIPLIERS.sm}rem`,
-  },
-  [theme.breakpoints.down("xs")]: {
-    fontSize: `${
-      SELECTED_BASE.backButtonSize.fontSize * SCALE_MULTIPLIERS.xs
-    }rem`,
-    padding: `${
-      SELECTED_BASE.backButtonSize.padding * SCALE_MULTIPLIERS.xs
-    }rem`,
-    gap: `${SELECTED_BASE.backButtonSize.gap * SCALE_MULTIPLIERS.xs}rem`,
+    "& svg": {
+      width: `${
+        SELECTED_BASE.backButtonSize.fontSize * 1.2 * SCALE_MULTIPLIERS.sm
+      }rem`,
+      height: `${
+        SELECTED_BASE.backButtonSize.fontSize * 1.2 * SCALE_MULTIPLIERS.sm
+      }rem`,
+    },
   },
 }));
 
@@ -329,17 +345,15 @@ const ContentGroup = styled("div")(({ theme }) => ({
     gap: `${SELECTED_BASE.contentGroup.gap * SCALE_MULTIPLIERS.lg}rem`,
   },
   [theme.breakpoints.down("md")]: {
-    height: `${SELECTED_BASE.contentGroup.height *0.7* SCALE_MULTIPLIERS.md}rem`,
+    height: `${
+      SELECTED_BASE.contentGroup.height * 0.7 * SCALE_MULTIPLIERS.md
+    }rem`,
     padding: `${SELECTED_BASE.padding * SCALE_MULTIPLIERS.md}rem`,
     gap: `${SELECTED_BASE.contentGroup.gap * SCALE_MULTIPLIERS.md}rem`,
   },
   [theme.breakpoints.down("sm")]: {
     height: `${SELECTED_BASE.contentGroup.height * SCALE_MULTIPLIERS.sm}rem`,
     gap: `${SELECTED_BASE.contentGroup.gap * SCALE_MULTIPLIERS.sm}rem`,
-  },
-  [theme.breakpoints.down("xs")]: {
-    height: `${SELECTED_BASE.contentGroup.height * SCALE_MULTIPLIERS.xs}rem`,
-    gap: `${SELECTED_BASE.contentGroup.gap * SCALE_MULTIPLIERS.xs}rem`,
   },
 }));
 
@@ -356,7 +370,6 @@ const UnselectedCardsWrapper = styled("div")({
 const UnselectedCards = styled("div")(({ theme }) => ({
   display: "flex",
   flex: 1,
-
 }));
 const ContentSection = styled("div")(({ theme }) => ({
   display: "flex",
@@ -377,9 +390,6 @@ const ContentSection = styled("div")(({ theme }) => ({
   [theme.breakpoints.down("sm")]: {
     gap: `${SELECTED_BASE.gap * SCALE_MULTIPLIERS.sm}rem`,
   },
-  [theme.breakpoints.down("xs")]: {
-    gap: `${SELECTED_BASE.gap * SCALE_MULTIPLIERS.xs}rem`,
-  },
 }));
 const SelectedCard = styled("div")(({ theme, cardType }) => ({
   width: `${SELECTED_BASE.selectedCard.width}rem`,
@@ -390,83 +400,34 @@ const SelectedCard = styled("div")(({ theme, cardType }) => ({
   padding: `${SELECTED_BASE.selectedCard.padding}rem`,
   color: "#697478",
   fontWeight: 500,
-  fontSize: `${SELECTED_BASE.selectedCard.fontSize}rem`,
   display: "flex",
   flexDirection: "column",
+  justifyContent: "center",
   transition: "all 0.5s ease",
-
-  "& > span": {
-    wordWrap: "break-word",
-    wordBreak: "break-word",
-    hyphens: "auto",
-    overflow: "hidden",
-    display: "block",
-    boxSizing: "border-box",
-  },
-  "& > span.title": {
-    fontFamily: "God",
-    fontSize: "1em",
-
-    [theme.breakpoints.down("lg")]: {
-      fontSize: `${
-        SELECTED_BASE.selectedCard.fontSize * 0.8 * SCALE_MULTIPLIERS.lg
-      }rem`,
-    },
-    [theme.breakpoints.down("md")]: {
-      fontSize: `${
-        SELECTED_BASE.selectedCard.fontSize * 0.8 * SCALE_MULTIPLIERS.md
-      }rem`,
-    },
-    [theme.breakpoints.down("sm")]: {
-      fontSize: `${
-        SELECTED_BASE.selectedCard.fontSize * 0.8 * SCALE_MULTIPLIERS.sm
-      }rem`,
-    },
-    [theme.breakpoints.down("xs")]: {
-      fontSize: `${
-        SELECTED_BASE.selectedCard.fontSize * 0.8 * SCALE_MULTIPLIERS.xs
-      }rem`,
-    },
-  },
 
   [theme.breakpoints.down("lg")]: {
     width: `${SELECTED_BASE.selectedCard.width * SCALE_MULTIPLIERS.lg}rem`,
     height: `${SELECTED_BASE.selectedCard.height * SCALE_MULTIPLIERS.lg}rem`,
-    fontSize: `${
-      SELECTED_BASE.selectedCard.fontSize * SCALE_MULTIPLIERS.lg
-    }rem`,
   },
   [theme.breakpoints.down("md")]: {
     width: `${SELECTED_BASE.selectedCard.width * SCALE_MULTIPLIERS.md}rem`,
     height: `${SELECTED_BASE.selectedCard.height * SCALE_MULTIPLIERS.md}rem`,
-    fontSize: `${
-      SELECTED_BASE.selectedCard.fontSize * SCALE_MULTIPLIERS.md
-    }rem`,
   },
   [theme.breakpoints.down("sm")]: {
     width: `${SELECTED_BASE.selectedCard.width * SCALE_MULTIPLIERS.sm}rem`,
     height: `${
       SELECTED_BASE.selectedCard.height * 1.2 * SCALE_MULTIPLIERS.sm
     }rem`,
-    fontSize: `${
-      SELECTED_BASE.selectedCard.fontSize * SCALE_MULTIPLIERS.sm
-    }rem`,
-  },
-  [theme.breakpoints.down("xs")]: {
-    width: `${SELECTED_BASE.selectedCard.width * SCALE_MULTIPLIERS.xs}rem`,
-    height: `${SELECTED_BASE.selectedCard.height * SCALE_MULTIPLIERS.xs}rem`,
-    fontSize: `${
-      SELECTED_BASE.selectedCard.fontSize * SCALE_MULTIPLIERS.xs
-    }rem`,
   },
 }));
 
 const CheckIcon = styled("div")(({ checked, theme }) => ({
-  width: "1.2rem",
-  height: "1.2rem",
+  width: `${SELECTED_BASE.selectedCard.itemFontSize * 1.2}rem`,
+  height: `${SELECTED_BASE.selectedCard.itemFontSize * 1.2}rem`,
   display: "flex",
   alignItems: "center",
   justifyContent: "center",
+  flexShrink: 0,
   transition: "all 0.5s ease",
   color: checked ? "#00CDC1" : "#697478",
 
@@ -474,14 +435,75 @@ const CheckIcon = styled("div")(({ checked, theme }) => ({
     width: "100%",
     height: "100%",
   },
+
+  [theme.breakpoints.down("lg")]: {
+    width: `${
+      SELECTED_BASE.selectedCard.itemFontSize * 1.2 * SCALE_MULTIPLIERS.lg
+    }rem`,
+    height: `${
+      SELECTED_BASE.selectedCard.itemFontSize * 1.2 * SCALE_MULTIPLIERS.lg
+    }rem`,
+  },
+  [theme.breakpoints.down("md")]: {
+    width: `${
+      SELECTED_BASE.selectedCard.itemFontSize * 1.2 * SCALE_MULTIPLIERS.md
+    }rem`,
+    height: `${
+      SELECTED_BASE.selectedCard.itemFontSize * 1.2 * SCALE_MULTIPLIERS.md
+    }rem`,
+  },
+  [theme.breakpoints.down("sm")]: {
+    width: `${
+      SELECTED_BASE.selectedCard.itemFontSize * 1.2 * SCALE_MULTIPLIERS.sm
+    }rem`,
+    height: `${
+      SELECTED_BASE.selectedCard.itemFontSize * 1.2 * SCALE_MULTIPLIERS.sm
+    }rem`,
+  },
 }));
 
 const SkillList = styled("div")(({ theme }) => ({
-  marginTop: "2rem",
   display: "flex",
   flexDirection: "column",
   gap: "1rem",
   width: "100%",
+}));
+
+const TitleItem = styled("div")(({ theme }) => ({
+  display: "flex",
+  alignItems: "center",
+  fontSize: `${SELECTED_BASE.selectedCard.titleFontSize}rem`,
+  fontFamily: "God",
+
+  "& span": {
+    wordWrap: "break-word",
+    wordBreak: "break-word",
+    hyphens: "auto",
+    overflow: "hidden",
+    display: "block",
+    boxSizing: "border-box",
+  },
+
+  [theme.breakpoints.down("lg")]: {
+    fontSize: `${
+      SELECTED_BASE.selectedCard.titleFontSize * SCALE_MULTIPLIERS.lg
+    }rem`,
+  },
+  [theme.breakpoints.down("md")]: {
+    fontSize: `${
+      SELECTED_BASE.selectedCard.titleFontSize * SCALE_MULTIPLIERS.md
+    }rem`,
+  },
+  [theme.breakpoints.down("sm")]: {
+    fontSize: `${
+      SELECTED_BASE.selectedCard.titleFontSize * SCALE_MULTIPLIERS.sm
+    }rem`,
+  },
+  "@media (max-width: 480px)": {
+    fontSize: `${
+      SELECTED_BASE.selectedCard.titleFontSize * SCALE_MULTIPLIERS.xs
+    }rem`,
+  },
 }));
 
 const SkillItem = styled("div")(({ visible }) => ({
@@ -489,10 +511,46 @@ const SkillItem = styled("div")(({ visible }) => ({
   alignItems: "center",
   justifyContent: "space-between",
   gap: "1rem",
-  fontSize: "0.5em",
+  fontSize: `${SELECTED_BASE.selectedCard.itemFontSize}rem`,
   opacity: visible ? 1 : 0,
   transform: visible ? "translateY(0)" : "translateY(20px)",
   transition: "all 0.5s ease",
+
+  "& > span:first-of-type": {
+    flex: 1,
+    minHeight: `${SELECTED_BASE.selectedCard.itemFontSize * 1.2}rem`,
+  },
+
+  [theme.breakpoints.down("lg")]: {
+    fontSize: `${
+      SELECTED_BASE.selectedCard.itemFontSize * SCALE_MULTIPLIERS.lg
+    }rem`,
+    "& > span:first-of-type": {
+      minHeight: `${
+        SELECTED_BASE.selectedCard.itemFontSize * 1.2 * SCALE_MULTIPLIERS.lg
+      }rem`,
+    },
+  },
+  [theme.breakpoints.down("md")]: {
+    fontSize: `${
+      SELECTED_BASE.selectedCard.itemFontSize * SCALE_MULTIPLIERS.md
+    }rem`,
+    "& > span:first-of-type": {
+      minHeight: `${
+        SELECTED_BASE.selectedCard.itemFontSize * 1.2 * SCALE_MULTIPLIERS.md
+      }rem`,
+    },
+  },
+  [theme.breakpoints.down("sm")]: {
+    fontSize: `${
+      SELECTED_BASE.selectedCard.itemFontSize * SCALE_MULTIPLIERS.sm
+    }rem`,
+    "& > span:first-of-type": {
+      minHeight: `${
+        SELECTED_BASE.selectedCard.itemFontSize * 1.2 * SCALE_MULTIPLIERS.sm
+      }rem`,
+    },
+  },
 }));
 
 const UnselectedCard = styled("div")(({ theme, cardType }) => ({
@@ -501,7 +559,7 @@ const UnselectedCard = styled("div")(({ theme, cardType }) => ({
   gap: theme.spacing(1.5),
   cursor: "pointer",
   transition: "transform 0.3s ease",
-  width: `${SELECTED_BASE.selectedCard.width*0.8}rem`,
+  width: `${SELECTED_BASE.selectedCard.width * 0.8}rem`,
 
   "& .title": {
     padding: theme.spacing(0.8, 1.2),
@@ -522,18 +580,21 @@ const UnselectedCard = styled("div")(({ theme, cardType }) => ({
     fontStyle: "italic",
     opacity: 0.8,
   },
+  "@media (hover: hover)": {
+    "&:hover": {
+      transform: "translateY(-2px)",
 
-  "&:hover": {
-    transform: "translateY(-2px)",
-
-    "& .click-text": {
-      opacity: 1,
+      "& .click-text": {
+        opacity: 1,
+      },
     },
   },
 
   // Responsive styles
   [theme.breakpoints.down("lg")]: {
-    width: `${SELECTED_BASE.selectedCard.width*0.8 * SCALE_MULTIPLIERS.lg}rem`,
+    width: `${
+      SELECTED_BASE.selectedCard.width * 0.8 * SCALE_MULTIPLIERS.lg
+    }rem`,
     "& .title": {
       fontSize: "0.75rem",
       padding: theme.spacing(0.7, 1.1),
@@ -543,7 +604,9 @@ const UnselectedCard = styled("div")(({ theme, cardType }) => ({
     },
   },
   [theme.breakpoints.down("md")]: {
-    width: `${SELECTED_BASE.selectedCard.width*0.8 * SCALE_MULTIPLIERS.md}rem`,
+    width: `${
+      SELECTED_BASE.selectedCard.width * 0.8 * SCALE_MULTIPLIERS.md
+    }rem`,
     "& .title": {
       fontSize: "0.7rem",
       padding: theme.spacing(0.6, 1),
@@ -629,8 +692,10 @@ const AboutAfterSelected = ({
             <span>Back</span>
           </BackButton>
           <SelectedCard cardType={selectedRole}>
-            <span className="title">{roleData[selectedRole].title}</span>
             <SkillList>
+              <TitleItem>
+                <span>{roleData[selectedRole].title}</span>
+              </TitleItem>
               {roleData[selectedRole].skills.map((skill, index) => (
                 <SkillItem
                   key={index}

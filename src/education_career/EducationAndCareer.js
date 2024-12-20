@@ -143,50 +143,50 @@ const EducationAndCareer = ({ id, activeSection }) => {
   const [showIntro, setShowIntro] = useState(false);
   const [hasBeenClosed, setHasBeenClosed] = useState(false);
   const [showHopping, setShowHopping] = useState(false);
-
+  const toggleScroll = (disable) => {
+    if (disable) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "auto";
+    }
+  };
   const introText =
-    "Let me share my educational background and professional journey with you.";
-  // const toggleScroll = (disable) => {
-  //   if (disable) {
-  //     document.body.style.overflow = "hidden";
-  //   } else {
-  //     document.body.style.overflow = "auto";
-  //   }
-  // };
-  // useEffect(() => {
-  //   const observer = new IntersectionObserver(
-  //     ([entry]) => {
-  //       if (
-  //         entry.isIntersecting &&
-  //         !hasBeenClosed &&
-  //         activeSection === "Education & Career"
-  //       ) {
-  //         setShowIntro(true);
-  //         toggleScroll(true);
-  //       }
-  //     },
-  //     { threshold: 0.3 }
-  //   );
+    "Let me share my educational background and professional journey with you - click on the cards to learn more!";
+    useEffect(() => {
+      const observer = new IntersectionObserver(
+        ([entry]) => {
+          if (
+            entry.isIntersecting &&
+            activeSection === "Education & Career" &&
+            !hasBeenClosed
+          ) {
+            setShowIntro(true);
+            toggleScroll(true);
+          }
+        },
+        { threshold: 0.3 }
+      );
+  
+      const section = document.getElementById(id);
+      if (section) {
+        observer.observe(section);
+      }
+  
+      return () => {
+        if (section) {
+          observer.unobserve(section);
+        }
+        toggleScroll(false);
+      };
+    }, [id, hasBeenClosed, activeSection]);
+  
+    const handleModalClose = () => {
+      setShowIntro(false);
+      setHasBeenClosed(true);
+      setShowHopping(true);
+      toggleScroll(false);
 
-  //   const section = document.getElementById(id);
-  //   if (section) {
-  //     observer.observe(section);
-  //   }
-
-  //   return () => {
-  //     if (section) {
-  //       observer.unobserve(section);
-  //     }
-  //     toggleScroll(false);
-  //   };
-  // }, [id, hasBeenClosed, activeSection]);
-
-  // const handleModalClose = () => {
-  //   setShowIntro(false);
-  //   setHasBeenClosed(true);
-  //   setShowHopping(true);
-  //   toggleScroll(false);
-  // };
+    };
 
   
   const timelineData = [
@@ -203,13 +203,13 @@ const EducationAndCareer = ({ id, activeSection }) => {
   return (
     <EduCaWrapper id={id}>
       <EducationCareerRoot>
-        {/* <IntroModal
+        <IntroModal
           isVisible={showIntro}
           onClose={handleModalClose}
           introText={introText}
           sectionId={id}
           avatarImage={AvatarImage}
-        /> */}
+        />
         <HeaderTitle>Education & Career Timeline</HeaderTitle>
         <ContentContainer>
           <TimelineContainer>

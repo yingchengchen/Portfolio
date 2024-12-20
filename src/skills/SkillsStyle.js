@@ -10,7 +10,7 @@ const BASE = {
     xs: 0.6,
   },
   HEIGHT:550, //px
-  mobileHEIGHT: 700, //px
+  mobileHEIGHT: 650, //px
 };
 
 export const SkillsWrapper = styled("div")(({ theme }) => ({
@@ -131,6 +131,9 @@ export const SkillsVisualSection = styled(Grid)(({ theme }) => ({
 
   [theme.breakpoints.down("md")]: {
     flexDirection: "column",
+    "& svg": {
+      transformOrigin: "center center",
+    },
   },
 
   [theme.breakpoints.down("sm")]: {

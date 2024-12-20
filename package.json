@@ -21,6 +21,7 @@
     "react-material-ui-carousel": "^3.4.2",
     "react-svg": "^16.1.33",
     "react-typed": "^2.0.12",
+    "recharts": "^2.15.0",
     "sass": "^1.69.5",
     "web-vitals": "^3.5.2"
   },
