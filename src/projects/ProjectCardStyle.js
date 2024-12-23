@@ -215,22 +215,27 @@ export const StyledChip = styled(Chip, {
   fontSize: "0.75rem",
   backgroundColor:
     chipType === "primary"
-      ? theme.palette.primary.main
-      : theme.palette.secondary.main,
+      ? theme.palette.primary.main // Deep purple for primary
+      : `${theme.palette.primary.main}20`, // Light purple background for secondary
   color:
     chipType === "primary"
-      ? theme.palette.primary.contrastText
-      : theme.palette.secondary.contrastText,
+      ? "#FFFFFF" // White text for primary
+      : theme.palette.primary.main, // Dark purple text for secondary
+  border:
+    chipType === "primary"
+      ? "none"
+      : `1px solid ${theme.palette.primary.main}`, // Border for secondary matches text color
 }));
 
 export const BulletList = styled("ul")(({ theme, isSubList }) => ({
-  margin: isSubList ? `${theme.spacing(1.5)}px 0 0 ${theme.spacing(2)}px` : 0,
-  padding: isSubList ? 0 : `0 0 0 ${theme.spacing(2)}px`,
+  // textAlign:"justify",
+  margin: 0,
+  padding:  `0 0 0 ${theme.spacing(2)}px`,
   listStyle: "none", // Remove default bullets
   "& li": {
     position: "relative",
     paddingLeft: theme.spacing(2.5),
-    marginBottom: isSubList ? theme.spacing(1) : theme.spacing(2),
+    marginBottom: theme.spacing(2),
     "&:last-child": {
       marginBottom: 0,
     },
@@ -239,51 +244,17 @@ export const BulletList = styled("ul")(({ theme, isSubList }) => ({
       content: '""',
       position: "absolute",
       left: 0,
-      top: isSubList ? "0.5em" : "0.6em",
-      width: isSubList ? 4 : 6,
-      height: isSubList ? 4 : 6,
-      backgroundColor: isSubList
-        ? theme.palette.primary.light
-        : theme.palette.primary.main,
+      top: "0.6em",
+      width: 6,
+      height: 6,
+      backgroundColor: theme.palette.primary.main,
       borderRadius: "50%",
       transform: "translateY(-50%)",
     },
-    // Add connecting line for sub-items
-    ...(isSubList && {
-      "&::after": {
-        content: '""',
-        position: "absolute",
-        left: -theme.spacing(1.5),
-        top: 0,
-        width: "1px",
-        height: "100%",
-        backgroundColor: `${theme.palette.primary.main}20`,
-      },
-    }),
   },
   "& .MuiTypography-root": {
     color: theme.palette.text.primary,
     lineHeight: 1.6,
-    ...(isSubList && {
-      fontSize: "0.9rem",
-      color: theme.palette.text.secondary,
-    }),
   },
-  // Add fade-in animation for sub-items
-  ...(isSubList && {
-    "& li": {
-      opacity: 0,
-      animation: "fadeIn 0.3s ease forwards",
-    },
-    "@keyframes fadeIn": {
-      from: {
-        opacity: 0,
-        transform: "translateX(-10px)",
-      },
-      to: {
-        opacity: 1,
-        transform: "translateX(0)",
-      },
-    },
-  }),
+  
 }));

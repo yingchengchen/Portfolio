@@ -101,7 +101,7 @@ const Skills = ({ id }) => {
     } = dimensions;
 
   const skillText =
-    "Through each role, I've developed a diverse skill set spanning various tools - click each area to discover my technical expertise.";
+    `Through each role, I've developed a diverse skill set spanning various tools <span style="font-weight: 600">- click each area to discover my technical expertise</span>.`;
   useEffect(() => {
     const observer = new IntersectionObserver(
       ([entry]) => {

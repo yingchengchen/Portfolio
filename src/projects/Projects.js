@@ -16,7 +16,7 @@ const Projects = ({ id, activeSection }) => {
   const [hasBeenClosed, setHasBeenClosed] = useState(false);
 
   const introText =
-    "Now, let's explore my projects and journey through my achievements. I look forward to connecting with you and sharing my story.";
+    `Now, let's explore my projects and journey through my achievements. I look forward to connecting with you and sharing my story.`;
     const toggleScroll = (disable) => {
     if (disable) {
       document.body.style.overflow = "hidden";

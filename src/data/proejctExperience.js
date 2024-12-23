@@ -15,40 +15,41 @@ const projectExperience = {
         `${process.env.PUBLIC_URL}/lyudao/03.png`,
         `${process.env.PUBLIC_URL}/lyudao/04.png`,
       ],
-      description:
-        "In collaboration with environmental experts from Taiwan, we developed a platform that visualizes insights from interviews with Green Island residents. The platform not only generates meaningful visualizations from interview transcripts but also provides an intuitive interface for non-technical experts to leverage ChatGPT for data analysis.",
+      description: (
+        <>
+          Collaborated with environmental experts to create a platform that
+          visualizes Green Island resident interviews. The platform provides an
+          intuitive interface for non-technical experts to analyze data using
+          ChatGPT.
+        </>
+      ),
       githubLink: "https://github.com/yingchengchen/Lyudao",
       listItems: [
         {
           main: (
             <>
-              Initiated <strong>Svelte-based</strong> frontend for environmental
-              policy analysis with <strong>LLM</strong>
+              Sentiment analysis with{" "}
+              <span style={{ backgroundColor: "#FFEB3B" }}>
+                Large Language Model
+              </span>
             </>
           ),
         },
         {
           main: (
             <>
-              Created <strong>5+</strong> interactive visualizations, including
-              network graphs and <strong>sentiment analysis</strong>, to
-              interpret complex ecological data
+              <span style={{ backgroundColor: "#FFEB3B" }}>5+</span> interactive
+              visualizations
             </>
           ),
         },
         {
           main: (
             <>
-              Implemented an AI-driven <strong>Orthogonal Routing</strong>
-              algorithm using A* search
-            </>
-          ),
-        },
-        {
-          main: (
-            <>
-              Allowed modification of <strong>ChatGPT API</strong> prompts
-              through easy-to-use interface with tutorial
+              <span style={{ backgroundColor: "#FFEB3B" }}>
+                Creating and editing ChatGPT prompts
+              </span>{" "}
+              with user-friendly interface
             </>
           ),
         },
@@ -76,7 +77,7 @@ const projectExperience = {
         `${process.env.PUBLIC_URL}/nova/06.png`,
       ],
       description:
-        "Media news coverage can be polarizing, and NOVA aims to help users navigate through different perspectives. We developed a three-stage visual interface that allows users to explore news articles from different viewpoints, assess media bias, and compare news coverage across different outlets.",
+        "Media news coverage can be polarizing, and NOVA aims to help users navigate through different perspectives. It allows users to explore news articles from different viewpoints, assess media bias, and compare news coverage across different outlets.",
       githubLink: "https://github.com/yingchengchen/Lyudao",
       publicationLink: "https://arxiv.org/abs/2403.00334",
       demoLink: "https://samlee-dedeboy.github.io/Nova/",
@@ -84,41 +85,36 @@ const projectExperience = {
         {
           main: (
             <>
-              Created a Vue-based <strong>three-stage</strong> visual interface
-              for media bias assessment
+              <span style={{ backgroundColor: "#FFEB3B" }}>Three-stage</span>{" "}
+              visual interface for media bias assessment
             </>
           ),
         },
         {
           main: (
             <>
-              Spearheaded improvements reaching <strong>83.3%</strong> effective
-              navigation and <strong>73.8%</strong> user engagement
+              Reaching <span style={{ backgroundColor: "#FFEB3B" }}>83.3%</span>{" "}
+              effective navigation and{" "}
+              <span style={{ backgroundColor: "#FFEB3B" }}>73.8%</span> user
+              engagement
             </>
           ),
         },
         {
           main: (
             <>
-              Managed <strong>25,000+</strong> articles from 6 news outlets
-              using <strong>PostgreSQL</strong> on <strong>AWS EC2</strong> for
-              data storage
+              <span style={{ backgroundColor: "#FFEB3B" }}>25,000+</span>{" "}
+              articles from 6 news outlets
             </>
           ),
         },
         {
           main: (
             <>
-              Co-authored{" "}
-              <strong>
-                {" "}
-                "NOVA: A visual interface for assessing polarizing media
-                coverage"{" "}
-              </strong>{" "}
-              published in{" "}
+              Published in{" "}
               <em>
-                <strong>IEEE</strong> Transactions on Visualization and Computer
-                Graphics
+                <span style={{ backgroundColor: "#FFEB3B" }}>IEEE</span>{" "}
+                Transactions on Visualization and Computer Graphics
               </em>
             </>
           ),
@@ -144,28 +140,21 @@ const projectExperience = {
         `${process.env.PUBLIC_URL}/resame/04.png`,
       ],
       description:
-        "Res-A-Me is a decentralized resume platform that leverages blockchain technology to provide a secure and immutable platform for users to store their resumes. The platform allows users to create, update, and share their resumes with potential employers, ensuring data integrity and privacy.",
+        "Res-A-Me is a decentralized resume platform that leverages blockchain technology to provide a secure platform for users to store their resumes. The platform allows users to create, update, and share their resumes with potential employers.",
       githubLink: "https://github.com/ResilientApp/Res-a-Me",
       listItems: [
         {
-          main: (
-            <>
-              Led frontend development using <strong>Vue.js</strong>, creating
-              responsive and standardized resume format
-            </>
-          ),
+          main: <>Responsive and standardized resume format</>,
         },
         {
           main: (
             <>
-              Developed a robust <strong>Python/Flask</strong> backend,
-              implementing seamless API integration with ResilientDB
+              {" "}
+              <span style={{ backgroundColor: "#FFEB3B" }}>
+                Immutable data storage
+              </span>{" "}
+              with unique transaction IDs to ensure data integrity and privacy
             </>
-          ),
-        },
-        {
-          main: (
-            <>Implemented immutable data storage with unique transaction IDs</>
           ),
         },
       ],
@@ -193,28 +182,25 @@ const projectExperience = {
         {
           main: (
             <>
-              Dual-mode salary distribution visualization that switches between
-              scatter plots for granular data examination and box plots for
-              statistical analysis, enabling users to toggle between
-              comprehensive data overview and key statistical metrics (median,
-              quartiles, and outliers).
+              Dual-mode salary visualization that switches between{" "}
+              <span style={{ backgroundColor: "#FFEB3B" }}>scatter plots</span> for detailed data and{" "}
+              <span style={{ backgroundColor: "#FFEB3B" }}>box plots</span> for statistical analysis, providing
+              both comprehensive and summary views.
             </>
           ),
         },
         {
           main: (
             <>
-              Color encoded Sankey diagram showing the composition of each
-              categorical factors and relationship between salary and others of
-              the selected country.
+              <span style={{ backgroundColor: "#FFEB3B" }}>Color-encoded Sankey diagram</span> to visualize salary
+              relationships and factor distributions across selected countries.
             </>
           ),
         },
         {
           main: (
             <>
-              Donut chart showing composition of job title in the selected
-              country and salary range.
+              Visualized job title distributions by country using <span style={{ backgroundColor: "#FFEB3B" }}>donut charts</span> with salary range filters.
             </>
           ),
         },
@@ -239,29 +225,21 @@ const projectExperience = {
         `${process.env.PUBLIC_URL}/schoolshooting/05.png`,
       ],
       description:
-        "An interactive storytelling visualization that explores Columbine's lasting impact on U.S. school shootings. Through a scrollytelling design, users navigate through data visualizations , revealing patterns in subsequent school violence and examining the broader context of American gun culture.",
+        "An interactive visualization exploring Columbine's impact on U.S. school shootings, using scrollytelling to reveal patterns in subsequent incidents and their broader cultural context.",
       githubLink: "https://github.com/yingchengchen/SchoolShootingEvents_US",
       listItems: [
         {
-          main: (
+          main:(
             <>
-              Created a <strong>Vue.js</strong> platform for
-              <strong>storytelling</strong> on school shooting events
+              <span style={{ backgroundColor: "#FFEB3B" }}>4+</span> interactive visualizations with analyzed data
             </>
-          ),
+          )
         },
         {
           main: (
             <>
-              Utilized <strong>web-scraped</strong> text snippets to enhance
+              Utilized <span style={{ backgroundColor: "#FFEB3B" }}>web-scraped</span> text snippets to enhance
               user engagement
-            </>
-          ),
-        },
-        {
-          main: (
-            <>
-              Designed <strong>interactive</strong> data visualizations with analyzed data
             </>
           ),
         },
@@ -270,7 +248,7 @@ const projectExperience = {
         { label: "Vue.js", type: "primary" },
         { label: "Vuetify", type: "primary" },
         { label: "TypeScript", type: "primary" },
-        { label: "storytelling", type: "secondary" },
+        { label: "Storytelling", type: "secondary" },
       ],
     },
   ],

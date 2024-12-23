@@ -26,7 +26,7 @@ const BASE_DIMENSIONS = {
   spacing: {
     first: 3,
     second: 10,
-    third: 14,
+    third: 16,
   },
 
   offset: {
@@ -342,6 +342,7 @@ export const RoleCard = styled("div")(
       transition: "all 0.3s ease",
       display: "flex",
       animation: bounce ? "bounce 0.5s ease" : "none",
+      boxShadow: "0 0.625rem 1.25rem rgba(0,0,0,0.1)",
 
       "@keyframes bounce": {
         "0%, 100%": {
@@ -366,7 +367,7 @@ export const RoleCard = styled("div")(
       "@media (hover: hover)": {
         "&:hover": {
           transform: "translateX(0.625rem) scale(1.05)",
-          boxShadow: "0 0.625rem 1.25rem rgba(0,0,0,0.1)",
+          boxShadow: "0 0.625rem 1.25rem rgba(0,0,0,0.15)",
         },
       },
 

@@ -1,6 +1,7 @@
 // EducationAndCareerStyle.js
 import { styled } from "@mui/material/styles";
 import { Paper, Avatar, Grid } from "@mui/material";
+import { Opacity } from "@mui/icons-material";
 
 const BASE = {
   spacing: {
@@ -197,7 +198,6 @@ export const TimelineContentCard = styled(Paper)(
       width: "100%",
       maxWidth: "150px",
       minWidth: "100px",
-      margin: 0,
     },
   })
 );
@@ -392,10 +392,10 @@ export const TimelineTitle = styled("h4")(({ theme }) => ({
 }));
 
 export const TimelineSubtitle = styled("div")(({ theme }) => ({
-  padding: theme.spacing(0.2, 0),
+  padding: theme.spacing(0.1, 0),
   fontWeight: 600,
   fontSize: "0.8rem",
-  borderRadius: theme.spacing(1),
+  // borderRadius: theme.spacing(1),
 
   "#NTNU&": {
     backgroundColor: "#862633",

@@ -35,9 +35,6 @@ const theme = createTheme({
         accent1: '#6C5CE7', // Purple for highlighting skills
         accent2: '#00CDC1', // Turquoise for project categories
         accent3: '#FF7675', // Coral for important notes
-        // success: '#00B894', // Green for success states
-        // error: '#FF6B6B', // Red for error states
-        // warning: '#FFA502', // Orange for warning states
       },
     },
     typography: {

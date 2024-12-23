@@ -27,7 +27,8 @@ function App() {
     const handleScroll = () => {
       const scrollPosition = window.scrollY;
       const windowHeight = window.innerHeight;
-      const navbarHeight = 64;
+      // const navbarHeight = 64;
+      const triggerOffset = windowHeight * 0.15; // 15% of viewport height
 
       // Handle About section visibility
       if (scrollPosition <= windowHeight / 4) {
@@ -36,25 +37,22 @@ function App() {
       }
 
       // Handle other sections
+      let currentSection = "About";
       for (const section of sections) {
-        if (section === "About") continue;
         const element = document.getElementById(getSectionId(section));
         if (element) {
-          const elementPosition = element.getBoundingClientRect().top;
-          const offsetPosition =
-            elementPosition + window.pageYOffset - navbarHeight;
-
-          // If current scroll position is at or past the offset position we calculated
-          if (scrollPosition >= offsetPosition) {
-            setActiveSection(section);
+          const elementRect = element.getBoundingClientRect();
+          if (elementRect.top <= triggerOffset) {
+            currentSection = section;
           }
         }
       }
+      setActiveSection(currentSection);
     };
 
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+  }, [sections]);
 
   const handleNavClick = (section) => {
     const element = document.getElementById(getSectionId(section));
@@ -66,9 +64,8 @@ function App() {
         });
       } else {
         const navbarHeight = 64;
-        const elementPosition = element.getBoundingClientRect().top;
-        const offsetPosition =
-          elementPosition + window.pageYOffset - navbarHeight;
+        const elementRect = element.getBoundingClientRect();
+        const offsetPosition = elementRect.top + window.pageYOffset - navbarHeight;
 
         window.scrollTo({
           top: offsetPosition,

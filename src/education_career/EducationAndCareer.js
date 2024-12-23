@@ -151,8 +151,7 @@ const EducationAndCareer = ({ id, activeSection }) => {
       document.body.style.overflow = "auto";
     }
   };
-  const introText =
-    "Let me share my educational background and professional journey with you - click on the cards to learn more!";
+  const introText = `Let me share my educational background and professional journey with you <span style="font-weight: 600">- click on the cards to learn more!</span> `;
     useEffect(() => {
       const observer = new IntersectionObserver(
         ([entry]) => {

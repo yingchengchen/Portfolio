@@ -238,7 +238,7 @@ const ProjectCard = (props) => {
                   <BulletList>
                     {props.listItems?.map((item, index) => (
                       <li key={index}>
-                        <Typography component="div">{item.main}</Typography>
+                        <Typography variant="body2" component="div">{item.main}</Typography>
                       </li>
                     ))}
                   </BulletList>
