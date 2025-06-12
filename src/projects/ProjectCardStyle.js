@@ -215,8 +215,8 @@ export const StyledChip = styled(Chip, {
   fontSize: "0.75rem",
   backgroundColor:
     chipType === "primary"
-      ? theme.palette.primary.main // Deep purple for primary
-      : `${theme.palette.primary.main}20`, // Light purple background for secondary
+      ? theme.palette.primary.main 
+      : `${theme.palette.primary.main}20`, 
   color:
     chipType === "primary"
       ? "#FFFFFF" // White text for primary

@@ -1,7 +1,9 @@
 import * as d3 from 'd3';
+import React, { useState } from "react";
 import { useTheme } from '@mui/material/styles';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import { RadarGrid } from './RadarGrid';
+import Chip from '@mui/material/Chip';
 
 const DOT_COLOR = '#7E47FD';
 
@@ -15,15 +17,17 @@ export const Radar = ({
   fontSize,
   dotRadius,
   data, 
-  axisConfig ,
+  axisConfig,
   skillsData,
   onSkillSelect,
-  selectedSkill  
+  selectedSkill,
+  showChips = true, // New prop to control chip display
 }) => {
   const theme = useTheme();
   const isSm = useMediaQuery(theme.breakpoints.down('sm'));
   const isMd = useMediaQuery(theme.breakpoints.down('md'));
   const isMobile = useMediaQuery('(max-width:480px)');
+  const [chipInfo, setChipInfo] = useState(null);
 
   const outerRadius = Math.min(width, height) / 2 - margin;
 
@@ -80,9 +84,11 @@ export const Radar = ({
           axisConfig={axisConfig}
           isMobile={isMobile}
           skillsData={skillsData}
-          onSkillSelect={onSkillSelect}
+          onSkillEnter={onSkillSelect}     // just rename for clarity
+          onSkillLeave={() => onSkillSelect(null)}
           selectedSkill={selectedSkill} 
           data={data}
+          onChipRender={showChips ? (info) => setChipInfo(info) : null}
         />
         <path
           d={linePath}
@@ -100,6 +106,37 @@ export const Radar = ({
             fill={DOT_COLOR}
           />
         ))}
+        {/* Only render chips if showChips is true and chipInfo exists */}
+        {showChips && chipInfo && (
+          <foreignObject
+            x={chipInfo.x}
+            y={chipInfo.y}
+            width={400}
+            height={120}
+            style={{ overflow: 'visible' }}
+          >
+            <div xmlns="http://www.w3.org/1999/xhtml" style={{
+              display: 'flex',
+              flexWrap: 'wrap',
+              gap: '4px',
+            }}>
+              {skillsData[chipInfo.skill]?.map(({ name }) => (
+                <Chip
+                  key={name}
+                  label={name}
+                  size="small"
+                  sx={{
+                    fontSize: '0.7rem',
+                    fontWeight: '600',
+                    height: '24px',
+                    backgroundColor: `#E0E5DF`,
+                    border: `1px solid ${theme.palette.primary.main}`,
+                  }}
+                />
+              ))}
+            </div>
+          </foreignObject>
+        )}
       </g>
     </svg>
   );

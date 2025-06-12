@@ -17,58 +17,76 @@ import AvatarImage from "../images/myAvatar.png";
 import { Radar } from "./Radar";
 import { data, skillsDetailData } from "./data";
 import { DIMENSIONS } from "./scaleUtils";
-import SkillDetailsPopup from './charts/SkillDetailsPopup';
+import Chip from '@mui/material/Chip';
 
 const RadarWrapper = (props) => {
   const [selectedSkill, setSelectedSkill] = useState(null);
-  const wrapperRef = useRef(null);
-
-  // Handle click outside
-  useEffect(() => {
-    const handleClickOutside = (event) => {
-      // Only close if clicking outside the radar wrapper
-      if (wrapperRef.current && !wrapperRef.current.contains(event.target)) {
-        setSelectedSkill(null);
-      }
-    };
-
-    document.addEventListener('mousedown', handleClickOutside);
-    return () => {
-      document.removeEventListener('mousedown', handleClickOutside);
-    };
-  }, []);
+  const theme = useTheme();
 
   const handleSkillSelect = (skill) => {
-    setSelectedSkill(prev => prev === skill ? null : skill);
+    setSelectedSkill(skill); // this is triggered on hover now
   };
 
+  // Calculate heights - radar gets 95%, chip group gets 5%
+  const totalHeight = props.height;
+  const radarHeight = totalHeight * 0.95;
+  const chipGroupHeight = totalHeight * 0.05;
+
   return (
-    <div ref={wrapperRef} style={{ position: 'relative', width: props.width, height: props.height }}>
-      <Radar 
-        {...props} 
-        onSkillSelect={handleSkillSelect}
-        selectedSkill={selectedSkill}
-      />
+    <div style={{ 
+      position: 'relative', 
+      width: props.width, 
+      height: totalHeight,
+      display: 'flex',
+      flexDirection: 'column'
+    }}>
+      {/* Radar Chart - 95% of total height */}
+      <div style={{ height: radarHeight, position: 'relative' }}>
+        <Radar 
+          {...props} 
+          height={radarHeight}
+          onSkillSelect={handleSkillSelect}
+          selectedSkill={selectedSkill}
+          showChips={false} // We'll handle chips externally now
+        />
+      </div>
       
-      {selectedSkill && (
-        <div style={{ 
-          position: 'absolute',
-          inset: 0,
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'center',
-          zIndex: 10,
-          pointerEvents: 'none' // Allow clicks to pass through to radar
-        }}>
-          <div style={{ pointerEvents: 'auto' }}> {/* Re-enable pointer events for popup */}
-            <SkillDetailsPopup
-              skill={selectedSkill}
-              data={props.skillsData[selectedSkill]}
-              onClose={() => setSelectedSkill(null)}
-            />
+      {/* Chip Group - 5% of total height */}
+      <div style={{ 
+        height: chipGroupHeight,
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        padding: '4px 8px',
+        minHeight: '32px' // Ensure minimum height for chips
+      }}>
+        {selectedSkill && skillsDetailData[selectedSkill] && (
+          <div style={{
+            display: 'flex',
+            flexWrap: 'wrap',
+            gap: '4px',
+            justifyContent: 'center',
+            alignItems: 'center',
+            maxWidth: '100%',
+            overflow: 'hidden'
+          }}>
+            {skillsDetailData[selectedSkill]?.map(({ name }) => (
+              <Chip
+                key={name}
+                label={name}
+                size="small"
+                sx={{
+                  fontSize: `${props.fontSize}px`,
+                  fontWeight: '600',
+                  height: '20px',
+                  backgroundColor: `#E0E5DF`,
+                  border: `1px solid ${theme.palette.primary.main}`,
+                }}
+              />
+            ))}
           </div>
-        </div>
-      )}
+        )}
+      </div>
     </div>
   );
 };

@@ -1,12 +1,12 @@
 // scaleUtils.js
 export const DIMENSIONS = {
     lg: {
-      width: 500,
-      height: 500,
+      width: 450,
+      height: 450,
       margin: 100,
       innerRadius: 40,
-      labelPadding: 30,
-      textWidth: 100,
+      labelPadding: 40,
+      textWidth: 95,
       fontSize: 12,
       dotRadius: 4,
     },
@@ -15,27 +15,27 @@ export const DIMENSIONS = {
       height: 400,
       margin: 80,
       innerRadius: 32,
-      labelPadding: 25,
-      textWidth: 80,
+      labelPadding: 40,
+      textWidth: 70,
       fontSize: 11,
       dotRadius: 3,
     },
     sm: {
-      width: 380,
-      height: 380,
+      width: 400,
+      height: 400,
       margin: 85,
       innerRadius: 30,
-      labelPadding: 25,
+      labelPadding: 35,
       textWidth: 70,
       fontSize: 10,
       dotRadius: 3,
     },
     xs: {
-      width: 320,  // Smaller width for mobile
-      height: 320, // Smaller height for mobile
+      width: 300,  // Smaller width for mobile
+      height: 300, // Smaller height for mobile
       margin: 70,  // Reduced margin
-      innerRadius: 28,
-      labelPadding: 20,
+      innerRadius: 25,
+      labelPadding: 28,
       textWidth: 60,
       fontSize: 8,
       dotRadius: 2,

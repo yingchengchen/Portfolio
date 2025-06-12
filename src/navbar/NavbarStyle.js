@@ -247,13 +247,13 @@ export const StyledMenuItem = styled("div")(({ theme, active }) => ({
   "@media (hover: hover)": {
     "&:hover": {
       backgroundColor: `${theme.palette.custom.accent1}10`,
-      color: theme.palette.custom.accent1,
+      color: theme.palette.text.secondary,
     },
   },
 
   ...(active === "true" && {
     color: theme.palette.custom.accent1,
-    backgroundColor: `${theme.palette.custom.accent1}10`,
+    // backgroundColor: `${theme.palette.custom.accent1}10`,
     "@media (hover: hover)": {
       "&:hover": {
         backgroundColor: `${theme.palette.custom.accent1}15`,

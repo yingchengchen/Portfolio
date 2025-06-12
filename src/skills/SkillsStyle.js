@@ -121,12 +121,13 @@ export const SkillsRoot = styled(Grid)(({ theme }) => ({
 }));
 
 export const SkillsVisualSection = styled(Grid)(({ theme }) => ({
-  flex: 4,
+  flex: 3,
   display: "flex",
   alignItems: "center",
   justifyContent: "center",
   padding: theme.spacing(2),
   height: "100%", 
+  overflow: 'visible',
 
 
   [theme.breakpoints.down("md")]: {

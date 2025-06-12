@@ -12,18 +12,18 @@ import {
 import data from "../data/data";
 
 const Projects = ({ id, activeSection }) => {
-  const [showIntro, setShowIntro] = useState(false);
-  const [hasBeenClosed, setHasBeenClosed] = useState(false);
+    const [showIntro, setShowIntro] = useState(false);
+    const [hasBeenClosed, setHasBeenClosed] = useState(false);
 
-  const introText =
-    `Now, let's explore my projects and journey through my achievements. I look forward to connecting with you and sharing my story.`;
+    const introText =
+      `Now, let's explore my projects and journey through my achievements. I look forward to connecting with you and sharing my story.`;
     const toggleScroll = (disable) => {
-    if (disable) {
-      document.body.style.overflow = "hidden";
-    } else {
-      document.body.style.overflow = "auto";
-    }
-  };
+      if (disable) {
+        document.body.style.overflow = "hidden";
+      } else {
+        document.body.style.overflow = "auto";
+      }
+    };
     useEffect(() => {
     const observer = new IntersectionObserver(
       ([entry]) => {
@@ -71,7 +71,6 @@ const Projects = ({ id, activeSection }) => {
           sectionId={id}
           avatarImage={AvatarImage}
         />
-        <HeaderTitle>{projectData.header}</HeaderTitle>
         <ProjectContent>
           <Grid container spacing={2} columns={12}>
             {projectData.items.map((project, index) => (

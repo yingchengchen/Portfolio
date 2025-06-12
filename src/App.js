@@ -6,28 +6,21 @@ import About from "./about/About";
 import Skills from "./skills/Skills";
 import NavigationBar from "./navbar/Navbar";
 import Projects from "./projects/Projects";
-import EducationAndCareer from "./education_career/EducationAndCareer";
 import Footer from "./Footer";
 import theme from "./theme";
 
 function App() {
-  const sections = ["About", "Skills", "Education & Career", "Projects"];
+  const sections = ["About", "Skills", "Projects"];
   const [activeSection, setActiveSection] = useState("About");
 
   const getSectionId = (section) => {
-    switch (section) {
-      case "Education & Career":
-        return "education";
-      default:
-        return section.toLowerCase().replace(/\s+/g, "-");
-    }
+    return section.toLowerCase().replace(/\s+/g, "-");
   };
 
   useEffect(() => {
     const handleScroll = () => {
       const scrollPosition = window.scrollY;
       const windowHeight = window.innerHeight;
-      // const navbarHeight = 64;
       const triggerOffset = windowHeight * 0.15; // 15% of viewport height
 
       // Handle About section visibility
@@ -87,7 +80,6 @@ function App() {
         <div className="main-content">
           <About id="about" activeSection={activeSection} />
           <Skills id="skills" activeSection={activeSection} />
-          <EducationAndCareer id="education" activeSection={activeSection} />
           <Projects id="projects" activeSection={activeSection} />
         </div>
         <Footer />

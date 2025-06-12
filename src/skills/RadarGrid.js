@@ -6,6 +6,7 @@ const GRID_NUMBER = 5;
 const GRID_COLOR = "#2D3436";
 const HOVER_COLOR = "#7E47FD";
 
+
 function wrapText(text, width, fontSize) {
   const words = text.split(" ");
   const lines = [];
@@ -46,17 +47,19 @@ export const RadarGrid = ({
   xScale,
   axisConfig,
   isMobile,
-  onSkillSelect,
+  onSkillEnter,
+  onSkillLeave,
   selectedSkill,
   data,
+  onChipRender
 }) => {
   const [hoveredAxis, setHoveredAxis] = useState(null);
   const lineGenerator = d3.lineRadial();
 
-  const handleAxisClick = (axis, event) => {
-    event.stopPropagation();
-    onSkillSelect(axis.name);
-  };
+  // const handleAxisClick = (axis, event) => {
+  //   event.stopPropagation();
+  //   onSkillSelect(axis.name);
+  // };
 
   const allAxes = axisConfig.map((axis, i) => {
     const angle = xScale(axis.name);
@@ -80,6 +83,7 @@ export const RadarGrid = ({
     const isHighlighted =
       hoveredAxis === axis.name || selectedSkill === axis.name;
     const value = data[axis.name];
+    
     return (
       <g key={i}>
         <path
@@ -91,18 +95,34 @@ export const RadarGrid = ({
           rx={1}
         />
         <g
-          onMouseEnter={() => setHoveredAxis(axis.name)}
-          onMouseLeave={() => setHoveredAxis(null)}
-          onClick={(e) => handleAxisClick(axis, e)}
+          onMouseEnter={() => {
+            setHoveredAxis(axis.name);
+            onSkillEnter(axis.name);
+
+            // Final chip group position
+            const chipInfo = {
+              skill: axis.name,
+              x: labelPosition.x - textWidth / 2, // center below longest label line
+              y: labelPosition.y + fontSize * lines.length * 1.2 + fontSize, // place below last tspan + spacing
+            };
+
+            onChipRender?.(chipInfo);
+
+          }}
+          onMouseLeave={() => {
+            setHoveredAxis(null);
+            onSkillLeave(); 
+            onChipRender?.(null)            // <- remove highlight + chips
+          }}
           style={{ cursor: "pointer" }}
         >
+        <>
           <text
             x={labelPosition.x}
             y={startY}
-            fontWeight="600"
             fontSize={fontSize}
             fill={isHighlighted ? HOVER_COLOR : GRID_COLOR}
-            textAnchor={labelPosition.x > 0 ? "start" : "end"}
+            textAnchor="middle"
             dominantBaseline="middle"
           >
             {lines.map((line, index) => (
@@ -110,28 +130,22 @@ export const RadarGrid = ({
                 key={index}
                 x={labelPosition.x}
                 dy={index === 0 ? "0em" : `${lineHeight}em`}
+                fontWeight="600"
               >
                 {line}
               </tspan>
             ))}
-          </text>
-
-          {isHighlighted && (
-            <text
+            <tspan
               x={labelPosition.x}
-              y={
-                labelPosition.y < 0
-                  ? startY - totalHeight * fontSize // If label is in top half
-                  : startY + (lines.length * lineHeight + 1)*fontSize // If label is in bottom half
-              }
+              dy={`${lineHeight + 0.2}em`}
               fontSize={fontSize * 0.9}
-              fill={HOVER_COLOR}
-              textAnchor={labelPosition.x > 0 ? "start" : "end"}
-              dominantBaseline="middle"
+              fontWeight="500"
             >
               {value}%
-            </text>
-          )}
+            </tspan>
+          </text>
+        </>
+
         </g>
       </g>
     );
@@ -155,10 +169,10 @@ export const RadarGrid = ({
         />
         {i > 0 && (
           <text
-            x={0}
-            y={-radius}
+            x={10}
+            y={radius}
             fontSize={isMobile ? fontSize - 1 : fontSize - 2}
-            fill="#636E72"
+            fill="#98a0a3"
             textAnchor="middle"
             dominantBaseline="middle"
             dy={isMobile ? -3 : -5}

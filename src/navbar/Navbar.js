@@ -1,7 +1,6 @@
 // NavigationBar.js
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-import {  MenuItem } from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
 import LinkedInIcon from '@mui/icons-material/LinkedIn';
 import GitHubIcon from '@mui/icons-material/GitHub';
@@ -95,14 +94,13 @@ const NavigationBar = ({ sections, onNavClick, activeSection = null }) => {
             }}
           >
             {sections.map((section, index) => (
-              <MenuItem
+              <StyledMenuItem
                 key={index}
                 onClick={() => handleSectionClick(section)}
-                component={StyledMenuItem}
                 active={activeSection === section ? "true" : undefined}
               >
                 {section}
-              </MenuItem>
+              </StyledMenuItem>
             ))}
           </StyledMenu>
         </MobileNavControl>

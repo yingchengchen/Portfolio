@@ -1,13 +1,5 @@
 import { createTheme } from '@mui/material/styles';
 const theme = createTheme({
-  // breakpoints: {
-  //   values: {
-  //     xs: 0,    // 0-479px
-  //     sm: 480,  // 480-767px
-  //     md: 768,  // 768-899px
-  //     lg: 900,  // 900px and up
-  //   }
-  // },
     palette: {
       primary: {
         main: '#2D3436', // A sophisticated dark gray - good for main elements
