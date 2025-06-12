@@ -56,7 +56,10 @@
 
 Personal introduction with professional background and journey. Click each role card to discover the story behind each experience.
 
-<img src="./src/images/About.png" alt="About screenshot" width="80%" />
+<div style="display: flex; ">
+  <img src="./src/images/About_mobile.jpg" alt="Portfolio Demo" style="width: 21%;" />
+  <img src="./src/images/About.png" alt="Portfolio Screenshot" style="width: 73%;" />
+</div>
 
 ### 🔧 Skills
 
@@ -69,7 +72,10 @@ Interactive radar chart showcasing technical expertise across multiple domains. 
 - Visualizations & Graphics - D3.js, Matplotlib, Seaborn, Leaflet, Figma
 - Compiler & Architecture - lex&yacc, gem5, SIC/XE
 
-<img src="./src/images/Skills.png" alt="Skills screenshot" width="80%" />
+<div style="display: flex; ">
+  <img src="./src/images/Skills_mobile.jpg" alt="Skills screenshot" style="width: 21%;" />
+  <img src="./src/images/Skills.png" alt="Skills screenshot" style="width: 76%;" />
+</div>
 
 ### 📂 Projects
 
