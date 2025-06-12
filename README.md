@@ -8,6 +8,7 @@
 
 [![GitHub](https://img.shields.io/badge/GitHub-Follow-black?style=for-the-badge&logo=github)](https://github.com/yingchengchen)
 
+<img src="./src/images/portfolio_demo.gif" alt="Portfolio Demo" width="70%" />
 
 ## ✨ Features
 
@@ -54,7 +55,8 @@
 ### 👨‍💻 About
 
 Personal introduction with professional background and journey. Click each role card to discover the story behind each experience.
-![Portfolio Preview](./src/images/About.png)
+
+<img src="./src/images/About.png" alt="About screenshot" width="80%" />
 
 ### 🔧 Skills
 
@@ -66,12 +68,14 @@ Interactive radar chart showcasing technical expertise across multiple domains. 
 - Software Development - Vue, React, Svelte, Node.js, Flask
 - Visualizations & Graphics - D3.js, Matplotlib, Seaborn, Leaflet, Figma
 - Compiler & Architecture - lex&yacc, gem5, SIC/XE
-![Portfolio Preview](./src/images/Skills.png)
+
+<img src="./src/images/Skills.png" alt="Skills screenshot" width="80%" />
 
 ### 📂 Projects
 
 Showcase of selected projects with live demos and source code. Each project card expands to reveal comprehensive details and technical specifications.
-![Portfolio Preview](./src/images/Projects.png)
+
+<img src="./src/images/Projects.png" alt="Projects screenshot" width="80%" />
 
 ## 📱 Responsive Design
 
