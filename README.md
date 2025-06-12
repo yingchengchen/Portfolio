@@ -1,4 +1,4 @@
-# 🚀 Personal Portfolio - Ying-Cheng Chen
+# 🚀 Interactive Personal Portfolio
 
 > A modern, responsive portfolio website showcasing my journey as a software developer and data visualization specialist.
 
