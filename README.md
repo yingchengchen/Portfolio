@@ -57,8 +57,8 @@
 Personal introduction with professional background and journey. Click each role card to discover the story behind each experience.
 
 <div style="display: flex; ">
-  <img src="./src/images/About_mobile.jpg" alt="Portfolio Demo" style="width: 21%;" />
-  <img src="./src/images/About.png" alt="Portfolio Screenshot" style="width: 73%;" />
+  <img src="./src/images/About_mobile.jpg" alt="About Mobile Screenshot" style="width: 21%;" />
+  <img src="./src/images/About.png" alt="About Screenshot" style="width: 73%;" />
 </div>
 
 ### 🔧 Skills
@@ -73,15 +73,18 @@ Interactive radar chart showcasing technical expertise across multiple domains. 
 - Compiler & Architecture - lex&yacc, gem5, SIC/XE
 
 <div style="display: flex; ">
-  <img src="./src/images/Skills_mobile.jpg" alt="Skills screenshot" style="width: 21%;" />
-  <img src="./src/images/Skills.png" alt="Skills screenshot" style="width: 76%;" />
+  <img src="./src/images/Skills_mobile.jpg" alt="Skills Mobile screenshot" style="width: 21%;" />
+  <img src="./src/images/Skills.png" alt="Skills screenshot" style="width: 75%;" />
 </div>
 
 ### 📂 Projects
 
 Showcase of selected projects with live demos and source code. Each project card expands to reveal comprehensive details and technical specifications.
 
-<img src="./src/images/Projects.png" alt="Projects screenshot" width="80%" />
+<div style="display: flex; ">
+  <img src="./src/images/Projects_mobile.jpg" alt="Projects Mobile screenshot" style="width: 21%;" />
+  <img src="./src/images/Projects_1.png" alt="Projects screenshot" style="width: 76%;" />
+</div>
 
 ## 📱 Responsive Design
 
