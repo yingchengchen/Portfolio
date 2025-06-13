@@ -83,7 +83,7 @@ Showcase of selected projects with live demos and source code. Each project card
 
 <div style="display: flex; ">
   <img src="./src/images/Projects_1_mobile.jpg" alt="Projects Mobile screenshot" style="width: 20%;" />
-  <img src="./src/images/Projects_1.png" alt="Projects screenshot" style="width: 77%;" />
+  <img src="./src/images/Projects_1.png" alt="Projects screenshot" style="width: 79%;" />
 </div>
 
 ## 📱 Responsive Design
