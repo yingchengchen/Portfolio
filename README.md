@@ -58,7 +58,7 @@ Personal introduction with professional background and journey. Click each role 
 
 <div style="display: flex; ">
   <img src="./src/images/About_mobile.jpg" alt="About Mobile Screenshot" style="width: 21%;" />
-  <img src="./src/images/About.png" alt="About Screenshot" style="width: 73%;" />
+  <img src="./src/images/About.png" alt="About Screenshot" style="width: 74%;" />
 </div>
 
 ### 🔧 Skills
@@ -74,7 +74,7 @@ Interactive radar chart showcasing technical expertise across multiple domains. 
 
 <div style="display: flex; ">
   <img src="./src/images/Skills_mobile.jpg" alt="Skills Mobile screenshot" style="width: 21%;" />
-  <img src="./src/images/Skills.png" alt="Skills screenshot" style="width: 75%;" />
+  <img src="./src/images/Skills.png" alt="Skills screenshot" style="width: 76%;" />
 </div>
 
 ### 📂 Projects
@@ -82,8 +82,8 @@ Interactive radar chart showcasing technical expertise across multiple domains. 
 Showcase of selected projects with live demos and source code. Each project card expands to reveal comprehensive details and technical specifications.
 
 <div style="display: flex; ">
-  <img src="./src/images/Projects_mobile.jpg" alt="Projects Mobile screenshot" style="width: 21%;" />
-  <img src="./src/images/Projects_1.png" alt="Projects screenshot" style="width: 76%;" />
+  <img src="./src/images/Projects_1_mobile.jpg" alt="Projects Mobile screenshot" style="width: 20%;" />
+  <img src="./src/images/Projects_1.png" alt="Projects screenshot" style="width: 77%;" />
 </div>
 
 ## 📱 Responsive Design
